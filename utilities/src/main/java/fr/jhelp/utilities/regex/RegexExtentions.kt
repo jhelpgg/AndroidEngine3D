@@ -18,6 +18,9 @@ fun String.regexText(): RegexPart
     return RegexPart(RegexText(this))
 }
 
+/**
+ * Append just text
+ */
 operator fun RegexPart.plus(text: String) =
     this + text.regexText()
 

@@ -27,6 +27,9 @@ fun String.removeWhitCharacters(): String
     return String(result, 0, writeIndex)
 }
 
+/**
+ * Compare ignore case, and if same, compare with take care case
+ */
 fun String.compareAlphabet(string: String): Int
 {
     val comparision = this.compareTo(string, true)
@@ -52,6 +55,9 @@ fun interval(minimum: Char, maximum: Char = minimum) =
         else              -> BasicCharactersInterval(minimum, maximum)
     }
 
+/**
+ * Create interval from the pair
+ */
 val Pair<Char, Char>.interval
     get() =
         interval(this.first, this.second)

@@ -174,7 +174,7 @@ open class RegexPart internal constructor(internal val regexElement: RegexElemen
     }
 
     /**
-     * Create a replacer for replace all matching element in given tex by ta replacement.
+     * Create a replacer for replace all matching element in given text by a replacement.
      *
      * Example:
      *
@@ -182,8 +182,10 @@ open class RegexPart internal constructor(internal val regexElement: RegexElemen
      *  val group = ')'.regexOut().zeroOrMore().group()
      *  val regex = '('.regex() + group + ')'.regex()
      *  val replacer = regex.replacer() + "{" + group + "}"
-     *   replacer.replaceAll(text)
+     *  val result = replacer.replaceAll(text)
      * ````
+     *In the given example, if `text` is **`"hello (85, call) something, (bob)"`** then `result` will be :
+     * **`"hello {85, call} something, {bob}"`**
      */
     fun replacer() =
         Replacer(this)

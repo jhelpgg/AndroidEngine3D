@@ -12,8 +12,15 @@ import fr.jhelp.utilities.same
 import kotlin.math.cos
 import kotlin.math.sin
 
+/**
+ * Represents an angle
+ *
+ * @param value Angle value
+ * @param unit Angle unit, see [AngleUnit]
+ */
 class AngleFloat(value: Float, val unit: AngleUnit) : Comparable<AngleFloat>
 {
+    /**Angle value in its unit*/
     val value = this.unit.modularize(value)
 
     operator fun plus(angle: AngleFloat) =
@@ -28,6 +35,11 @@ class AngleFloat(value: Float, val unit: AngleUnit) : Comparable<AngleFloat>
 
     operator fun unaryMinus() = AngleFloat(-this.value, this.unit)
 
+    /**
+     * Convert this angle to an other unit
+     *
+     * If the unit is the same as this angle unit, this angle is returns, else a new angle is created
+     */
     fun convert(angleUnit: AngleUnit) =
         when (this.unit)
         {
@@ -54,7 +66,14 @@ class AngleFloat(value: Float, val unit: AngleUnit) : Comparable<AngleFloat>
                 }
         }
 
+    /**
+     * Angle cosinus values
+     */
     fun cos() = cos(this.convert(AngleUnit.RADIAN).value)
+
+    /**
+     * Angle sinus values
+     */
     fun sin() = sin(this.convert(AngleUnit.RADIAN).value)
 
     override fun hashCode() = this.convert(AngleUnit.RADIAN).value.hashCode()

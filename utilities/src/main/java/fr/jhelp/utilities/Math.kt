@@ -524,9 +524,15 @@ fun quadratic(cp: Float, p1: Float, p2: Float, precision: Int,
     return quadratic
 }
 
+/**
+ * Distance beteween 2D coordinates
+ */
 fun distance(x1: Float, y1: Float, x2: Float, y2: Float) =
     sqrt(square(x1 - x2) + square(y1 - y2))
 
+/**
+ * Distance beteween 3D coordinates
+ */
 fun distance(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float) =
     sqrt(square(x1 - x2) + square(y1 - y2) + square(z1 - z2))
 
@@ -617,7 +623,7 @@ fun modulo(integer: Long, modulo: Long): Long
  * Modulate a real inside an interval
  *
  * @param real Real to modulate
- * @param min  Minimum of interval
+ * @param min  Minimum of interval include
  * @param max  Maximum of interval exclude
  * @return Modulated value
  */
@@ -655,7 +661,7 @@ fun moduloInterval(real: Double, min: Double, max: Double): Double
  * Modulate a real inside an interval
  *
  * @param real Real to modulate
- * @param min  Minimum of interval
+ * @param min  Minimum of interval include
  * @param max  Maximum of interval exclude
  * @return Modulated value
  */
@@ -715,12 +721,27 @@ fun gradeToDegree(grade: Float) = grade / 0.9f
 
 fun gradeToRadian(grade: Float) = grade * PI_FLOAT / 200.0f
 
+/**
+ * The maximum integer lower or equals to this number
+ */
 val Float.floor get() = floor(this).toInt()
 
+/**
+ * The minimum integer greater or equals to this number
+ */
 val Float.ciel get() = ceil(this).toInt()
 
+/**
+ * The nearest integer to this number
+ */
 val Float.round get() = round(this).toInt()
 
+/**
+ * Limit the number in given bounds:
+ * * If the number lower or equals the minimum of bounds, the minimum is returns
+ * * Else if the number greater or equals the maximum of bounds, the maximum is returns
+ * * Else, it's mean number inside bounds, the number is return as is
+ */
 fun Int.bounds(bound1: Int, bound2: Int): Int
 {
     val min = min(bound1, bound2)
@@ -728,6 +749,12 @@ fun Int.bounds(bound1: Int, bound2: Int): Int
     return min(max, max(min, this))
 }
 
+/**
+ * Limit the number in given bounds:
+ * * If the number lower or equals the minimum of bounds, the minimum is returns
+ * * Else if the number greater or equals the maximum of bounds, the maximum is returns
+ * * Else, it's mean number inside bounds, the number is return as is
+ */
 fun Long.bounds(bound1: Long, bound2: Long): Long
 {
     val min = min(bound1, bound2)
@@ -735,6 +762,12 @@ fun Long.bounds(bound1: Long, bound2: Long): Long
     return min(max, max(min, this))
 }
 
+/**
+ * Limit the number in given bounds:
+ * * If the number lower or equals the minimum of bounds, the minimum is returns
+ * * Else if the number greater or equals the maximum of bounds, the maximum is returns
+ * * Else, it's mean number inside bounds, the number is return as is
+ */
 fun Float.bounds(bound1: Float, bound2: Float): Float
 {
     val min = min(bound1, bound2)
@@ -742,6 +775,12 @@ fun Float.bounds(bound1: Float, bound2: Float): Float
     return min(max, max(min, this))
 }
 
+/**
+ * Limit the number in given bounds:
+ * * If the number lower or equals the minimum of bounds, the minimum is returns
+ * * Else if the number greater or equals the maximum of bounds, the maximum is returns
+ * * Else, it's mean number inside bounds, the number is return as is
+ */
 fun Double.bounds(bound1: Double, bound2: Double): Double
 {
     val min = min(bound1, bound2)

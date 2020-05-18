@@ -49,6 +49,10 @@ fun String.parseLocale(): Locale
 
    return Locale(language, this.substring(start, end), this.substring(end + 1))
 }
+
+/**
+ * Indicates if two locales can be consider as compatible
+ */
 fun Locale.compatible(locale: Locale): Boolean =
      if (this.language != locale.language)
      {
