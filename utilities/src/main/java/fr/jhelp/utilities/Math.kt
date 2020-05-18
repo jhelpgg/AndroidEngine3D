@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.utilities
 
 import kotlin.math.E
@@ -695,12 +703,6 @@ fun moduloInterval(real: Float, min: Float, max: Float): Float
     return space * (real - floor(real)) + min
 }
 
-/**
- * Convert degree to grade
- *
- * @param degree Degree to convert
- * @return Converted grade
- */
 fun degreeToGrade(degree: Double) = degree * 0.9
 
 fun radianToGrade(radian: Double) = radian * 200.0 / PI
