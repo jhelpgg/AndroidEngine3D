@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.images.path
 
 import fr.jhelp.utilities.angle.AngleFloat
@@ -13,7 +21,6 @@ class Path
     private var startY = 0f
     private var x = 0f
     private var y = 0f
-    private var moved = false
 
     fun copy(): Path
     {
@@ -23,115 +30,83 @@ class Path
         copy.y = this.y
         copy.startX = this.startX
         copy.startY = this.startY
-        copy.moved = this.moved
         return copy
     }
 
-    fun moveTo(startX: Float, startY: Float)
+    fun moveTo(startX: Float, startY: Float) : Path
     {
         this.startX = startX
         this.startY = startY
         this.x = startX
         this.y = startY
-        this.moved = true
+        return this
     }
 
-    fun close()
+    fun close() : Path
     {
-        if (this.moved && (!this.startX.same(this.x) || !this.startY.same(this.y)))
+        if (!this.startX.same(this.x) || !this.startY.same(this.y))
         {
-            this.line(this.x, this.y, this.startX, this.startY)
+            this.path.add(LineElement(this.x, this.y, this.startX, this.startY))
             this.x = this.startX
             this.y = this.startY
         }
+
+        return this
     }
 
-    fun lineTo(endX: Float, endY: Float)
+    fun lineTo(endX: Float, endY: Float) : Path
     {
-        this.line(this.x, this.y, endX, endY)
-    }
-
-    fun line(startX: Float, startY: Float,
-             endX: Float, endY: Float)
-    {
-        this.path.add(
-            LineElement(startX, startY, endX, endY))
+        this.path.add(LineElement(this.x, this.y, endX, endY))
         this.x = endX
         this.y = endY
+        return this
     }
 
     fun quadraticTo(controlX: Float, controlY: Float,
-                    endX: Float, endY: Float)
+                    endX: Float, endY: Float) : Path
     {
-        this.quadratic(this.x, this.y, controlX, controlY, endX, endY)
-    }
-
-    fun quadratic(startX: Float, startY: Float,
-                  controlX: Float, controlY: Float,
-                  endX: Float, endY: Float)
-    {
-        this.path.add(
-            QuadraticElement(startX, startY, controlX,
-                             controlY, endX, endY))
+        this.path.add(QuadraticElement(this.x, this.y,
+                                       controlX, controlY,
+                                       endX, endY))
         this.x = endX
         this.y = endY
+        return this
     }
 
     fun cubicTo(control1X: Float, control1Y: Float,
                 control2X: Float, control2Y: Float,
-                endX: Float, endY: Float)
+                endX: Float, endY: Float) : Path
     {
-        this.cubic(this.x, this.y, control1X, control1Y, control2X, control2Y, endX, endY)
-    }
-
-    fun cubic(startX: Float, startY: Float,
-              control1X: Float, control1Y: Float,
-              control2X: Float, control2Y: Float,
-              endX: Float, endY: Float)
-    {
-        this.path.add(
-            CubicElement(startX, startY, control1X,
-                         control1Y, control2X, control2Y,
-                         endX, endY))
+        this.path.add(CubicElement(this.x, this.y,
+                                   control1X, control1Y,
+                                   control2X, control2Y,
+                                   endX, endY))
         this.x = endX
         this.y = endY
+        return this
     }
 
     fun ellipticArcTo(radiusX: Float, radiusY: Float, rotationAxisX: AngleFloat,
                       largeArc: Boolean, sweep: Boolean,
-                      endX: Float, endY: Float)
+                      endX: Float, endY: Float) : Path
     {
-        this.ellipticArc(this.x, this.y,
-                         radiusX, radiusY, rotationAxisX,
-                         largeArc, sweep,
-                         endX, endY)
-    }
-
-    fun ellipticArc(startX: Float, startY: Float,
-                    radiusX: Float, radiusY: Float, rotationAxisX: AngleFloat,
-                    largeArc: Boolean, sweep: Boolean,
-                    endX: Float, endY: Float)
-    {
-        this.path.add(
-            EllipticArcElement(startX, startY,
-                               radiusX, radiusY, rotationAxisX,
-                               largeArc, sweep,
-                               endX, endY))
+        this.path.add(EllipticArcElement(this.x, this.y,
+                                         radiusX, radiusY, rotationAxisX,
+                                         largeArc, sweep,
+                                         endX, endY))
         this.x = endX
         this.y = endY
+        return this
     }
 
-    fun add(path:Path)
+    fun add(path: Path) : Path
     {
         this.path.addAll(path.path)
         this.x = path.x
         this.y = path.y
-
-        if(path.moved)
-        {
-            this.startX = path.startX
-            this.startY = path.startY
-        }
+        this.startX = path.startX
+        this.startY = path.startY
+        return this
     }
 
     fun path(precision: Int, start: Float, end: Float): List<Segment>

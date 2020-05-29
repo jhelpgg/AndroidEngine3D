@@ -11,11 +11,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/engine" />
             <option value="$PROJECT_DIR$/images" />
             <option value="$PROJECT_DIR$/io" />
             <option value="$PROJECT_DIR$/lists" />
             <option value="$PROJECT_DIR$/security" />
+            <option value="$PROJECT_DIR$/sound" />
             <option value="$PROJECT_DIR$/tasks" />
             <option value="$PROJECT_DIR$/utilities" />
           </set>

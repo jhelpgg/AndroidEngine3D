@@ -1,6 +1,17 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene
 
+import android.graphics.Paint
+import fr.jhelp.engine.draw
 import fr.jhelp.engine.tools.BufferFloat
+import fr.jhelp.images.clear
 import javax.microedition.khronos.opengles.GL10
 
 open class Object3D : NodeWithBoundingBox()
@@ -14,7 +25,7 @@ open class Object3D : NodeWithBoundingBox()
     var doubleFace = false
 
     val sealed get() = this.points.sealed
-    final override   fun center() = this.boundingBox.center()
+    final override fun center() = this.boundingBox.center()
 
     final override fun boundingBox() = this.boundingBox.copy()
 
@@ -94,6 +105,73 @@ open class Object3D : NodeWithBoundingBox()
                      bottomRightU, bottomRightV,
                      topRightU, topRightV)
         this.numberTriangle += 2
+    }
+
+    fun showWire()
+    {
+        val texture = texture(512, 512)
+            .draw { bitmap, canvas, paint ->
+                bitmap.clear(0xFFFFFFFF.toInt())
+                paint.style = Paint.Style.STROKE
+                paint.strokeWidth = 1f
+                paint.color = 0xFF000000.toInt()
+                var left = this.uvs.size
+                val buffer = this.uvs.buffer()
+                buffer.position(0)
+
+                while (left > 0)
+                {
+                    val x1 = 512f * buffer.get()
+                    left--
+
+                    if (left <= 0)
+                    {
+                        break
+                    }
+
+                    val y1 = 512f * buffer.get()
+                    left--
+
+                    if (left <= 0)
+                    {
+                        break
+                    }
+
+                    val x2 = 512f * buffer.get()
+                    left--
+
+                    if (left <= 0)
+                    {
+                        break
+                    }
+
+                    val y2 = 512f * buffer.get()
+                    left--
+
+                    if (left <= 0)
+                    {
+                        break
+                    }
+
+                    val x3 = 512f * buffer.get()
+                    left--
+
+                    if (left <= 0)
+                    {
+                        break
+                    }
+
+                    val y3 = 512f * buffer.get()
+                    left--
+                    canvas.drawLine(x1, y1, x2, y2, paint)
+                    canvas.drawLine(x2, y2, x3, y3, paint)
+                    canvas.drawLine(x3, y3, x1, y1, paint)
+                }
+
+                buffer.position(0)
+            }
+        this.material.diffuse = LIGHT_GREY
+        this.material.texture = texture
     }
 
     final override fun render(gl: GL10)

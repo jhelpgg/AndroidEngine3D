@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene.geom.robot
 
 import androidx.annotation.DrawableRes
@@ -24,7 +32,8 @@ import kotlin.math.max
 private fun createCylinder(): Revolution
 {
     val path = Path()
-    path.line(0.3f, 2f, 0.3f, 0f)
+    path.moveTo(0.3f, 2f)
+    path.lineTo(0.3f, 0f)
     return Revolution(path)
 }
 

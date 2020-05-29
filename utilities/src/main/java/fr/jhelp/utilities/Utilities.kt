@@ -14,6 +14,14 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.utilities
 
 import android.content.Context
@@ -86,3 +94,8 @@ fun localizedString(@StringRes resource: Int, locale: Locale, context: Context):
  * Always true function
  */
 val ALWAYS_TRUE = { _: Any -> true }
+
+val Int.seconds get() = this * 1000L
+val Int.minutes get() = this.seconds * 60L
+val Int.hours get() = this.minutes * 60L
+val Int.days get() = this.hours * 24L

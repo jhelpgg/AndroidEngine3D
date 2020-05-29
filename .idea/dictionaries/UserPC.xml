@@ -2,6 +2,7 @@
   <dictionary name="UserPC">
     <words>
       <w>cosinus</w>
+      <w>storable</w>
     </words>
   </dictionary>
 </component>

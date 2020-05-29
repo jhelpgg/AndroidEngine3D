@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene.geom.robot
 
 import android.graphics.Bitmap
@@ -9,10 +17,10 @@ import fr.jhelp.engine.resources.Eyes
 import fr.jhelp.engine.resources.Mouths
 import fr.jhelp.engine.resources.ResourcesAccess
 import fr.jhelp.engine.scene.texture
+import fr.jhelp.images.bitmap
 import fr.jhelp.images.clear
 import fr.jhelp.images.mask
 import fr.jhelp.images.tint
-import fr.jhelp.utilities.extensions.bitmap
 
 private val hairPath by lazy {
     val path = Path()

@@ -1,7 +1,14 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene.geom
 
 import fr.jhelp.engine.scene.Object3D
-import fr.jhelp.tasks.parallel
 import fr.jhelp.utilities.bounds
 import fr.jhelp.utilities.formal.Constant
 import fr.jhelp.utilities.formal.MathFunction
@@ -24,7 +31,7 @@ class Field3D(functionZ: MathFunction<*>,
     init
     {
         this.doubleFace = true
-        parallel(this::compute)
+        this.compute()
     }
 
     fun z(x: Float, y: Float) =

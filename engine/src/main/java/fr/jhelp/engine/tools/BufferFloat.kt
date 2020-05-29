@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.tools
 
 import java.nio.FloatBuffer
@@ -36,31 +44,6 @@ class BufferFloat
             this.dirty.set(true)
 
             System.arraycopy(floats, 0, array, this.size, floats.size)
-            this.size += floats.size
-        }
-    }
-
-    fun insert(index: Int, vararg floats: Float)
-    {
-        if (index < 0)
-        {
-            throw IllegalArgumentException("index must be >=0, not $index")
-        }
-
-        if (index >= this.size)
-        {
-            this.add(*floats)
-            return
-        }
-
-        synchronized(this.dirty)
-        {
-            this.expand(floats.size)
-            val array = this.array ?: return
-            this.dirty.set(true)
-
-            System.arraycopy(array, index, array, index + floats.size, this.size - index)
-            System.arraycopy(floats, 0, array, index, floats.size)
             this.size += floats.size
         }
     }
