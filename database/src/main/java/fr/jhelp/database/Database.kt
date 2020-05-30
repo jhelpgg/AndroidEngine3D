@@ -6,27 +6,13 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-/*
- *  <h1>License :</h1> <br/>
- * The following code is deliver as is. <br/>
- *  You can use, modify, the code as your need for any usage.<br/>
- *  But you can't do any action that avoid me or other person use, modify this code.<br/>
- *  The code is free for usage and modification, you can't change that fact.
- */
-
 package fr.jhelp.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import fr.jhelp.lists.Queue
-import fr.jhelp.tasks.IOThread
-import fr.jhelp.tasks.promise.FutureResult
-import fr.jhelp.tasks.promise.Promise
 import fr.jhelp.utilities.logError
-import java.util.concurrent.atomic.AtomicBoolean
-
-private const val CLEAR_VERSION = "_clear_version"
 
 private const val TABLE_OBJECTS = "Objects"
 private const val TABLE_FIELDS = "Fields"
@@ -72,23 +58,12 @@ internal const val ID_NEW_DATA = -1L
 
 class Database(context: Context, name: String)
 {
-    private lateinit var database: SQLiteDatabase
-    private val databaseManager: DatabaseManager
-    private val ready = AtomicBoolean(false)
-    private val waitingOrders = Queue<DatabaseOrder>()
+    private val database: SQLiteDatabase =
+        context.openOrCreateDatabase(name, Context.MODE_PRIVATE, null)
 
     init
     {
-        val encryptPath = context.getDatabasePath(name)
-        val clearPath = context.getDatabasePath(name + CLEAR_VERSION)
-
-        if (!encryptPath.exists())
-        {
-            encryptPath.parentFile!!.mkdirs()
-        }
-
-        this.databaseManager = DatabaseManager(encryptPath, clearPath)
-        this.databaseManager.futureDatabase.and(IOThread, this::onInitialized)
+        this.createTables()
     }
 
     fun <DS : DataStorable> store(key: String, dataStorable: DS)
@@ -96,15 +71,6 @@ class Database(context: Context, name: String)
         if (key.isEmpty())
         {
             throw IllegalArgumentException("Key must not be empty")
-        }
-
-        synchronized(this.ready)
-        {
-            if (!this.ready.get())
-            {
-                this.waitingOrders.enqueue(OrderStore(key, dataStorable))
-                return
-            }
         }
 
         this.updateID(dataStorable)
@@ -136,32 +102,53 @@ class Database(context: Context, name: String)
         }
 
         this.storeIntern(key, dataStorable)
-        this.databaseManager.update()
     }
 
-    fun <DS : DataStorable> read(key: String): FutureResult<DS>
+    fun <DS : DataStorable> read(key: String): DS?
     {
-        val promise = Promise<DS>()
-
-        if (key.isEmpty())
+         if (key.isEmpty())
         {
-            promise.error(NoSuchElementException("No object are store with empty key"))
-            return promise.future
+            return null
         }
 
-        this.doRead(key, promise)
-        return promise.future
+        var id = ID_NEW_DATA
+        var className = ""
+        val cursor = this.database.query(TABLE_OBJECTS, SELECT_ID_CLASS_NAME,
+                                         WHERE_NAME, arrayOf(key),
+                                         null, null, null,
+                                         "1")
+        if (cursor.moveToNext())
+        {
+            id = cursor.getLong(0)
+            className = cursor.getString(1)
+        }
+
+        cursor.close()
+
+        if (id == ID_NEW_DATA)
+        {
+            return null
+        }
+
+        return try
+        {
+            val dataStorable =     Class.forName(className).newInstance() as DS
+            dataStorable.databaseID = id
+            this.fill(dataStorable)
+            dataStorable
+        }
+        catch (_: Exception)
+        {
+            null
+        }
+
     }
 
     fun delete(key: String)
     {
-        synchronized(this.ready)
+        if (key.isEmpty())
         {
-            if (!this.ready.get())
-            {
-                this.waitingOrders.enqueue(OrderDelete(key))
-                return
-            }
+            return
         }
 
         var id = ID_NEW_DATA
@@ -200,23 +187,11 @@ class Database(context: Context, name: String)
         this.database.delete(TABLE_OBJECTS, WHERE_ID, arrayOf(id.toString()))
         this.database.delete(TABLE_FIELDS, WHERE_OBJECT_ID, arrayOf(id.toString()))
         this.deleteIfNoMoreReferenced(references)
-        this.databaseManager.update()
     }
 
-    fun shutdown(): FutureResult<Unit>
+    fun close()
     {
-        synchronized(this.ready)
-        {
-            if (!this.ready.get())
-            {
-                this.waitingOrders.clear()
-                this.waitingOrders.enqueue(OrderShutDown)
-                return this.databaseManager.shutdownResult
-            }
-        }
-
         this.database.close()
-        return this.databaseManager.shutdown()
     }
 
     internal fun readInteger(databaseID: Long, key: String, defaultValue: Long): Long
@@ -503,60 +478,6 @@ class Database(context: Context, name: String)
         }
     }
 
-    private fun <DS : DataStorable> doRead(key: String, promise: Promise<DS>)
-    {
-        synchronized(this.ready)
-        {
-            if (!this.ready.get())
-            {
-                this.waitingOrders.enqueue(OrderRead(key, promise))
-                return
-            }
-        }
-
-        var id = ID_NEW_DATA
-        var className = ""
-        val cursor = this.database.query(TABLE_OBJECTS, SELECT_ID_CLASS_NAME,
-                                         WHERE_NAME, arrayOf(key),
-                                         null, null, null,
-                                         "1")
-        if (cursor.moveToNext())
-        {
-            id = cursor.getLong(0)
-            className = cursor.getString(1)
-        }
-
-        cursor.close()
-
-        if (id == ID_NEW_DATA)
-        {
-            promise.error(NoSuchElementException("The object $key not exists"))
-            return
-        }
-
-        val dataStorable =
-            try
-            {
-                Class.forName(className).newInstance() as DS
-            }
-            catch (exception: Exception)
-            {
-                promise.error(exception)
-                return
-            }
-
-        try
-        {
-            dataStorable.databaseID = id
-            this.fill(dataStorable)
-            promise.result(dataStorable)
-        }
-        catch (exception: Exception)
-        {
-            promise.error(exception)
-        }
-    }
-
     private fun <DS : DataStorable> fill(dataStorable: DS)
     {
         val toResolve = Queue<Pair<String, Long>>()
@@ -619,20 +540,6 @@ class Database(context: Context, name: String)
         return id
     }
 
-    private fun onInitialized(database: SQLiteDatabase)
-    {
-        this.database = database
-        this.createTables()
-
-        synchronized(this.ready)
-        {
-            this.ready.set(true)
-            this.executeQueuedOrders()
-        }
-
-        this.databaseManager.update()
-    }
-
     private fun createTables()
     {
         this.database.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_OBJECTS " +
@@ -649,29 +556,6 @@ class Database(context: Context, name: String)
                               "$COLUMN_VALUE_NUMBER NUMBER, " +
                               "$COLUMN_VALUE_TEXT TEXT," +
                               "$COLUMN_VALUE_OBJECT_ID INTEGER)")
-    }
-
-    private fun executeQueuedOrders()
-    {
-        synchronized(this.ready)
-        {
-            while (this.waitingOrders.notEmpty)
-            {
-                val order = this.waitingOrders.dequeue()
-
-                when (order)
-                {
-                    is OrderStore<*> -> this.store(order.key, order.dataStorable)
-                    is OrderRead<*>  -> this.doRead(order.key, order.promise)
-                    is OrderDelete   -> this.delete(order.key)
-                    is OrderShutDown ->
-                    {
-                        this.waitingOrders.clear()
-                        this.shutdown()
-                    }
-                }
-            }
-        }
     }
 
     private fun <DS : DataStorable> updateIdForField(databaseID: Long, key: String, value: DS)

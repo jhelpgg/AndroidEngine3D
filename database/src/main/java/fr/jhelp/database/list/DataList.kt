@@ -6,14 +6,6 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-/*
- *  <h1>License :</h1> <br/>
- * The following code is deliver as is. <br/>
- *  You can use, modify, the code as your need for any usage.<br/>
- *  But you can't do any action that avoid me or other person use, modify this code.<br/>
- *  The code is free for usage and modification, you can't change that fact.
- */
-
 package fr.jhelp.database.list
 
 import androidx.annotation.Keep
@@ -61,7 +53,7 @@ class DataList<DS : DataStorable> : DataStorable(), Iterable<DS>
 
         for (i in index until size - 1)
         {
-            this.putDataStorable(i.toString(), this.getDataStorable((i + 1).toString()))
+            this.putDataStorable<DS>(i.toString(), this.getDataStorable<DS>((i + 1).toString()))
         }
 
         this.removeKey((size - 1).toString())
@@ -75,7 +67,7 @@ class DataList<DS : DataStorable> : DataStorable(), Iterable<DS>
 
         for (i in size downTo index + 1)
         {
-            this.putDataStorable(i.toString(), this.getDataStorable((i - 1).toString()))
+            this.putDataStorable<DS>(i.toString(), this.getDataStorable<DS>((i - 1).toString()))
         }
 
         this.putDataStorable(index.toString(), element)
