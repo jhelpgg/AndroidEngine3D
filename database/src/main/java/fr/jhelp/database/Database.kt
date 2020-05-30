@@ -75,6 +75,17 @@ class Database(context: Context, name: String)
             throw IllegalArgumentException("Key must not be empty")
         }
 
+        try
+        {
+            dataStorable.javaClass.getConstructor()
+        }
+        catch (exception: Exception)
+        {
+            throw IllegalArgumentException(
+                "The class ${dataStorable.javaClass.name} don't have an empty public constructor",
+                exception)
+        }
+
         this.updateID(dataStorable)
 
         if (dataStorable.databaseID == ID_NEW_DATA)

@@ -15,6 +15,13 @@ import fr.jhelp.utilities.extensions.float
 import fr.jhelp.utilities.extensions.int
 import fr.jhelp.utilities.extensions.long
 
+/**
+ * Object can be store in [Database].
+ *
+ * Extension must have the empty public constructor (Used by the system for create objects)
+ *
+ * The class must be preserve from Proguard renaming, use the annotation [Keep] is the simplest way to do it
+ */
 @Keep
 abstract class DataStorable
 {
@@ -220,9 +227,9 @@ abstract class DataStorable
         this.data.remove(key)
     }
 
-    protected fun keyDefined(key:String) = key in this.data
+    protected fun keyDefined(key: String) = key in this.data
 
-    protected val keys : Set<String> get() = this.data.keys
+    protected val keys: Set<String> get() = this.data.keys
 
     protected val length get() = this.data.size
 
@@ -231,22 +238,22 @@ abstract class DataStorable
         this.data.clear()
     }
 
-    internal fun put(key:String, integer:Long)
+    internal fun put(key: String, integer: Long)
     {
         this.putLong(key, integer)
     }
 
-    internal fun put(key:String, number:Double)
+    internal fun put(key: String, number: Double)
     {
-       this.putDouble(key,number)
+        this.putDouble(key, number)
     }
 
-    internal fun put(key:String, text:String)
+    internal fun put(key: String, text: String)
     {
-        this.putString(key,text)
+        this.putString(key, text)
     }
 
-    internal fun <DS:DataStorable> put(key:String, dataStorable:DS)
+    internal fun <DS : DataStorable> put(key: String, dataStorable: DS)
     {
         this.putDataStorable(key, dataStorable)
     }
