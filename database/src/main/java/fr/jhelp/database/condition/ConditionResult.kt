@@ -8,10 +8,9 @@
 
 package fr.jhelp.database.condition
 
-abstract class DataCondition
+enum class ConditionResult
 {
-    internal open fun start() = Unit
-
-    internal abstract fun nextQuery(parameters: MutableList<String>,
-                                    executeQuery: (String) -> Long): ConditionResult
+    VALID,
+    INVALID,
+    UNKNOWN
 }

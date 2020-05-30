@@ -8,23 +8,33 @@
 
 package fr.jhelp.database.condition
 
-class DataAnd(private val first: DataCondition, private val second: DataCondition) : DataCondition(first.field)
+class DataAnd(private val first: DataCondition, private val second: DataCondition) : DataCondition()
 {
-    private val condition = "(${this.first.condition()}) AND (${this.second.condition()})"
+    private var firstCondition = true
 
-    init
+    override fun start()
     {
-        if(this.first.field != this.second.field)
-        {
-            throw IllegalArgumentException("first and second must refer the same field. Here first=>${this.first.field} and second=>${this.second.field}")
-        }
+        this.firstCondition = true
+        this.first.start()
+        this.second.start()
     }
 
-    override fun condition() = this.condition
-
-    override fun fill(arguments: MutableList<String>)
+    override fun nextQuery(parameters: MutableList<String>,
+                           executeQuery: (String) -> Long): ConditionResult
     {
-        this.first.fill(arguments)
-        this.second.fill(arguments)
+        if(this.firstCondition)
+        {
+            val result = this.first.nextQuery(parameters, executeQuery)
+
+            if(result == ConditionResult.UNKNOWN || result == ConditionResult.INVALID)
+            {
+                return result
+            }
+
+            this.firstCondition = false
+            return  ConditionResult.UNKNOWN
+        }
+
+        return this.second.nextQuery(parameters, executeQuery)
     }
 }

@@ -10,7 +10,6 @@ package fr.jhelp.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import fr.jhelp.database.condition.AND
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -65,7 +64,7 @@ class DatabaseTests
         entered.set(false)
 
         database.select(PersonStorable::class.java,
-                        PersonStorable.ageUpper(30) AND PersonStorable.ageLower(50))
+                        PersonStorable.ageBetween(30, 50))
         { person3 ->
             Assert.assertNotNull(person3)
             Assert.assertEquals(person.name(), person3.name())
@@ -88,6 +87,23 @@ class DatabaseTests
         }
 
         Assert.assertFalse(entered.get())
+        entered.set(false)
+        database.select(PersonStorable::class.java,
+                        PersonStorable.whereSibling(PersonStorable.ageIs(1)))
+        { person3 ->
+            Assert.assertNotNull(person3)
+            Assert.assertEquals(person.name(), person3.name())
+            Assert.assertEquals(person.age(), person3.age())
+            sibling = person.sibling()
+            sibling2 = person3.sibling()
+            Assert.assertNotNull(sibling)
+            Assert.assertNotNull(sibling2)
+            Assert.assertEquals(sibling!!.name(), sibling2!!.name())
+            Assert.assertEquals(sibling!!.age(), sibling2!!.age())
+            entered.set(true)
+        }
+
+        Assert.assertTrue(entered.get())
 
         database.delete("P")
         person2 = database.read<PersonStorable>("P")

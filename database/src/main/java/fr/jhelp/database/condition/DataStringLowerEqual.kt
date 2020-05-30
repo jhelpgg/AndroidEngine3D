@@ -8,21 +8,33 @@
 
 package fr.jhelp.database.condition
 
+import fr.jhelp.database.COLUMN_ID
 import fr.jhelp.database.COLUMN_NAME
+import fr.jhelp.database.COLUMN_OBJECT_ID
 import fr.jhelp.database.COLUMN_TYPE
 import fr.jhelp.database.COLUMN_VALUE_TEXT
 import fr.jhelp.database.DataType
+import fr.jhelp.database.TABLE_FIELDS
 
-class DataStringLowerEqual(field:String, private val value: String) :DataCondition(field)
+class DataStringLowerEqual(private val field:String, private val value: String) :DataCondition()
 {
-    private val condition = "$COLUMN_NAME=? AND $COLUMN_TYPE=? AND $COLUMN_VALUE_TEXT<=?"
+    private val query =
+        "SELECT $COLUMN_ID FROM $TABLE_FIELDS WHERE $COLUMN_OBJECT_ID=? AND $COLUMN_NAME=? AND $COLUMN_TYPE=? AND $COLUMN_VALUE_TEXT<=?"
 
-    override fun condition() = this.condition
-
-    override fun fill(arguments: MutableList<String>)
+    override fun nextQuery(parameters: MutableList<String>,
+                           executeQuery: (String) -> Long): ConditionResult
     {
-        arguments.add(this.field)
-        arguments.add(DataType.TEXT.name)
-        arguments.add(this.value)
+        parameters.add(this.field)
+        parameters.add(DataType.TEXT.name)
+        parameters.add(this.value)
+
+        return if (executeQuery(this.query)>=0L)
+        {
+            ConditionResult.VALID
+        }
+        else
+        {
+            ConditionResult.INVALID
+        }
     }
 }

@@ -12,20 +12,21 @@ import fr.jhelp.database.COLUMN_ID
 import fr.jhelp.database.COLUMN_NAME
 import fr.jhelp.database.COLUMN_OBJECT_ID
 import fr.jhelp.database.COLUMN_TYPE
-import fr.jhelp.database.COLUMN_VALUE_TEXT
+import fr.jhelp.database.COLUMN_VALUE_NUMBER
 import fr.jhelp.database.DataType
 import fr.jhelp.database.TABLE_FIELDS
 
-class DataStringNotEqual(private val field:String, private val value: String) :DataCondition()
+class DataFloatUpperEqual(private val field:String, value: Float) :DataCondition()
 {
+    private val value = value.toString()
     private val query =
-        "SELECT $COLUMN_ID FROM $TABLE_FIELDS WHERE $COLUMN_OBJECT_ID=? AND $COLUMN_NAME=? AND $COLUMN_TYPE=? AND $COLUMN_VALUE_TEXT!=?"
+        "SELECT $COLUMN_ID FROM $TABLE_FIELDS WHERE $COLUMN_OBJECT_ID=? AND $COLUMN_NAME=? AND $COLUMN_TYPE=? AND $COLUMN_VALUE_NUMBER>=?"
 
     override fun nextQuery(parameters: MutableList<String>,
                            executeQuery: (String) -> Long): ConditionResult
     {
         parameters.add(this.field)
-        parameters.add(DataType.TEXT.name)
+        parameters.add(DataType.NUMBER.name)
         parameters.add(this.value)
 
         return if (executeQuery(this.query)>=0L)

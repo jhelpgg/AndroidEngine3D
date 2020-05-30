@@ -8,22 +8,34 @@
 
 package fr.jhelp.database.condition
 
+import fr.jhelp.database.COLUMN_ID
 import fr.jhelp.database.COLUMN_NAME
+import fr.jhelp.database.COLUMN_OBJECT_ID
 import fr.jhelp.database.COLUMN_TYPE
 import fr.jhelp.database.COLUMN_VALUE_INTEGER
 import fr.jhelp.database.DataType
+import fr.jhelp.database.TABLE_FIELDS
 
-class DataIntUpper(field:String, value: Int) :DataCondition(field)
+class DataIntUpper(private val field:String, value: Int) :DataCondition()
 {
-    private val condition = "$COLUMN_NAME=? AND $COLUMN_TYPE=? AND $COLUMN_VALUE_INTEGER>?"
     private val value = value.toString()
+    private val query =
+        "SELECT $COLUMN_ID FROM $TABLE_FIELDS WHERE $COLUMN_OBJECT_ID=? AND $COLUMN_NAME=? AND $COLUMN_TYPE=? AND $COLUMN_VALUE_INTEGER>?"
 
-    override fun condition() = this.condition
-
-    override fun fill(arguments: MutableList<String>)
+    override fun nextQuery(parameters: MutableList<String>,
+                           executeQuery: (String) -> Long): ConditionResult
     {
-        arguments.add(this.field)
-        arguments.add(DataType.INTEGER.name)
-        arguments.add(this.value)
+        parameters.add(this.field)
+        parameters.add(DataType.INTEGER.name)
+        parameters.add(this.value)
+
+        return if (executeQuery(this.query)>=0L)
+        {
+            ConditionResult.VALID
+        }
+        else
+        {
+            ConditionResult.INVALID
+        }
     }
 }

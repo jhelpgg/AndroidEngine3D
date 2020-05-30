@@ -11,6 +11,7 @@ package fr.jhelp.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import fr.jhelp.database.condition.ConditionResult
 import fr.jhelp.database.condition.DataCondition
 import fr.jhelp.lists.Queue
 import fr.jhelp.utilities.logError
@@ -193,11 +194,6 @@ class Database(context: Context, name: String)
     fun <DS : DataStorable> select(dataStorableClass: Class<DS>, where: DataCondition,
                                    collector: (DS) -> Unit)
     {
-        val arguments = ArrayList<String>()
-        arguments.add("-1")
-        val subQuery =
-            "SELECT $COLUMN_ID FROM $TABLE_FIELDS WHERE $COLUMN_OBJECT_ID=? AND (${where.create(arguments)})"
-
         val mainCursor = this.database.query(TABLE_OBJECTS, SELECT_ID,
                                              "$COLUMN_CLASS_NAME=? AND $COLUMN_NAME!=?",
                                              arrayOf(dataStorableClass.name, ""),
@@ -206,18 +202,42 @@ class Database(context: Context, name: String)
         while (mainCursor.moveToNext())
         {
             val id = mainCursor.getLong(0)
-            arguments[0] = id.toString()
-            val subCursor = this.database.rawQuery(subQuery, arguments.toTypedArray())
+            val idString = id.toString()
+            where.start()
+            var result: ConditionResult
 
-            while (subCursor.moveToNext())
+            do
+            {
+                val arguments = ArrayList<String>()
+                arguments.add(idString)
+                result = where.nextQuery(arguments) { query ->
+                    this.testQuery(query, arguments.toTypedArray())
+                }
+            }
+            while (result == ConditionResult.UNKNOWN)
+
+            if (result == ConditionResult.VALID)
             {
                 collector(this.readObject<DS>(id)!!)
             }
-
-            subCursor.close()
         }
 
         mainCursor.close()
+    }
+
+    private fun testQuery(query: String, arguments: Array<String>): Long
+    {
+        var result = ID_NEW_DATA
+        val cursor = this.database.rawQuery(query, arguments)
+
+
+        if (cursor.moveToNext())
+        {
+            result = cursor.getLong(0)
+        }
+
+        cursor.close()
+        return result
     }
 
     fun close()
