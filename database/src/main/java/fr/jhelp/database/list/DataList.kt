@@ -74,6 +74,22 @@ class DataList<DS : DataStorable> : DataStorable(), Iterable<DS>
         this.putInt(SIZE, size + 1)
     }
 
+    fun indexOf(element: DS): Int
+    {
+        for (index in 0 until this.size)
+        {
+            if (this[index] == element)
+            {
+                return index
+            }
+        }
+
+        return -1
+    }
+
+    operator fun contains(element: DS) =
+        this.indexOf(element) >= 0
+
     override fun iterator(): Iterator<DS> =
         DataListIterator(this)
 

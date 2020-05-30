@@ -11,17 +11,18 @@ package fr.jhelp.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import fr.jhelp.database.condition.DataCondition
 import fr.jhelp.lists.Queue
 import fr.jhelp.utilities.logError
 
-private const val TABLE_OBJECTS = "Objects"
-private const val TABLE_FIELDS = "Fields"
+internal const val TABLE_OBJECTS = "Objects"
+internal const val TABLE_FIELDS = "Fields"
 
-private const val COLUMN_ID = "ID"
-private const val COLUMN_CLASS_NAME = "ClassName"
-private const val COLUMN_NAME = "Name"
-private const val COLUMN_OBJECT_ID = "ObjectID"
-private const val COLUMN_TYPE = "Type"
+internal const val COLUMN_ID = "ID"
+internal const val COLUMN_CLASS_NAME = "ClassName"
+internal const val COLUMN_NAME = "Name"
+internal const val COLUMN_OBJECT_ID = "ObjectID"
+internal const val COLUMN_TYPE = "Type"
 internal const val COLUMN_VALUE_INTEGER = "ValueInteger"
 internal const val COLUMN_VALUE_NUMBER = "ValueNumber"
 internal const val COLUMN_VALUE_TEXT = "ValueText"
@@ -106,7 +107,7 @@ class Database(context: Context, name: String)
 
     fun <DS : DataStorable> read(key: String): DS?
     {
-         if (key.isEmpty())
+        if (key.isEmpty())
         {
             return null
         }
@@ -132,7 +133,7 @@ class Database(context: Context, name: String)
 
         return try
         {
-            val dataStorable =     Class.forName(className).newInstance() as DS
+            val dataStorable = Class.forName(className).newInstance() as DS
             dataStorable.databaseID = id
             this.fill(dataStorable)
             dataStorable
@@ -187,6 +188,36 @@ class Database(context: Context, name: String)
         this.database.delete(TABLE_OBJECTS, WHERE_ID, arrayOf(id.toString()))
         this.database.delete(TABLE_FIELDS, WHERE_OBJECT_ID, arrayOf(id.toString()))
         this.deleteIfNoMoreReferenced(references)
+    }
+
+    fun <DS : DataStorable> select(dataStorableClass: Class<DS>, where: DataCondition,
+                                   collector: (DS) -> Unit)
+    {
+        val arguments = ArrayList<String>()
+        arguments.add("-1")
+        val subQuery =
+            "SELECT $COLUMN_ID FROM $TABLE_FIELDS WHERE $COLUMN_OBJECT_ID=? AND (${where.create(arguments)})"
+
+        val mainCursor = this.database.query(TABLE_OBJECTS, SELECT_ID,
+                                             "$COLUMN_CLASS_NAME=? AND $COLUMN_NAME!=?",
+                                             arrayOf(dataStorableClass.name, ""),
+                                             null, null, null)
+
+        while (mainCursor.moveToNext())
+        {
+            val id = mainCursor.getLong(0)
+            arguments[0] = id.toString()
+            val subCursor = this.database.rawQuery(subQuery, arguments.toTypedArray())
+
+            while (subCursor.moveToNext())
+            {
+                collector(this.readObject<DS>(id)!!)
+            }
+
+            subCursor.close()
+        }
+
+        mainCursor.close()
     }
 
     fun close()

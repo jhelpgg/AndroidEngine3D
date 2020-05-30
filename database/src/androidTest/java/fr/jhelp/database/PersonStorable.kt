@@ -9,6 +9,9 @@
 package fr.jhelp.database
 
 import androidx.annotation.Keep
+import fr.jhelp.database.condition.DataIntLower
+import fr.jhelp.database.condition.DataIntUpper
+import fr.jhelp.database.condition.DataStringEqual
 
 private const val NAME = "name"
 private const val AGE = "age"
@@ -17,6 +20,13 @@ private const val SIBLING = "sibling"
 @Keep
 class PersonStorable() : DataStorable()
 {
+    companion object
+    {
+        fun nameIs(name:String) = DataStringEqual(NAME, name)
+        fun ageLower(ageMaximum:Int) = DataIntLower(AGE, ageMaximum)
+        fun ageUpper(ageMinimum:Int) = DataIntUpper(AGE, ageMinimum)
+    }
+
     constructor(name: String, age: Int) : this()
     {
         this.name(name)

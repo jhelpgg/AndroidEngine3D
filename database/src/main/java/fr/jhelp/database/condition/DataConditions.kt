@@ -6,15 +6,9 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-package fr.jhelp.database
+package fr.jhelp.database.condition
 
-import androidx.annotation.Keep
+infix fun DataCondition.AND(dataCondition:DataCondition) = DataAnd(this, dataCondition)
 
-@Keep
-enum class DataType
-{
-    INTEGER,
-    NUMBER,
-    TEXT,
-    OBJECT
-}
+infix fun DataCondition.OR(dataCondition:DataCondition) = DataOr(this, dataCondition)
+

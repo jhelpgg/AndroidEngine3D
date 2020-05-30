@@ -220,6 +220,8 @@ abstract class DataStorable
         this.data.remove(key)
     }
 
+    protected fun keyDefined(key:String) = key in this.data
+
     protected val keys : Set<String> get() = this.data.keys
 
     protected val length get() = this.data.size

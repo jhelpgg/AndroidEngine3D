@@ -48,6 +48,11 @@ class DataMap<DS : DataStorable> : DataStorable(), Iterable<Pair<String, DS>>
         return value
     }
 
+    fun getOrDefault(key: String, creator: () -> DS): DS =
+        this.getDataStorable<DS>(key) ?: creator()
+
+    operator fun contains(key: String) = this.keyDefined(key)
+
     override fun iterator(): Iterator<Pair<String, DS>> =
         DataMapIterator(this)
 }

@@ -10,15 +10,17 @@ package fr.jhelp.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import fr.jhelp.database.condition.AND
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.atomic.AtomicBoolean
 
 @RunWith(AndroidJUnit4::class)
 class DatabaseTests
 {
     @Test
-    fun test()
+    fun simpleTest()
     {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -37,12 +39,55 @@ class DatabaseTests
         Assert.assertNotNull(person2)
         Assert.assertEquals(person.name(), person2!!.name())
         Assert.assertEquals(person.age(), person2.age())
-        val sibling = person.sibling()
-        val sibling2 = person2.sibling()
+        var sibling = person.sibling()
+        var sibling2 = person2.sibling()
         Assert.assertNotNull(sibling)
         Assert.assertNotNull(sibling2)
         Assert.assertEquals(sibling!!.name(), sibling2!!.name())
         Assert.assertEquals(sibling.age(), sibling2.age())
+        val entered = AtomicBoolean(false)
+
+        database.select(PersonStorable::class.java, PersonStorable.nameIs("Arthur"))
+        { person3 ->
+            Assert.assertNotNull(person3)
+            Assert.assertEquals(person.name(), person3.name())
+            Assert.assertEquals(person.age(), person3.age())
+            sibling = person.sibling()
+            sibling2 = person3.sibling()
+            Assert.assertNotNull(sibling)
+            Assert.assertNotNull(sibling2)
+            Assert.assertEquals(sibling!!.name(), sibling2!!.name())
+            Assert.assertEquals(sibling!!.age(), sibling2!!.age())
+            entered.set(true)
+        }
+
+        Assert.assertTrue(entered.get())
+        entered.set(false)
+
+        database.select(PersonStorable::class.java,
+                        PersonStorable.ageUpper(30) AND PersonStorable.ageLower(50))
+        { person3 ->
+            Assert.assertNotNull(person3)
+            Assert.assertEquals(person.name(), person3.name())
+            Assert.assertEquals(person.age(), person3.age())
+            sibling = person.sibling()
+            sibling2 = person3.sibling()
+            Assert.assertNotNull(sibling)
+            Assert.assertNotNull(sibling2)
+            Assert.assertEquals(sibling!!.name(), sibling2!!.name())
+            Assert.assertEquals(sibling!!.age(), sibling2!!.age())
+            entered.set(true)
+        }
+
+        Assert.assertTrue(entered.get())
+        entered.set(false)
+        database.select(PersonStorable::class.java,
+                        PersonStorable.ageLower(20))
+        {
+            entered.set(true)
+        }
+
+        Assert.assertFalse(entered.get())
 
         database.delete("P")
         person2 = database.read<PersonStorable>("P")
