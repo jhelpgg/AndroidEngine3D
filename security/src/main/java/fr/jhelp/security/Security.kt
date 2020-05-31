@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.security
 
 import android.security.keystore.KeyGenParameterSpec
@@ -28,6 +36,14 @@ private const val RSA_MODE = "RSA/ECB/PKCS1Padding"
 private const val KEY_SIZE = 512
 private const val RSA = "RSA"
 
+/**
+ * Security manager
+ *
+ * It manages a key store in Android Keystore System and use it for encrypt/decrypt things.
+ *
+ * The key is associates to the application and store in private part of Android System.
+ * So very hard to hack
+ */
 object Security
 {
     private val initialized = AtomicBoolean(false)
@@ -40,7 +56,7 @@ object Security
         {
             try
             {
-                val keyStore = keyStore()
+                val keyStore = this.keyStore()
                 val privateKeyEntry = keyStore.getEntry(KEY_ALIAS, null) as KeyStore.PrivateKeyEntry
                 this.cipherEncrypt = Cipher.getInstance(RSA_MODE)
                 this.cipherEncrypt.init(Cipher.ENCRYPT_MODE, privateKeyEntry.certificate.publicKey)
@@ -97,7 +113,7 @@ object Security
     fun encrypt(clearText: String): String =
         try
         {
-            initialize()
+            this.initialize()
             val byteArrayOutputStream = ByteArrayOutputStream()
             val byteArrayInputStream = ByteArrayInputStream(clearText.toUtf8())
             val buffer = ByteArray(32)
@@ -122,7 +138,7 @@ object Security
     fun decrypt(encryptedText: String): String =
         try
         {
-            initialize()
+            this.initialize()
             val byteArrayInputStream = ByteArrayInputStream(encryptedText.fromBase64())
             val byteArrayOutputStream = ByteArrayOutputStream()
             val buffer = ByteArray(64)
@@ -150,7 +166,7 @@ object Security
     {
         try
         {
-            initialize()
+            this.initialize()
             val buffer = ByteArray(32)
             var read = clearStream.readFull(buffer)
 
@@ -177,7 +193,7 @@ object Security
     {
         try
         {
-            initialize()
+            this.initialize()
             val buffer = ByteArray(64)
             var read = encryptedStream.readFull(buffer)
 

@@ -62,3 +62,5 @@ Documentation about :
     2. [Effect sound](sound/src/doc/Sound.md#effect-sound)
     3. [Special sound](sound/src/doc/Sound.md#special-sound)
     4. [Global management](sound/src/doc/Sound.md#global-management)
+4. Security : Encryption/decryption : [Security tools](security/src/doc/Security.md)
+
