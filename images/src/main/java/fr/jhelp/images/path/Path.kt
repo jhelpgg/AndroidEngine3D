@@ -14,6 +14,13 @@ import fr.jhelp.utilities.nul
 import fr.jhelp.utilities.same
 import kotlin.math.max
 
+/**
+ * Represents a path for draw.
+ *
+ * Path is can be composed of segments and/or quadratics and/or cubics and/or elliptic arcs
+ *
+ * Path starts with a [moveTo] to know the starting point.
+ */
 class Path
 {
     private val path = ArrayList<PathElement>()
@@ -22,6 +29,9 @@ class Path
     private var x = 0f
     private var y = 0f
 
+    /**
+     * Copy this path
+     */
     fun copy(): Path
     {
         val copy = Path()
@@ -33,7 +43,14 @@ class Path
         return copy
     }
 
-    fun moveTo(startX: Float, startY: Float) : Path
+    /**
+     * Move to given position.
+     *
+     * The point will be the start of new path part.
+     *
+     * The call to [close], will draw a segment to last position to this one, to close this part
+     */
+    fun moveTo(startX: Float, startY: Float): Path
     {
         this.startX = startX
         this.startY = startY
@@ -42,7 +59,12 @@ class Path
         return this
     }
 
-    fun close() : Path
+    /**
+     * Close the current path part;
+     *
+     * It draws a segment to last position to last [moveTo] position
+     */
+    fun close(): Path
     {
         if (!this.startX.same(this.x) || !this.startY.same(this.y))
         {
@@ -54,7 +76,12 @@ class Path
         return this
     }
 
-    fun lineTo(endX: Float, endY: Float) : Path
+    /**
+     * Draw a segment to last position to given position
+     *
+     * The given position will become the new last position
+     */
+    fun lineTo(endX: Float, endY: Float): Path
     {
         this.path.add(LineElement(this.x, this.y, endX, endY))
         this.x = endX
@@ -62,8 +89,13 @@ class Path
         return this
     }
 
+    /**
+     * Draw a quadratic from last position, using the control point and end position.
+     *
+     * The end position will become the new last position
+     */
     fun quadraticTo(controlX: Float, controlY: Float,
-                    endX: Float, endY: Float) : Path
+                    endX: Float, endY: Float): Path
     {
         this.path.add(QuadraticElement(this.x, this.y,
                                        controlX, controlY,
@@ -73,9 +105,14 @@ class Path
         return this
     }
 
+    /**
+     * Draw a cubic from last position, using the controls points and end position.
+     *
+     * The end position will become the new last position
+     */
     fun cubicTo(control1X: Float, control1Y: Float,
                 control2X: Float, control2Y: Float,
-                endX: Float, endY: Float) : Path
+                endX: Float, endY: Float): Path
     {
         this.path.add(CubicElement(this.x, this.y,
                                    control1X, control1Y,
@@ -86,9 +123,14 @@ class Path
         return this
     }
 
+    /**
+     * Draw an elliptic arc from last position, using ellpitic constraints and end position
+     *
+     * The end position will become the new last position
+     */
     fun ellipticArcTo(radiusX: Float, radiusY: Float, rotationAxisX: AngleFloat,
                       largeArc: Boolean, sweep: Boolean,
-                      endX: Float, endY: Float) : Path
+                      endX: Float, endY: Float): Path
     {
         this.path.add(EllipticArcElement(this.x, this.y,
                                          radiusX, radiusY, rotationAxisX,
@@ -99,7 +141,10 @@ class Path
         return this
     }
 
-    fun add(path: Path) : Path
+    /**
+     * Accumulate a whole path
+     */
+    fun add(path: Path): Path
     {
         this.path.addAll(path.path)
         this.x = path.x
@@ -109,6 +154,14 @@ class Path
         return this
     }
 
+    /**
+     * Compute the path as a list of segments.
+     *
+     * The size and the number of segments depends on the given precision.
+     * More the precision is high, more smooth is the path, but more segments are generated
+     *
+     * The start and end values will be homogeneously interpolated along generated segments
+     */
     fun path(precision: Int, start: Float, end: Float): List<Segment>
     {
         val precision = max(2, precision)

@@ -25,6 +25,9 @@ val Int.green get() = (this shr 8) and 0xFF
 
 val Int.blue get() = this and 0xFF
 
+/**
+ * Create color whit given Alpha, Red, Green and Blue parts
+ */
 fun color(alpha: Int, red: Int, green: Int, blue: Int) =
     (alpha shl 24) or (red shl 16) or (green shl 8) or blue
 
@@ -115,6 +118,9 @@ fun Bitmap.clear(color: Int)
     }
 }
 
+/**
+ * Transform the bitmap to its gey version
+ */
 fun Bitmap.grey()
 {
     this.pixelsOperation { pixels ->
@@ -130,6 +136,9 @@ fun Bitmap.grey()
     }
 }
 
+/**
+ * Tinit the bitmap with given color
+ */
 fun Bitmap.tint(color: Int)
 {
     this.grey()
@@ -153,6 +162,11 @@ fun Bitmap.tint(color: Int)
     }
 }
 
+/**
+ * Apply a mask to a part of the bitmap
+ *
+ * It applies mask alpha information to this bitmap map
+ */
 fun Bitmap.mask(mask: Bitmap, x: Int, y: Int, width: Int, height: Int)
 {
     val sourceWidth = this.width
@@ -211,6 +225,9 @@ fun Bitmap.mask(mask: Bitmap, x: Int, y: Int, width: Int, height: Int)
     }
 }
 
+/**
+ * Shift bitmap pixels
+ */
 fun Bitmap.shift(x: Int, y: Int)
 {
     var index = x + y * this.width
@@ -235,6 +252,11 @@ fun Bitmap.shift(x: Int, y: Int)
     }
 }
 
+/**
+ * Copy a othe bitmap.
+ *
+ * The bitmap must have same dimensions as this bitmap
+ */
 fun Bitmap.copy(bitmap: Bitmap)
 {
     if (this.width != bitmap.width || this.height != bitmap.height)
@@ -305,6 +327,11 @@ fun Bitmap.contrast(factor: Double)
     }
 }
 
+/**
+ * Multiply this bitmap pixels by given bitmap pixels.
+ *
+ * The given bitmap must have same dimension that this one
+ */
 fun Bitmap.multiply(bitmap: Bitmap)
 {
     if (this.width != bitmap.width || this.height != bitmap.height)
@@ -330,6 +357,11 @@ fun Bitmap.multiply(bitmap: Bitmap)
     }
 }
 
+/**
+ * Addthis bitmap pixels with given bitmap pixels.
+ *
+ * The given bitmap must have same dimension that this one
+ */
 fun Bitmap.add(bitmap: Bitmap)
 {
     if (this.width != bitmap.width || this.height != bitmap.height)
@@ -355,6 +387,9 @@ fun Bitmap.add(bitmap: Bitmap)
     }
 }
 
+/**
+ * Make the image darker
+ */
 fun Bitmap.darker(darkerFactor: Int)
 {
     val factor = darkerFactor.bounds(0, 255)
@@ -372,6 +407,9 @@ fun Bitmap.darker(darkerFactor: Int)
     }
 }
 
+/**
+ * Invert bitmap colors
+ */
 fun Bitmap.invertColors()
 {
     this.pixelsOperation { pixels ->
@@ -387,6 +425,9 @@ fun Bitmap.invertColors()
     }
 }
 
+/**
+ * Do operation on bitmap pixels
+ */
 inline fun Bitmap.pixelsOperation(operation: (IntArray) -> Unit)
 {
     val pixels = IntArray(this.width * this.height)
@@ -395,6 +436,11 @@ inline fun Bitmap.pixelsOperation(operation: (IntArray) -> Unit)
     this.setPixels(pixels, 0, this.width, 0, 0, this.width, this.height)
 }
 
+/**
+ * Create a bumped image from base image and image for bump.
+ *
+ * The images must have same dimensions
+ */
 fun createBumped(source: Bitmap, bump: Bitmap,
                  contrast: Double = 0.75, dark: Int = 12, shiftX: Int = 1, shiftY: Int = 1): Bitmap
 {

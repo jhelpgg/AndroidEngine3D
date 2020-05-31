@@ -6,14 +6,6 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-/*
- *  <h1>License :</h1> <br/>
- * The following code is deliver as is. <br/>
- *  You can use, modify, the code as your need for any usage.<br/>
- *  But you can't do any action that avoid me or other person use, modify this code.<br/>
- *  The code is free for usage and modification, you can't change that fact.
- */
-
 package fr.jhelp.images
 
 import android.graphics.Bitmap
@@ -23,6 +15,13 @@ import android.graphics.RectF
 import fr.jhelp.images.crawler.SegmentCrawler
 import kotlin.math.min
 
+/**
+ * Draw neon line on a canvas.
+ *
+ * It use the color defines by [Paint.getColor]
+ *
+ * Then thin represents the neon thin, r15 is a good value for normal neon effect
+ */
 fun Canvas.neonLine(x1: Float, y1: Float, x2: Float, y2: Float, thin: Int, paint: Paint)
 {
     if (thin < 1)
@@ -86,6 +85,11 @@ fun Canvas.center(bitmap: Bitmap, x: Float, y: Float)
     this.bitmap(bitmap, x - bitmap.width / 2f, y - bitmap.height / 2f)
 }
 
+/**
+ * Draw a bitmap several times on follow given segment.
+ *
+ * The step is the number of pixels between each repetition
+ */
 fun Canvas.repeatOnLine(bitmap: Bitmap, x1: Float, y1: Float, x2: Float, y2: Float,
                         step: Int = min(bitmap.width, bitmap.height))
 {

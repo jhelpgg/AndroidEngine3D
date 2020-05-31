@@ -1,7 +1,18 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.images
 
 import fr.jhelp.utilities.angle.AngleFloat
 
+/**
+ * A 3x3 matrix
+ */
 class Matrix
 {
     var determinant = 0.0f
@@ -57,6 +68,9 @@ class Matrix
         this.toIdentity()
     }
 
+    /**
+     * Transform to idendity matrix
+     */
     fun toIdentity()
     {
         this.matrix00 = 1.0f
@@ -71,6 +85,9 @@ class Matrix
         this.determinant = 1.0f
     }
 
+    /**
+     * Transform to matrix rotation on given center
+     */
     fun toRotate(centerX: Float, centerY: Float, angle: AngleFloat)
     {
         /**
@@ -108,12 +125,18 @@ class Matrix
         this.determinant = 1.0f
     }
 
+    /**
+     * Transform a point with the matrix
+     */
     fun transform(x: Float, y: Float) = Point2D(
         (this.matrix00 * x) + (this.matrix10 * y) + this.matrix20,
         (this.matrix01 * x) + (this.matrix11 * y) + this.matrix21)
 
 }
 
+/**
+ * Obtain a rotation matrix centered in given point
+ */
 fun obtainRotateMatrix(centerX: Float, centerY: Float, angle: AngleFloat): Matrix
 {
     val matrix = Matrix()
