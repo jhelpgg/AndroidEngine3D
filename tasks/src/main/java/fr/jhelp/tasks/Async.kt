@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks
 
 import fr.jhelp.tasks.chain.EmitterArray
@@ -139,6 +147,9 @@ fun <P : Any, R : Any> Enumeration<P>.emit(taskChain: TaskChain<P, R>) =
 fun <P : Any, R : Any> Array<P>.emit(taskChain: TaskChain<P, R>) =
     EmitterArray(this).emit(taskChain)
 
+/**
+ * Transform a task to [Cancelable] object
+ */
 fun (() -> Unit).cancellable() =
     object : Cancelable
     {

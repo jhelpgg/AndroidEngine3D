@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks.promise
 
 import fr.jhelp.tasks.IndependentThread
@@ -7,6 +15,18 @@ import fr.jhelp.utilities.ALWAYS_TRUE
 import java.util.concurrent.CancellationException
 import java.util.concurrent.atomic.AtomicReference
 
+/**
+ * Future result of something
+ *
+ * The result is said complete when computing finished.
+ * That is to say when task succeed to compute OR an error happen while computing OR task canceled
+ *
+ * Its possible to chain an other task to do when task complete, by example say :
+ * * When result succeed , use the result to do this other task
+ * * When result complete, do something
+ * * If result fail, then do this
+ * * ...
+ */
 class FutureResult<R : Any> internal constructor(private val promise: Promise<R>)
 {
     private val status = AtomicReference<FutureResultStatus>(FutureResultStatus.COMPUTING)
@@ -251,6 +271,11 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
         return canceled
     }
 
+    /**
+     * Do task, in specified thread type, when result complete and if succeed to compute
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> and(threadType: ThreadType = IndependentThread,
                        continuation: (R) -> R1): FutureResult<R1>
     {
@@ -260,9 +285,17 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
         return promise.future
     }
 
+    /**
+     * Do task, in [IndependentThread], when result complete and if succeed to compute and result match given condition
+     */
     fun <R1 : Any> andIf(condition: (R) -> Boolean, continuation: (R) -> R1) =
         this.andIf(IndependentThread, condition, continuation)
 
+    /**
+     * Do task, in specified thread type, when result complete and if succeed to compute and result match given condition
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> andIf(threadType: ThreadType,
                          condition: (R) -> Boolean,
                          continuation: (R) -> R1): FutureResult<R1>
@@ -273,6 +306,11 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
         return promise.future
     }
 
+    /**
+     * Do task, in specified thread type, when result complete
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> then(threadType: ThreadType = IndependentThread,
                         continuation: (FutureResult<R>) -> R1): FutureResult<R1>
     {
@@ -282,22 +320,47 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
         return promise.future
     }
 
+    /**
+     * Do task, in specified thread type, when result complete and if succeed to compute
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> andUnwrap(threadType: ThreadType = IndependentThread,
                              continuation: (R) -> FutureResult<R1>): FutureResult<R1> =
         this.and(threadType, continuation).unwrap()
 
+    /**
+     * Do task, in [IndependentThread], when result complete and if succeed to compute and result match given condition
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> andIfUnwrap(condition: (R) -> Boolean, continuation: (R) -> FutureResult<R1>) =
         this.andIfUnwrap(IndependentThread, condition, continuation)
 
+    /**
+     * Do task, in specified thread type, when result complete and if succeed to compute and result match given condition
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> andIfUnwrap(threadType: ThreadType,
                                condition: (R) -> Boolean,
                                continuation: (R) -> FutureResult<R1>): FutureResult<R1> =
         this.andIf(threadType, condition, continuation).unwrap()
 
+    /**
+     * Do task, in specified thread type, when result complete
+     *
+     * @return Future result represents the combination of the result follow by the task
+     */
     fun <R1 : Any> thenUnwrap(threadType: ThreadType = IndependentThread,
                               continuation: (FutureResult<R>) -> FutureResult<R1>): FutureResult<R1> =
         this.then(threadType, continuation).unwrap()
 
+    /**
+     * Do task, in specified thread type, when result failed
+     *
+     * @return This future result. Convenient for chaining
+     */
     fun onError(threadType: ThreadType = IndependentThread,
                 errorListener: (Exception) -> Unit): FutureResult<R>
     {
@@ -305,6 +368,11 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
         return this
     }
 
+    /**
+     * Do task, in specified thread type, when result canceled
+     *
+     * @return This future result. Convenient for chaining
+     */
     fun onCancel(threadType: ThreadType = IndependentThread,
                  cancelListener: (String) -> Unit): FutureResult<R>
     {

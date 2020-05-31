@@ -533,13 +533,13 @@ fun quadratic(cp: Float, p1: Float, p2: Float, precision: Int,
 }
 
 /**
- * Distance beteween 2D coordinates
+ * Distance between 2D coordinates
  */
 fun distance(x1: Float, y1: Float, x2: Float, y2: Float) =
     sqrt(square(x1 - x2) + square(y1 - y2))
 
 /**
- * Distance beteween 3D coordinates
+ * Distance between 3D coordinates
  */
 fun distance(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float) =
     sqrt(square(x1 - x2) + square(y1 - y2) + square(z1 - z2))

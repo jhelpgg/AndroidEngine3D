@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks
 
 import fr.jhelp.tasks.delay.Delay
@@ -12,6 +20,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Play task in [IndependentThread]
+ */
 fun <R> parallel(task: () -> R)
 {
     otherScope.launch {
@@ -22,6 +33,9 @@ fun <R> parallel(task: () -> R)
     }
 }
 
+/**
+ * Play task in [IndependentThread]
+ */
 fun <P, R> parallel(parameter: P, task: (P) -> R)
 {
     otherScope.launch {
@@ -32,6 +46,9 @@ fun <P, R> parallel(parameter: P, task: (P) -> R)
     }
 }
 
+/**
+ * Play task in [IndependentThread]
+ */
 fun <P1, P2, R> parallel(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
 {
     otherScope.launch {
@@ -42,6 +59,9 @@ fun <P1, P2, R> parallel(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
     }
 }
 
+/**
+ * Play task in [IndependentThread]
+ */
 fun <P1, P2, P3, R> parallel(parameter1: P1, parameter2: P2, parameter3: P3,
                              task: (P1, P2, P3) -> R)
 {
@@ -53,6 +73,9 @@ fun <P1, P2, P3, R> parallel(parameter1: P1, parameter2: P2, parameter3: P3,
     }
 }
 
+/**
+ * Play task in [MainThread]
+ */
 fun <R> parallelUI(task: () -> R)
 {
     mainScope.launch {
@@ -63,6 +86,9 @@ fun <R> parallelUI(task: () -> R)
     }
 }
 
+/**
+ * Play task in [MainThread]
+ */
 fun <P, R> parallelUI(parameter: P, task: (P) -> R)
 {
     mainScope.launch {
@@ -73,6 +99,9 @@ fun <P, R> parallelUI(parameter: P, task: (P) -> R)
     }
 }
 
+/**
+ * Play task in [MainThread]
+ */
 fun <P1, P2, R> parallelUI(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
 {
     mainScope.launch {
@@ -83,6 +112,9 @@ fun <P1, P2, R> parallelUI(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
     }
 }
 
+/**
+ * Play task in [MainThread]
+ */
 fun <P1, P2, P3, R> parallelUI(parameter1: P1, parameter2: P2, parameter3: P3,
                                task: (P1, P2, P3) -> R)
 {
@@ -94,6 +126,9 @@ fun <P1, P2, P3, R> parallelUI(parameter1: P1, parameter2: P2, parameter3: P3,
     }
 }
 
+/**
+ * Play task in [IOThread]
+ */
 fun <R> parallelIO(task: () -> R)
 {
     ioScope.launch {
@@ -104,6 +139,9 @@ fun <R> parallelIO(task: () -> R)
     }
 }
 
+/**
+ * Play task in [IOThread]
+ */
 fun <P, R> parallelIO(parameter: P, task: (P) -> R)
 {
     ioScope.launch {
@@ -114,6 +152,9 @@ fun <P, R> parallelIO(parameter: P, task: (P) -> R)
     }
 }
 
+/**
+ * Play task in [IOThread]
+ */
 fun <P1, P2, R> parallelIO(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
 {
     ioScope.launch {
@@ -124,6 +165,9 @@ fun <P1, P2, R> parallelIO(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
     }
 }
 
+/**
+ * Play task in [IOThread]
+ */
 fun <P1, P2, P3, R> parallelIO(parameter1: P1, parameter2: P2, parameter3: P3,
                                task: (P1, P2, P3) -> R)
 {
@@ -136,7 +180,7 @@ fun <P1, P2, P3, R> parallelIO(parameter1: P1, parameter2: P2, parameter3: P3,
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -146,7 +190,7 @@ fun <R> parallelNetwork(task: () -> R)
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -156,7 +200,7 @@ fun <P, R> parallelNetwork(parameter: P, task: (P) -> R)
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -166,7 +210,7 @@ fun <P1, P2, R> parallelNetwork(parameter1: P1, parameter2: P2, task: (P1, P2) -
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -176,6 +220,11 @@ fun <P1, P2, P3, R> parallelNetwork(parameter1: P1, parameter2: P2, parameter3: 
     NetworkStatusQueue.add { task(parameter1, parameter2, parameter3) }
 }
 
+/**
+ * Launch a task in [IndependentThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <R : Any> launch(task: () -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -202,6 +251,11 @@ fun <R : Any> launch(task: () -> R): FutureResult<R>
     return promise.future
 }
 
+/**
+ * Launch a task in [IndependentThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P, R : Any> launch(parameter: P, task: (P) -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -228,6 +282,11 @@ fun <P, R : Any> launch(parameter: P, task: (P) -> R): FutureResult<R>
     return promise.future
 }
 
+/**
+ * Launch a task in [IndependentThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P1, P2, R : Any> launch(parameter1: P1, parameter2: P2, task: (P1, P2) -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -254,6 +313,11 @@ fun <P1, P2, R : Any> launch(parameter1: P1, parameter2: P2, task: (P1, P2) -> R
     return promise.future
 }
 
+/**
+ * Launch a task in [IndependentThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P1, P2, P3, R : Any> launch(parameter1: P1, parameter2: P2, parameter3: P3,
                                  task: (P1, P2, P3) -> R): FutureResult<R>
 {
@@ -281,6 +345,11 @@ fun <P1, P2, P3, R : Any> launch(parameter1: P1, parameter2: P2, parameter3: P3,
     return promise.future
 }
 
+/**
+ * Launch a task in [MainThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <R : Any> launchUI(task: () -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -307,6 +376,11 @@ fun <R : Any> launchUI(task: () -> R): FutureResult<R>
     return promise.future
 }
 
+/**
+ * Launch a task in [MainThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P, R : Any> launchUI(parameter: P, task: (P) -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -333,6 +407,11 @@ fun <P, R : Any> launchUI(parameter: P, task: (P) -> R): FutureResult<R>
     return promise.future
 }
 
+/**
+ * Launch a task in [MainThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P1, P2, R : Any> launchUI(parameter1: P1, parameter2: P2, task: (P1, P2) -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -359,6 +438,11 @@ fun <P1, P2, R : Any> launchUI(parameter1: P1, parameter2: P2, task: (P1, P2) ->
     return promise.future
 }
 
+/**
+ * Launch a task in [MainThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P1, P2, P3, R : Any> launchUI(parameter1: P1, parameter2: P2, parameter3: P3,
                                    task: (P1, P2, P3) -> R): FutureResult<R>
 {
@@ -386,6 +470,11 @@ fun <P1, P2, P3, R : Any> launchUI(parameter1: P1, parameter2: P2, parameter3: P
     return promise.future
 }
 
+/**
+ * Launch a task in [IOThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <R : Any> launchIO(task: () -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -412,6 +501,11 @@ fun <R : Any> launchIO(task: () -> R): FutureResult<R>
     return promise.future
 }
 
+/**
+ * Launch a task in [IOThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P, R : Any> launchIO(parameter: P, task: (P) -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -438,6 +532,11 @@ fun <P, R : Any> launchIO(parameter: P, task: (P) -> R): FutureResult<R>
     return promise.future
 }
 
+/**
+ * Launch a task in [IOThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P1, P2, R : Any> launchIO(parameter1: P1, parameter2: P2, task: (P1, P2) -> R): FutureResult<R>
 {
     val promise = Promise<R>()
@@ -464,6 +563,11 @@ fun <P1, P2, R : Any> launchIO(parameter1: P1, parameter2: P2, task: (P1, P2) ->
     return promise.future
 }
 
+/**
+ * Launch a task in [IOThread];
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
+ */
 fun <P1, P2, P3, R : Any> launchIO(parameter1: P1, parameter2: P2, parameter3: P3,
                                    task: (P1, P2, P3) -> R): FutureResult<R>
 {
@@ -492,7 +596,9 @@ fun <P1, P2, P3, R : Any> launchIO(parameter1: P1, parameter2: P2, parameter3: P
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ *  It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -516,7 +622,9 @@ fun <R : Any> launchNetwork(task: () -> R): FutureResult<R>
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ *  It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -540,7 +648,9 @@ fun <P, R : Any> launchNetwork(parameter: P, task: (P) -> R): FutureResult<R>
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ *  It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -565,7 +675,9 @@ fun <P1, P2, R : Any> launchNetwork(parameter1: P1, parameter2: P2,
 }
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -589,52 +701,140 @@ fun <P1, P2, P3, R : Any> launchNetwork(parameter1: P1, parameter2: P2, paramete
     return promise.future
 }
 
+/**
+ * Launch a task in [IndependentThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <R : Any> delay(milliseconds: Long, action: () -> R): FutureResult<R> =
     Delay.delay(IndependentThread, milliseconds, action)
 
+/**
+ * Launch a task in [IndependentThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P, R : Any> delay(milliseconds: Long, parameter: P, action: (P) -> R): FutureResult<R> =
     Delay.delay(IndependentThread, milliseconds, parameter, action)
 
+/**
+ * Launch a task in [IndependentThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P1, P2, R : Any> delay(milliseconds: Long, parameter1: P1, parameter2: P2,
                             action: (P1, P2) -> R): FutureResult<R> =
     Delay.delay(IndependentThread, milliseconds, parameter1, parameter2, action)
 
+/**
+ * Launch a task in [IndependentThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P1, P2, P3, R : Any> delay(milliseconds: Long, parameter1: P1, parameter2: P2, parameter3: P3,
                                 action: (P1, P2, P3) -> R): FutureResult<R> =
     Delay.delay(IndependentThread, milliseconds, parameter1, parameter2, parameter3, action)
 
+/**
+ * Launch a task in [MainThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <R : Any> delayUI(milliseconds: Long, action: () -> R): FutureResult<R> =
     Delay.delay(MainThread, milliseconds, action)
 
+/**
+ * Launch a task in [MainThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P, R : Any> delayUI(milliseconds: Long, parameter: P, action: (P) -> R): FutureResult<R> =
     Delay.delay(MainThread, milliseconds, parameter, action)
 
+/**
+ * Launch a task in [MainThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P1, P2, R : Any> delayUI(milliseconds: Long, parameter1: P1, parameter2: P2,
                               action: (P1, P2) -> R): FutureResult<R> =
     Delay.delay(MainThread, milliseconds, parameter1, parameter2, action)
 
+/**
+ * Launch a task in [MainThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P1, P2, P3, R : Any> delayUI(milliseconds: Long, parameter1: P1, parameter2: P2,
                                   parameter3: P3,
                                   action: (P1, P2, P3) -> R): FutureResult<R> =
     Delay.delay(MainThread, milliseconds, parameter1, parameter2, parameter3, action)
 
+/**
+ * Launch a task in [IOThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <R : Any> delayIO(milliseconds: Long, action: () -> R): FutureResult<R> =
     Delay.delay(IOThread, milliseconds, action)
 
+/**
+ * Launch a task in [IOThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P, R : Any> delayIO(milliseconds: Long, parameter: P, action: (P) -> R): FutureResult<R> =
     Delay.delay(IOThread, milliseconds, parameter, action)
 
+/**
+ * Launch a task in [IOThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P1, P2, R : Any> delayIO(milliseconds: Long, parameter1: P1, parameter2: P2,
                               action: (P1, P2) -> R): FutureResult<R> =
     Delay.delay(IOThread, milliseconds, parameter1, parameter2, action)
 
+/**
+ * Launch a task in [IOThread] delayed by given time
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
+ */
 fun <P1, P2, P3, R : Any> delayIO(milliseconds: Long, parameter1: P1, parameter2: P2,
                                   parameter3: P3,
                                   action: (P1, P2, P3) -> R): FutureResult<R> =
     Delay.delay(IOThread, milliseconds, parameter1, parameter2, parameter3, action)
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -642,7 +842,11 @@ fun <R : Any> delayNetwork(milliseconds: Long, action: () -> R): FutureResult<R>
     Delay.delay(NetworkThread, milliseconds, action)
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -650,7 +854,11 @@ fun <P, R : Any> delayNetwork(milliseconds: Long, parameter: P, action: (P) -> R
     Delay.delay(NetworkThread, milliseconds, parameter, action)
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
@@ -659,7 +867,11 @@ fun <P1, P2, R : Any> delayNetwork(milliseconds: Long, parameter1: P1, parameter
     Delay.delay(NetworkThread, milliseconds, parameter1, parameter2, action)
 
 /**
- * Do action when Internet connection available.
+ * Do action when Internet connection available. See [NetworkThread]
+ *
+ * It returns a [FutureResult] to be able to react when task done or failed or to try to cancel it.
+ *
+ * Possibility to cancel it before delay expires is a proper way to implements a timeout
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */

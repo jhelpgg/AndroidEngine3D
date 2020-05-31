@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks.network
 
 import android.content.Context
@@ -6,11 +14,24 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.annotation.RequiresPermission
 import java.util.concurrent.atomic.AtomicBoolean
+import fr.jhelp.tasks.NetworkThread
 
+/**
+ * Network manager, for make work [NetworkThread]
+ *
+ * It will requires the permissions:
+ * * android.Manifest.permission.INTERNET
+ * * android.Manifest.permission.ACCESS_NETWORK_STATE
+ *
+ * To start the management, call [initialize], to stop it call [destroy]
+ */
 object NetworkStatusManager
 {
     private val initialized = AtomicBoolean(false)
 
+    /**
+     * Initialize the manager.
+     */
     @RequiresPermission(allOf =
                         [android.Manifest.permission.INTERNET,
                             android.Manifest.permission.ACCESS_NETWORK_STATE])
@@ -26,6 +47,9 @@ object NetworkStatusManager
         }
     }
 
+    /**
+     * Stop network management
+     */
     fun destroy(context: Context)
     {
         if(this.initialized.getAndSet(false))

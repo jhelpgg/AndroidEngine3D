@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks.chain
 
 import fr.jhelp.tasks.IOThread
@@ -66,7 +74,7 @@ class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = Independe
     }
 
     /**
-     * Chain an task chain to call after action execution when emit
+     * Chain a task chain to call after action execution when emit
      *
      * @return Chained task
      */
@@ -82,7 +90,7 @@ class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = Independe
 
 
     /**
-     * Chain an task chain to call after action execution when emit
+     * Chain a task chain to call after action execution when emit
      *
      * @param threadType Environment where play the action.
      * @param action Action to do on  chained task chain
@@ -109,8 +117,18 @@ class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = Independe
             }
         }
 
+    /**
+     * Chain an task chain to call after action execution when emit if the given condition match
+     *
+     * The action will used an [IndependentThread] thread type to execute
+     *
+     * @param condition Condition to execute the action
+     * @param action Action to do on  chained task chain
+     * The same environment as this one is used if not specified
+     * @return Chained task
+     */
     fun <R1 : Any> andIf(condition: (R) -> Boolean, action: (R) -> R1) =
-        this.andIf(fr.jhelp.tasks.IndependentThread, condition, action)
+        this.andIf(IndependentThread, condition, action)
 
     /**
      * Chain an task chain to call after action execution when emit if the given condition match

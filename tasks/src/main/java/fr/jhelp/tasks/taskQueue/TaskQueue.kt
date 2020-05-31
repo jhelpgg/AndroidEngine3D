@@ -1,11 +1,27 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks.taskQueue
 
 import fr.jhelp.lists.Queue
 import fr.jhelp.tasks.parallel
 import java.util.concurrent.atomic.AtomicBoolean
 
-private val EXIT_TIME = 34_567L
+private const val EXIT_TIME = 34_567L
 
+/**
+ * Queue of tasks do one after other.
+ *
+ * Order and thread safe are guarantee.
+ *
+ * TaskQueue enqueue keys.
+ * When the turn comes, it use given creators with the the key to have the task and its parameter to execute
+ */
 class TaskQueue<K, P, R>(private val taskCreator: (K) -> (P) -> R,
                          private val parameterProvider: (K) -> P)
 {
@@ -14,6 +30,11 @@ class TaskQueue<K, P, R>(private val taskCreator: (K) -> (P) -> R,
     private val running = AtomicBoolean(false)
     private val waiting = AtomicBoolean(false)
 
+    /**
+     * Enqueue task by its key.
+     *
+     * It will be play at its turn
+     */
     fun enqueue(key: K)
     {
         synchronized(this.taskQueue)

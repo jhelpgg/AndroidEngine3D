@@ -1,8 +1,19 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks.promise
 
 import fr.jhelp.tasks.IndependentThread
 import java.util.concurrent.atomic.AtomicInteger
 
+/**
+ * Simplify a FutureResult<FutureResult&lt;R&gt;> to a FutureResult&lt;R&gt;
+ */
 fun <R : Any> FutureResult<FutureResult<R>>.unwrap(): FutureResult<R>
 {
     val promise = Promise<R>()

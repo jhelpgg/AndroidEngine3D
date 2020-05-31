@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.tasks.strand
 
 import fr.jhelp.tasks.IOThread
@@ -51,9 +59,12 @@ internal class StrandHandler<I>(private val instance: I,
 
     override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any
     {
-        val promise = Promise<Any>()
-        this.taskQueue.enqueue(StrandHandlerElement(method!!, args, promise))
-        return promise.future()
+        synchronized(this.taskQueue)
+        {
+            val promise = Promise<Any>()
+            this.taskQueue.enqueue(StrandHandlerElement(method!!, args, promise))
+            return promise.future()
+        }
     }
 
     private fun callMethod(method: Method, args: Array<out Any>?): Any

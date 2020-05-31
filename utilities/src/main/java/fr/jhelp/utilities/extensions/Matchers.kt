@@ -61,7 +61,7 @@ val EMAIL_REGEX =
     ).oneOrMore()
 
 /**
- * Obatin capture value bu a group
+ * Obtain capture value by a group
  */
 fun Matcher.group(group: Group) =
     this.group(group.id)

@@ -6,18 +6,12 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-/*
- *  <h1>License :</h1> <br/>
- * The following code is deliver as is. <br/>
- *  You can use, modify, the code as your need for any usage.<br/>
- *  But you can't do any action that avoid me or other person use, modify this code.<br/>
- *  The code is free for usage and modification, you can't change that fact.
- */
-
 package fr.jhelp.tasks
 
 /**
- * Type
+ * Type of thread.
+ *
+ * Task are executed in specific thread type
  */
 sealed class ThreadType
 {
@@ -31,6 +25,9 @@ sealed class ThreadType
                                                  task: (P1, P2, P3) -> R)
 }
 
+/**
+ * Tasks are played in background. Use this type for tasks not related to network, main thread or IO
+ */
 object IndependentThread : ThreadType()
 {
     override operator fun <R> invoke(task: () -> R)
@@ -55,6 +52,13 @@ object IndependentThread : ThreadType()
     }
 }
 
+/**
+ * Play tasks in Main/:UI thread.
+ *
+ * It is reserved only for operations to do in Main/UI thread like change a text in TextView, hide/show a view, dialog, ...
+ *
+ * Don't do other operation in this thread
+ */
 object MainThread : ThreadType()
 {
     override operator fun <R> invoke(task: () -> R)
@@ -79,6 +83,9 @@ object MainThread : ThreadType()
     }
 }
 
+/**
+ * Dedicated to al I/:O operations
+ */
 object IOThread : ThreadType()
 {
     override operator fun <R> invoke(task: () -> R)
@@ -105,6 +112,8 @@ object IOThread : ThreadType()
 
 /**
  * Do action when Internet connection available.
+ *
+ * Action will be queued and played when Internet is available. So its recommended for server requests
  *
  * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
  */
