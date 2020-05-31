@@ -1,8 +1,25 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.lists
 
+/**
+ * Create a sorted array for comparable, order based on their "natural order"
+ */
 fun <C : Comparable<C>> sortedArray(unique: Boolean = false) =
     SortedArray<C>(NaturalComparator(), unique)
 
+/**
+ * Array of elements always sorted with the given comparator
+ *
+ * It can be creates in unique, mode, that is to say, two elements consider equals with given comparator can't be stored.
+ * If try add an already present element in unique mode, the add is ignored
+ */
 class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean = false) :
     Iterable<T>
 {
@@ -14,6 +31,11 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
 
     val notEmpty get() = this.array.isNotEmpty()
 
+    /**
+     * Add an element to the array
+     *
+     * @return `false` if array is in unique mode and element considered equals to one in the array
+     */
     fun add(element: T): Boolean
     {
         val index = this.indexInsert(element)
@@ -32,6 +54,9 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         }
     }
 
+    /**
+     * Add all iterable elements
+     */
     fun addAll(iterable: Iterable<T>)
     {
         for (element in iterable)
@@ -40,12 +65,21 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         }
     }
 
+    /**
+     * Obtain element at given index
+     */
     operator fun get(index: Int) =
         this.array[index]
 
+    /**
+     * Indicates if an element present in the array
+     */
     operator fun contains(element: T) =
         this.indexOf(element) >= 0
 
+    /**
+     * Indicates if all elements are in the array
+     */
     fun containsAll(iterable: Iterable<T>): Boolean
     {
         for (element in iterable)
@@ -59,6 +93,9 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         return true
     }
 
+    /**
+     * Element index or -1 if not found
+     */
     fun indexOf(element: T): Int
     {
         val index = this.indexInsert(element)
@@ -71,6 +108,11 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         return -1
     }
 
+    /**
+     * Remove an element
+     *
+     * @return `true`if effectively removed
+     */
     fun remove(element: T): Boolean
     {
         val index = this.indexInsert(element)
@@ -84,9 +126,15 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         return false
     }
 
+    /**
+     * Remove element at given position
+     */
     fun removeAt(index: Int) =
         this.array.removeAt(index)
 
+    /**
+     * Remove all elements that match given condition
+     */
     fun removeIf(condition: (T) -> Boolean)
     {
         val iterator = this.array.iterator()
@@ -100,11 +148,17 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         }
     }
 
+    /**
+     * Clear the array
+     */
     fun clear()
     {
         this.array.clear()
     }
 
+    /**
+     * Iterator over elements
+     */
     override fun iterator(): Iterator<T> =
         this.array.iterator()
 
@@ -153,6 +207,9 @@ class SortedArray<T>(private val comparator: Comparator<T>, val unique: Boolean 
         return max
     }
 
+    /**
+     * String representation
+     */
     override fun toString(): String =
         this.array.toString()
 }

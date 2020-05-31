@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.lists
 
 import java.util.Arrays
@@ -75,13 +83,22 @@ class ArrayInt(initialSize: Int = 128) : Iterable<Int>
     /***
      * Add all elements of an array
      *
-     * @param toAdd
-     * Array to add its elements
+     * @param arrayInt Array to add its elements
      */
     fun addAll(arrayInt: ArrayInt) = arrayInt.forEach(this::add)
 
+    /**
+     * Add an integer is the array
+     *
+     * @param integer Integer to add
+     */
     operator fun plusAssign(integer: Int) = this.add(integer)
 
+    /***
+     * Add all elements of an array
+     *
+     * @param arrayInt Array to add its elements
+     */
     operator fun plusAssign(arrayInt: ArrayInt) = this.addAll(arrayInt)
 
     /**
@@ -140,7 +157,7 @@ class ArrayInt(initialSize: Int = 128) : Iterable<Int>
     /**
      * Index of an integer or -1 if integer not in the array.
      *
-     * Search is on O(n)
+     * Search is O(LN(n)) if array sure sorted or on O(n) if may not sorted
      *
      * @param integer Integer search
      * @return Integer index or -1 if integer not in the array
@@ -375,7 +392,7 @@ class ArrayInt(initialSize: Int = 128) : Iterable<Int>
      *
      * For example, [2, 5, 9, 2, 6, 2, 5, 7, 1] -> [1, 2, 5, 6, 7, 9]
      */
-    fun sortUniq()
+    fun sortUnique()
     {
         if (this.size < 2)
         {

@@ -1,11 +1,25 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.lists
 
 import java.util.Stack
 import java.util.concurrent.atomic.AtomicReference
 
+/**
+ * Create a BTree of comparable. The sort is the "natural order"
+ */
 fun <C : Comparable<C>> bTree() =
     BTree<C>(NaturalComparator())
 
+/**
+ * Creates a Btree, elements sorted on using given comparator
+ */
 class BTree<T>(private val comparator: Comparator<T>)
 {
     private val tree = SortedArray(this.comparator)
@@ -16,17 +30,25 @@ class BTree<T>(private val comparator: Comparator<T>)
 
     val notEmpty get() = this.tree.notEmpty
 
-
+    /**
+     * Add an element
+     */
     fun add(element: T)
     {
         this.tree.add(element)
     }
 
+    /**
+     * Add all elements of an other tree
+     */
     fun add(branch: BTree<T>)
     {
         this.tree.addAll(branch.tree)
     }
 
+    /**
+     * Add all elements of an iterable
+     */
     fun addAll(iterable: Iterable<T>)
     {
         this.tree.addAll(iterable)
@@ -638,20 +660,32 @@ class BTree<T>(private val comparator: Comparator<T>)
         return atomicValue.get()
     }
 
+    /**
+     * Remove all elements that match given condition
+     */
     fun removeIf(condition: (T) -> Boolean)
     {
         this.tree.removeIf(condition)
     }
 
+    /**
+     * Clear the tree
+     */
     fun clear()
     {
         this.tree.clear()
     }
 
+    /**
+     * Value on the top of the tree
+     */
     fun headValue(): T =
         if (this.empty) throw IllegalStateException("The tree is empty")
         else this.tree[(this.size - 1) / 2]
 
+    /**
+     * Tree that contains the "left" part of this tree
+     */
     fun leftBranch(): BTree<T>
     {
         val size = this.tree.size
@@ -666,6 +700,9 @@ class BTree<T>(private val comparator: Comparator<T>)
         return tree
     }
 
+    /**
+     * Tree that contains the "right" part of this tree
+     */
     fun rightBranch(): BTree<T>
     {
         val size = this.tree.size
@@ -680,7 +717,9 @@ class BTree<T>(private val comparator: Comparator<T>)
         return tree
     }
 
-
+    /**
+     * String representation
+     */
     override fun toString(): String
     {
         if (this.tree.empty)
@@ -761,6 +800,9 @@ class BTree<T>(private val comparator: Comparator<T>)
         return stringBuilder.toString()
     }
 
+    /**
+     * String compact representation
+     */
     fun compact(): String
     {
         if (this.tree.empty)
