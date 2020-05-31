@@ -57,4 +57,8 @@ Documentation about :
     8. [Async tools](tasks/src/doc/Async.md)
         1. [forEachAsync](tasks/src/doc/Async.md#foreachasync)
         2. [emit](tasks/src/doc/Async.md#emit)
-
+3. Sound management : [Sound manager](sound/src/doc/Sound.md)
+    1. [Background sound](sound/src/doc/Sound.md#background-sound)
+    2. [Effect sound](sound/src/doc/Sound.md#effect-sound)
+    3. [Special sound](sound/src/doc/Sound.md#special-sound)
+    4. [Global management](sound/src/doc/Sound.md#global-management)

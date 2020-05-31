@@ -6,23 +6,30 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-/*
- *  <h1>License :</h1> <br/>
- * The following code is deliver as is. <br/>
- *  You can use, modify, the code as your need for any usage.<br/>
- *  But you can't do any action that avoid me or other person use, modify this code.<br/>
- *  The code is free for usage and modification, you can't change that fact.
- */
-
 package fr.jhelp.sound
 
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.util.SparseIntArray
 import androidx.annotation.RawRes
+import fr.jhelp.sound.SoundManager.pause
+import fr.jhelp.sound.SoundManager.resume
+import fr.jhelp.sound.SoundManager.stopSounds
 import fr.jhelp.tasks.delay
 import fr.jhelp.utilities.ContextReference
 
+/**
+ * Manage 3 types of sound :
+ * * Sound play in background on loop
+ * * Sound play once like effect in video game or alert in application
+ * * Sound can control volume at any time
+ *
+ * Call [pause] on [android.app.Activity.onPause] method to pause sound while
+ * application/game pause, and [resume] on [android.app.Activity.onResume] method to resume sound.
+ *
+ * Its recommended to call [stopSounds] when no sounds are need, so in [android.app.Activity.onDestroy]
+ * is a good place
+ */
 object SoundManager
 {
     private val soundPool =
@@ -39,16 +46,31 @@ object SoundManager
     private var currentSound: Sound? = null
     private val loadedSounds = SparseIntArray()
 
+    /**
+     * Start a background sound in loop.
+     *
+     * If a background sound playing, it stops and the given one starts
+     */
     fun background(@RawRes soundResource: Int)
     {
         this.play(soundResource, true)
     }
 
+    /**
+     * Play a sound one time
+     *
+     * If an effect sound playing, it stops and the given one starts
+     */
     fun effect(@RawRes soundResource: Int)
     {
         this.play(soundResource, false)
     }
 
+    /**
+     * Play a volume control sound
+     *
+     * If a volume control sound playing, it stops and the given one starts
+     */
     fun sound(sound: Sound)
     {
         this.currentSound?.let { current ->
@@ -86,6 +108,9 @@ object SoundManager
         }
     }
 
+    /**
+     * Pause a volume control sound
+     */
     fun pause(sound: Sound)
     {
         if (sound == this.currentSound && sound.streamId >= 0)
@@ -94,6 +119,9 @@ object SoundManager
         }
     }
 
+    /**
+     * Resume a volume control sound
+     */
     fun resume(sound: Sound)
     {
         if (sound == this.currentSound && sound.streamId >= 0)
@@ -102,6 +130,9 @@ object SoundManager
         }
     }
 
+    /**
+     * Stop a volume control sound
+     */
     fun stop(sound: Sound)
     {
         if (sound == this.currentSound && sound.streamId >= 0)
@@ -166,6 +197,9 @@ object SoundManager
         }
     }
 
+    /**
+     * Pause all playing sounds
+     */
     fun pause()
     {
         if (this.backgroundSound >= 0)
@@ -181,6 +215,9 @@ object SoundManager
         this.currentSound?.let { current -> this.soundPool.pause(current.streamId) }
     }
 
+    /**
+     * Resume playing sounds
+     */
     fun resume()
     {
         if (this.backgroundSound >= 0)
@@ -191,6 +228,9 @@ object SoundManager
         this.currentSound?.let { current -> this.soundPool.resume(current.streamId) }
     }
 
+    /**
+     * Stop all sounds
+     */
     fun stopSounds()
     {
         if (this.backgroundSound >= 0)
