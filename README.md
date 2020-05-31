@@ -68,3 +68,7 @@ Documentation about :
     2. [Queue](lists/src/doc/Lists.md#queue)
     3. [SortedArray](lists/src/doc/Lists.md#sortedarray)
     4. [Extensions tools](lists/src/doc/Lists.md#extensions-tools)
+6. Input/Output tools : [Input/Output tools](io/src/doc/IO.md)
+    1. [Read/write tools](io/src/doc/IO.md#readwrite-tools)
+    2. [StreamArray](io/src/doc/IO.md#streamarray)
+
