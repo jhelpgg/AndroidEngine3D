@@ -3,4 +3,6 @@
     <string name="greyImageTitle">Grey version</string>
     <string name="tintImageTitle">Tint with a color</string>
     <string name="invertImageTitle">Invert colors</string>
+    <string name="shiftImageTitle">Shift image</string>
+    <string name="contrastImageTitle">Contrast image</string>
 </resources>

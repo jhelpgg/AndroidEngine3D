@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  <h1>License :</h1> <br/>
+  ~ The following code is deliver as is. <br/>
+  ~  You can use, modify, the code as your need for any usage.<br/>
+  ~  But you can't do any action that avoid me or other person use, modify this code.<br/>
+  ~  The code is free for usage and modification, you can't change that fact.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/firstVerticalGuideLine"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33333333" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secondVerticalGuideLine"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66666666" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/firstHorizontalGuideLine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33333333" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secondHorizontalGuideLine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66666666" />
+
+    <Button
+        android:id="@+id/buttonUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arrow_up"
+        app:layout_constraintBottom_toTopOf="@id/firstHorizontalGuideLine"
+        app:layout_constraintEnd_toStartOf="@id/secondVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@id/firstVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arrow_left"
+        app:layout_constraintTop_toBottomOf="@id/firstHorizontalGuideLine"
+        app:layout_constraintBottom_toTopOf="@id/secondHorizontalGuideLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/firstVerticalGuideLine"        />
+
+    <TextView
+        android:id="@+id/textViewCoordinates"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="(0, 0)"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/firstHorizontalGuideLine"
+        app:layout_constraintBottom_toTopOf="@id/secondHorizontalGuideLine"
+        app:layout_constraintStart_toEndOf="@id/firstVerticalGuideLine"
+        app:layout_constraintEnd_toStartOf="@id/secondVerticalGuideLine" />
+
+    <Button
+        android:id="@+id/buttonRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arrow_right"
+        app:layout_constraintTop_toBottomOf="@id/firstHorizontalGuideLine"
+        app:layout_constraintBottom_toTopOf="@id/secondHorizontalGuideLine"
+        app:layout_constraintStart_toEndOf="@id/secondVerticalGuideLine"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arrow_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/secondVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@id/firstVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@id/secondHorizontalGuideLine" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
