@@ -5,4 +5,11 @@
     <string name="invertImageTitle">Invert colors</string>
     <string name="shiftImageTitle">Shift image</string>
     <string name="contrastImageTitle">Contrast image</string>
+    <string name="darkerImageTitle">Make image darker</string>
+    <string name="multiplyImageTitle">Multiply 2 images</string>
+    <string name="addImageTitle">Addition 2 images</string>
+    <string name="bumpImageTitle">Bump-map effect on image</string>
+    <string name="maskImageTitle">Mask effect on image</string>
+    <string name="imageManipulationTitle">Images manipulation</string>
+    <string name="imageDescription">Image</string>
 </resources>

@@ -53,4 +53,5 @@ dependencies {
     implementation project(path: ':images')
     implementation project(path: ':sound')
     implementation project(path: ':database')
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

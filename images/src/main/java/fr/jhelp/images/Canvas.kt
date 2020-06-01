@@ -20,7 +20,7 @@ import kotlin.math.min
  *
  * It use the color defines by [Paint.getColor]
  *
- * Then thin represents the neon thin, r15 is a good value for normal neon effect
+ * Then thin represents the neon thin, 15 is a good value for minimal neon effect
  */
 fun Canvas.neonLine(x1: Float, y1: Float, x2: Float, y2: Float, thin: Int, paint: Paint)
 {

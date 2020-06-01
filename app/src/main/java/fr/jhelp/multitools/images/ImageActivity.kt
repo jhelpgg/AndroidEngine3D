@@ -21,7 +21,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import fr.jhelp.images.clear
 import fr.jhelp.multitools.R
 import fr.jhelp.tasks.MainThread
 import fr.jhelp.tasks.launch
