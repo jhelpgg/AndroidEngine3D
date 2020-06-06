@@ -12,6 +12,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.jhelp.multitools.R
+import fr.jhelp.multitools.engine.AnimationActivity
+import fr.jhelp.multitools.engine.BoxActivity
+import fr.jhelp.multitools.engine.FieldActivity
+import fr.jhelp.multitools.engine.PlaneActivity
+import fr.jhelp.multitools.engine.RevolutionActivity
+import fr.jhelp.multitools.engine.SphereActivity
 import fr.jhelp.multitools.images.AddImageActivity
 import fr.jhelp.multitools.images.BumpedImageActivity
 import fr.jhelp.multitools.images.ContrastImageActivity
@@ -46,7 +52,24 @@ object ShowRoomAdapter : RecyclerView.Adapter<ShowRoomViewHolder<*>>()
                 ShowRoomPreview(R.drawable.preview_mask, R.string.maskImageTitle,
                                 MaskedImageActivity::class.java),
                 ShowRoomPreview(R.drawable.preview_shift, R.string.shiftImageTitle,
-                                ShiftImageActivity::class.java))
+                                ShiftImageActivity::class.java),
+
+            // --- 3D ---
+
+                ShowRoomTitle(R.string.engineSamplesTitle),
+                ShowRoomPreview(R.drawable.preview_plane, R.string.planeTitle,
+                                PlaneActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_box, R.string.boxTitle,
+                                BoxActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_sphere, R.string.sphereTitle,
+                                SphereActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_revolution, R.string.revolutionTitle,
+                                RevolutionActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_field, R.string.fieldTitle,
+                                FieldActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_animation, R.string.animationTitle,
+                                AnimationActivity::class.java)
+               )
 
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ShowRoomViewHolder<*> =

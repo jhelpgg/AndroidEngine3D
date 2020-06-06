@@ -11,5 +11,12 @@
     <string name="bumpImageTitle">Bump-map effect on image</string>
     <string name="maskImageTitle">Mask effect on image</string>
     <string name="imageManipulationTitle">Images manipulation</string>
+    <string name="engineSamplesTitle">3D engine samples</string>
+    <string name="planeTitle">Plane</string>
+    <string name="boxTitle">Box</string>
+    <string name="sphereTitle">Sphere</string>
+    <string name="revolutionTitle">Revolution</string>
+    <string name="fieldTitle">Field : Z = f(X,Y)</string>
+    <string name="animationTitle">Animations samples</string>
     <string name="imageDescription">Image</string>
 </resources>

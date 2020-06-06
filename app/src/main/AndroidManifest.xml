@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Images manipulation -->
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -66,6 +69,42 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>
+
+        <!-- 3D -->
+
+        <activity
+            android:name=".engine.PlaneActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".engine.BoxActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".engine.SphereActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".engine.RevolutionActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".engine.FieldActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".engine.AnimationActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+
+        <!-- Main -->
+
         <activity
             android:name=".showroom.ShowRoomActivity"
             android:screenOrientation="portrait"
