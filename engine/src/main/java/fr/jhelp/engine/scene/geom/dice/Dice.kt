@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene.geom.dice
 
 import fr.jhelp.engine.R
@@ -26,6 +34,9 @@ private val DICE_POSITIONS = arrayOf(Position3D(), // 1: Face
                                      Position3D(angleY = 90f), // 5: Left
                                      Position3D(angleY = 180f)) // 6: Back
 
+/**
+ * A dice
+ */
 class Dice(@DiceValue value: Int = random(1, 6)) : Node3D()
 {
     private val dice = Box(CrossUV())

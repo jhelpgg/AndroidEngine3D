@@ -1,7 +1,18 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene.geom.robot
 
 import fr.jhelp.engine.animation.keyFrame.AnimationKeyFrame
 
+/**
+ * Animation for robot
+ */
 class RobotAnimation(robot: Robot, fps: Int = 25) :
     AnimationKeyFrame<Robot, RobotPosition>(robot, fps)
 {

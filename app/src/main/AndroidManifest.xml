@@ -103,6 +103,29 @@
             tools:ignore="LockedOrientationActivity">
         </activity>
 
+        <!-- Tutorial -->
+
+        <activity
+            android:name=".tutorial.HelloWorldActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".tutorial.DiffuseMaterialActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".tutorial.TextureMaterialActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".tutorial.TextureAndDiffuseMaterialActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+
         <!-- Main -->
 
         <activity

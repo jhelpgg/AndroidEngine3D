@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.view
 
 import android.annotation.SuppressLint
@@ -14,7 +22,11 @@ import fr.jhelp.tasks.delay
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.max
 
-
+/**
+ * View with OpenGL inside.
+ *
+ * It shows the 3D
+ */
 class View3D(context: Context, attributes: AttributeSet? = null) :
     GLSurfaceView(context, attributes)
 {
@@ -34,7 +46,15 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
 
     val bounds3D get() = RectF(this.renderer.bound3D)
     val boundsView get() = RectF(this.renderer.boundView)
+
+    /**
+     * Scene draw on the view
+     */
     val scene3D = this.renderer.scene3D
+
+    /**
+     * Current manipulated node
+     */
     var manipulateNode: Node3D = this.scene3D.root
 
     init
@@ -52,6 +72,9 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
         super.onDetachedFromWindow()
     }
 
+    /**
+     * Manipulate the scene root
+     */
     fun manipulateRoo()
     {
         this.manipulateNode = this.scene3D.root

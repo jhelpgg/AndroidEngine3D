@@ -20,6 +20,9 @@ import fr.jhelp.engine.OpenGLThread
 import fr.jhelp.engine.scene.Point3D
 import fr.jhelp.engine.scene.Sound3D
 
+/**
+ * Animation move a 3D sound
+ */
 class AnimationSound3D(sound: Sound3D, fps: Int = 25) :
     AnimationKeyFrame<Sound3D, Point3D>(sound, fps)
 {

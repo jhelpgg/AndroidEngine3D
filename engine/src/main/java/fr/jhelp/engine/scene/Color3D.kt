@@ -62,12 +62,23 @@ import fr.jhelp.images.green
 import fr.jhelp.images.red
 import java.nio.FloatBuffer
 
+/**
+ * Color used for 3D
+ *
+ * Each part are in [0, 1]
+ */
 data class Color3D(val red: Float, val green: Float, val blue: Float, val alpha: Float = 1f)
 {
     private val floatBuffer = floatBuffer(4)
 
+    /**
+     * Grey color
+     */
     constructor(grey: Float, alpha: Float = 1f) : this(grey, grey, grey, alpha)
 
+    /**
+     * Color from ARGB Int version
+     */
     constructor(color: Int) : this(color.red / 255f, color.green / 255f, color.blue / 255f,
                                    color.alpha / 255f)
 

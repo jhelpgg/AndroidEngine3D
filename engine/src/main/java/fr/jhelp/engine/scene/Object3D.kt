@@ -9,28 +9,54 @@
 package fr.jhelp.engine.scene
 
 import android.graphics.Paint
+import fr.jhelp.engine.OpenGLThread
 import fr.jhelp.engine.draw
 import fr.jhelp.engine.tools.BufferFloat
 import fr.jhelp.images.clear
 import javax.microedition.khronos.opengles.GL10
 
+/**
+ * Object 3D with mesh.
+ *
+ * The mesh is create with [addTriangle] and/or [addSquare]
+ *
+ * It can be seal or not. When sealed, the object can't be modified, [addTriangle] or [addSquare] are ignored.
+ *
+ * Seal optimize memory
+ */
 open class Object3D : NodeWithBoundingBox()
 {
     private val points = BufferFloat()
     private val uvs = BufferFloat()
     private val boundingBox = BoundingBox()
+    /**Number of triangles in mesh*/
     var numberTriangle = 0
         private set
+    /**Material used to render the object*/
     var material = Material()
+    /**Indicates if object is double face*/
     var doubleFace = false
-
+    /**Current seal states*/
     val sealed get() = this.points.sealed
+
+    /**
+     * Object current center
+     */
     final override fun center() = this.boundingBox.center()
 
+    /**
+     * Object current bounding box
+     */
     final override fun boundingBox() = this.boundingBox.copy()
 
+    /**
+     * Indicates if object has something to draw (at least one triangle)
+     */
     final override fun hasSomethingToDraw() = this.numberTriangle > 0
 
+    /**
+     * Change material
+     */
     final override fun material(material: Material)
     {
         this.material = material
@@ -43,12 +69,20 @@ open class Object3D : NodeWithBoundingBox()
         return copy
     }
 
+    /**
+     * Seal the object.
+     *
+     * Will free some memory, but object can't change after call this method
+     */
     fun seal()
     {
         this.points.seal()
         this.uvs.seal()
     }
 
+    /**
+     * Add a triangle to mesh
+     */
     fun addTriangle(x1: Float, y1: Float, z1: Float, u1: Float, v1: Float,
                     x2: Float, y2: Float, z2: Float, u2: Float, v2: Float,
                     x3: Float, y3: Float, z3: Float, u3: Float, v3: Float)
@@ -71,6 +105,9 @@ open class Object3D : NodeWithBoundingBox()
         this.numberTriangle++
     }
 
+    /**
+     * Add square to meesh
+     */
     fun addSquare(topLeftX: Float, topLeftY: Float, topLeftZ: Float,
                   topLeftU: Float, topLeftV: Float,
                   bottomLeftX: Float, bottomLeftY: Float, bottomLeftZ: Float,
@@ -107,6 +144,11 @@ open class Object3D : NodeWithBoundingBox()
         this.numberTriangle += 2
     }
 
+    /**
+     * Create texture that represents the "wire frame" and apply it.
+     *
+     * Call it before object add to the scene (or a [Node3D])
+     */
     fun showWire()
     {
         val texture = texture(512, 512)
@@ -174,12 +216,20 @@ open class Object3D : NodeWithBoundingBox()
         this.material.texture = texture
     }
 
+    /**
+     * Draw the object in 3D
+     */
+    @OpenGLThread
     final override fun render(gl: GL10)
     {
         this.material.render(gl)
         this.draw(gl)
     }
 
+    /**
+     * Draw the object in 3D
+     */
+    @OpenGLThread
     internal fun draw(gl: GL10)
     {
         if (this.doubleFace)

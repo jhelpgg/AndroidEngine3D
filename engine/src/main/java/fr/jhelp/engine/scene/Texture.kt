@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene
 
 import android.content.res.Resources
@@ -6,6 +14,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Paint
 import androidx.annotation.DrawableRes
+import fr.jhelp.engine.OpenGLThread
 import fr.jhelp.engine.resources.ResourcesAccess
 import fr.jhelp.engine.tools.byteBuffer
 import fr.jhelp.engine.tools.intBuffer
@@ -17,9 +26,15 @@ import javax.microedition.khronos.opengles.GL10
 import kotlin.math.max
 import kotlin.math.min
 
+/**
+ * Create a default texture
+ */
 fun defaultTexture(): Texture =
     texture(ResourcesAccess.defaultBitmap())
 
+/**
+ * Create texture from resources
+ */
 fun texture(resources: Resources, @DrawableRes resourceID: Int, sealed: Boolean = true): Texture
 {
     val options = BitmapFactory.Options()
@@ -28,6 +43,9 @@ fun texture(resources: Resources, @DrawableRes resourceID: Int, sealed: Boolean 
                ?.let { bitmap -> texture(bitmap, sealed) } ?: defaultTexture()
 }
 
+/**
+ * Create empty texture with given dimension
+ */
 fun texture(@TextureSize width: Int, @TextureSize height: Int): Texture
 {
     val goodWidth = 1 shl min(9, log2(max(1, width)))
@@ -35,6 +53,9 @@ fun texture(@TextureSize width: Int, @TextureSize height: Int): Texture
     return Texture(Bitmap.createBitmap(goodWidth, goodHeight, Bitmap.Config.ARGB_8888), false)
 }
 
+/**
+ * Create texture from a stream
+ */
 fun texture(inputStream: InputStream, sealed: Boolean = true): Texture
 {
     val options = BitmapFactory.Options()
@@ -59,6 +80,9 @@ fun texture(inputStream: InputStream, sealed: Boolean = true): Texture
            ?: defaultTexture()
 }
 
+/**
+ * Create texture from bitmap
+ */
 fun texture(bitmap: Bitmap, sealed: Boolean = true): Texture
 {
     val width = bitmap.width
@@ -78,6 +102,11 @@ fun texture(bitmap: Bitmap, sealed: Boolean = true): Texture
     }
 }
 
+/**
+ * Texture for [Material.texture] to decorate an [Object3D] or a [Clone3D]
+ *
+ * If the texture is sealed, the texture can't change
+ */
 class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
 {
     private val intBuffer = intBuffer(1)
@@ -125,13 +154,22 @@ class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
         System.gc()
     }
 
+    /**
+     * Indicates if texture is sealed
+     */
     fun sealed() =
         this.sealed.get()
 
+    /**
+     * Obtain, if texture no sealed, the texture associated bitmap
+     */
     fun bitmap(): Bitmap? =
         if (this.sealed.get()) null
         else this.bitmap
 
+    /**
+     * Obtain, if texture no sealed, the texture associated canvas
+     */
     fun canvas(): Canvas?
     {
         if (this.sealed.get())
@@ -147,6 +185,9 @@ class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
         return this.canvas
     }
 
+    /**
+     * Obtain, if texture no sealed, the texture associated paint
+     */
     fun paint(): Paint?
     {
         if (this.sealed.get())
@@ -162,6 +203,9 @@ class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
         return this.paint
     }
 
+    /**
+     * Request refresh to see last modifications
+     */
     fun refresh()
     {
         if (!this.sealed.get())
@@ -170,6 +214,9 @@ class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
         }
     }
 
+    /**
+     * Seal the texture. It can't be change later
+     */
     fun seal()
     {
         if (!this.sealed.getAndSet(true))
@@ -185,6 +232,10 @@ class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
         }
     }
 
+    /**
+     * Called when draw the texture for current object
+     */
+    @OpenGLThread
     internal fun bind(gl: GL10)
     {
         if (this.videoMemoryId < 0)
@@ -232,7 +283,7 @@ class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
     override fun finalize()
     {
         this.bitmap?.recycle()
-        DeleteTexture.freeTexture(this.videoMemoryId)
+        // DeleteTexture.freeTexture(this.videoMemoryId)
         super.finalize()
     }
 }

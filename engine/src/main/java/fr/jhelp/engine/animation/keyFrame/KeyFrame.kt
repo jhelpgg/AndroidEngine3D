@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.animation.keyFrame
 
 import fr.jhelp.engine.animation.interpoolation.Interpolation
@@ -9,7 +17,8 @@ import fr.jhelp.engine.animation.interpoolation.Interpolation
  * @param interpolation Interpolation to use for go to the frame
  * @param V Object value type
  */
-internal class KeyFrame<V>(val frame: Int, var value: V, var interpolation: Interpolation) : Comparable<KeyFrame<V>>
+internal class KeyFrame<V>(val frame: Int, var value: V, var interpolation: Interpolation) :
+    Comparable<KeyFrame<V>>
 {
     /**
      * Compare with an other key frame.

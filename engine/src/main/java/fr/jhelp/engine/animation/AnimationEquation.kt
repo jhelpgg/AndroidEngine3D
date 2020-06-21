@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.animation
 
 import fr.jhelp.engine.scene.Node3D
@@ -8,6 +16,11 @@ import fr.jhelp.utilities.formal.Variable
 import java.util.TreeSet
 import kotlin.math.max
 
+/**
+ * Animation follow a parametric equation.
+ *
+ * Part X, Y and Z , must depends only on [T]
+ */
 fun animationEquation(node: Node3D,
                       functionX: MathFunction<*>,
                       functionY: MathFunction<*>,
@@ -20,6 +33,11 @@ fun animationEquation(node: Node3D,
                       (milliseconds * fps) / 1000, fps)
 
 
+/**
+ * Animation follow a parametric equation.
+ *
+ * Part X, Y and Z , must depends only on [T]
+ */
 class AnimationEquation(private val node: Node3D,
                         functionX: MathFunction<*>,
                         functionY: MathFunction<*>,

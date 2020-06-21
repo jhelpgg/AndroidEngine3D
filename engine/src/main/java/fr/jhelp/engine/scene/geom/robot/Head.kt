@@ -44,7 +44,9 @@ private val hairPath by lazy {
     path
 }
 
-
+/**
+ * Robot's head
+ */
 class Head(var leftEye: Eyes = Eyes.GREEN_2, var rightEye: Eyes = Eyes.GREEN_2,
            var mouth: Mouths = Mouths.SMILE_2,
            var hair: Int = 0xFFA0661C.toInt())
@@ -56,6 +58,9 @@ class Head(var leftEye: Eyes = Eyes.GREEN_2, var rightEye: Eyes = Eyes.GREEN_2,
         this.refresh()
     }
 
+    /**
+     * Refresh head to see last changes
+     */
     fun refresh()
     {
         val canvas = this.texture.canvas()

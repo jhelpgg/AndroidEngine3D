@@ -1,10 +1,17 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene
 
 import fr.jhelp.utilities.angle.AngleFloat
 import fr.jhelp.utilities.angle.AngleUnit
 import fr.jhelp.utilities.nul
 import kotlin.math.acos
-import kotlin.math.sin
 import kotlin.math.sqrt
 
 /**
@@ -19,10 +26,10 @@ class Rotation3D()
 
     constructor(rotation3D: Rotation3D) : this()
     {
-        this.w=rotation3D.w
-        this.x=rotation3D.x
-        this.y=rotation3D.y
-        this.z=rotation3D.z
+        this.w = rotation3D.w
+        this.x = rotation3D.x
+        this.y = rotation3D.y
+        this.z = rotation3D.z
     }
 
     /**
@@ -30,7 +37,7 @@ class Rotation3D()
      * @param axis Rotation axis
      * @param angle Rotation angle in radian
      */
-    constructor(axis:Vector3D, angle:AngleFloat) : this()
+    constructor(axis: Vector3D, angle: AngleFloat) : this()
     {
         this.set(axis, angle)
     }
@@ -45,7 +52,7 @@ class Rotation3D()
      * @param source Vector source
      * @param destination Vector destination
      */
-    constructor(source:Vector3D, destination:Vector3D) : this()
+    constructor(source: Vector3D, destination: Vector3D) : this()
     {
         this.set(source, destination)
     }
@@ -126,10 +133,14 @@ class Rotation3D()
      */
     fun multiply(rotation1: Rotation3D, rotation2: Rotation3D)
     {
-        this.w = rotation1.w * rotation2.w - rotation1.x * rotation2.x - rotation1.y * rotation2.y - rotation1.z * rotation2.z
-        this.x = rotation1.w * rotation2.x + rotation1.x * rotation2.w + rotation1.y * rotation2.z - rotation1.z * rotation2.y
-        this.y = rotation1.w * rotation2.y + rotation1.y * rotation2.w - rotation1.x * rotation2.z + rotation1.z * rotation2.x
-        this.z = rotation1.w * rotation2.z + rotation1.z * rotation2.w + rotation1.x * rotation2.y - rotation1.y * rotation2.x
+        this.w =
+            rotation1.w * rotation2.w - rotation1.x * rotation2.x - rotation1.y * rotation2.y - rotation1.z * rotation2.z
+        this.x =
+            rotation1.w * rotation2.x + rotation1.x * rotation2.w + rotation1.y * rotation2.z - rotation1.z * rotation2.y
+        this.y =
+            rotation1.w * rotation2.y + rotation1.y * rotation2.w - rotation1.x * rotation2.z + rotation1.z * rotation2.x
+        this.z =
+            rotation1.w * rotation2.z + rotation1.z * rotation2.w + rotation1.x * rotation2.y - rotation1.y * rotation2.x
     }
 
     /**
@@ -162,18 +173,18 @@ class Rotation3D()
         this.z = rotation.z;
     }
 
-    fun set(axis:Vector3D, angle:AngleFloat)
+    fun set(axis: Vector3D, angle: AngleFloat)
     {
         val semiAngle = angle / 2.0f
-        this.w =  angle.cos()
-        val sinus =  semiAngle.sin()
+        this.w = angle.cos()
+        val sinus = semiAngle.sin()
         val size = axis.length()
         this.x = (axis.x * sinus) / size
         this.y = (axis.y * sinus) / size
         this.z = (axis.z * sinus) / size
     }
 
-    fun set(source:Vector3D, destination:Vector3D)
+    fun set(source: Vector3D, destination: Vector3D)
     {
         val axis = source.cross(destination)
 

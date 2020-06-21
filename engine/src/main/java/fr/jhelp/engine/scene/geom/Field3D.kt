@@ -18,6 +18,11 @@ import fr.jhelp.utilities.formal.Y
 import fr.jhelp.utilities.same
 import java.util.TreeSet
 
+/**
+ * Filed 3D represents a 3D equation like Z=f(X, Y)
+ *
+ * The equation must depends on [X] and/or [Y] and nothing else
+ */
 class Field3D(functionZ: MathFunction<*>,
               private val xStart: Float, private val xEnd: Float, numberPartX: Int,
               private val yStart: Float, private val yEnd: Float, numberPartY: Int,

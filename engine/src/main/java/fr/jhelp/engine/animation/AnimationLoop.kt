@@ -1,13 +1,27 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.animation
 
 import java.util.concurrent.atomic.AtomicReference
 
+/**
+ * Animation that start with an animation, then loop on an other one until [endLoop] is called, then call an end animation
+ */
 class AnimationLoop(private val startAnimation: Animation,
                     private val loopAnimation: Animation,
                     private val endAnimation: Animation) : Animation(25)
 {
     private val status = AtomicReference(AnimationLoopStatus.START)
 
+    /**
+     * Create animation with only a loop
+     */
     constructor(loopAnimation: Animation) :
             this(AnimationPause(1), loopAnimation, AnimationPause(1))
 
@@ -57,6 +71,9 @@ class AnimationLoop(private val startAnimation: Animation,
         return true
     }
 
+    /**
+     * End animation loop
+     */
     fun endLoop()
     {
         when (this.status.get())

@@ -37,6 +37,9 @@ private fun createCylinder(): Revolution
     return Revolution(path)
 }
 
+/**
+ * A robot
+ */
 class Robot(val headTexture: Head = Head())
 {
     /**Node that contains the whole robot. Use it to place robot in scene*/
@@ -236,11 +239,17 @@ class Robot(val headTexture: Head = Head())
         this.leftLegColor()
     }
 
+    /**
+     * Change body texture
+     */
     fun bodyTexture(@DrawableRes resourceId: Int)
     {
         this.materialBody.texture = ResourcesAccess.obtainTexture(resourceId)
     }
 
+    /**
+     * Change body texture
+     */
     fun bodyTexture(texture: Texture)
     {
         this.materialBody.texture = texture

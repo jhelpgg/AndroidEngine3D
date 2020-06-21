@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene
 
 import fr.jhelp.engine.OpenGLThread
@@ -10,6 +18,9 @@ import fr.jhelp.tasks.parallel
 import java.util.Stack
 import javax.microedition.khronos.opengles.GL10
 
+/**
+ * Scene is the scene graph, any attached (directly or indirectly) object are drawn
+ */
 class Scene3D
 {
     private val animations = ArrayList<Animation>()
@@ -21,8 +32,14 @@ class Scene3D
      */
     var backgroundColor = WHITE
 
+    /**
+     * Main node of the scene
+     */
     var root = Node3D()
 
+    /**
+     * Launch an animtation
+     */
     fun play(animation: Animation)
     {
         parallel(animation)
@@ -36,6 +53,9 @@ class Scene3D
         }
     }
 
+    /**
+     * Launch an animation based on task
+     */
     fun play(animation: (Float) -> Boolean): Animation
     {
         val animationFunction = AnimationFunction(animation)
@@ -43,6 +63,9 @@ class Scene3D
         return animationFunction
     }
 
+    /**
+     * Stop an animation
+     */
     fun stop(animation: Animation)
     {
         parallel(animation)
@@ -57,6 +80,9 @@ class Scene3D
         }
     }
 
+    /**
+     * Draw the scene
+     */
     @OpenGLThread
     internal fun render(gl: GL10)
     {
@@ -121,11 +147,14 @@ class Scene3D
             }
         }
 
-        DeleteTexture.freeNext(gl)
+       // DeleteTexture.freeNext(gl)
     }
 
     operator fun Node3D.unaryPlus() = this@Scene3D.root.add(this)
 
+    /**
+     * Search node by it's ID
+     */
     fun nodeById(id: Int): Node3D?
     {
         val stack = Stack<Node3D>()
@@ -150,6 +179,9 @@ class Scene3D
         return null
     }
 
+    /**
+     * Search node by name. If two or more nodes have the requested name, it gives the first found
+     */
     fun firstNodeByName(name: String): Node3D?
     {
         val stack = Stack<Node3D>()
@@ -174,6 +206,9 @@ class Scene3D
         return null
     }
 
+    /**
+     * Get all nodes with given name
+     */
     fun allNodesWithName(name: String): List<Node3D>
     {
         val list = ArrayList<Node3D>()

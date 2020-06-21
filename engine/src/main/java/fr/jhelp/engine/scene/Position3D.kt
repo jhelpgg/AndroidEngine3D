@@ -1,3 +1,11 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.scene
 
 import fr.jhelp.engine.OpenGLThread
@@ -5,6 +13,9 @@ import fr.jhelp.utilities.angle.AngleFloat
 import fr.jhelp.utilities.angle.AngleUnit
 import javax.microedition.khronos.opengles.GL10
 
+/**
+ * Generic position in 3D, relative to it's parent
+ */
 data class Position3D(var x: Float = 0f, var y: Float = 0f, var z: Float = 0f,
                       var angleX: Float = 0f, var angleY: Float = 0f, var angleZ: Float = 0f,
                       var scaleX: Float = 1f, var scaleY: Float = 1f, var scaleZ: Float = 1f)

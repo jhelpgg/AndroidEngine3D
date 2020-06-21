@@ -1,13 +1,22 @@
+/*
+ *  <h1>License :</h1> <br/>
+ * The following code is deliver as is. <br/>
+ *  You can use, modify, the code as your need for any usage.<br/>
+ *  But you can't do any action that avoid me or other person use, modify this code.<br/>
+ *  The code is free for usage and modification, you can't change that fact.
+ */
+
 package fr.jhelp.engine.view
 
 import android.graphics.RectF
 import android.opengl.GLSurfaceView
-import android.opengl.GLU
 import fr.jhelp.engine.scene.Scene3D
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
-
+/**
+ * Renderer used to initialize OpenGL and update it
+ */
 internal class View3DRenderer(private val refreshDone: () -> Unit) : GLSurfaceView.Renderer
 {
     val boundView = RectF()
