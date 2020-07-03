@@ -11,6 +11,9 @@ package fr.jhelp.engine.resources
 import androidx.annotation.DrawableRes
 import fr.jhelp.engine.R
 
+/**
+ * Eyes texture. Used by [fr.jhelp.engine.scene.geom.robot.Robot]'s [fr.jhelp.engine.scene.geom.robot.Head]
+ */
 enum class Eyes(@DrawableRes private val drawableId: Int)
 {
     BLUE(R.drawable.eye_blue),

@@ -23,6 +23,6 @@ internal class DataListIterator<DS:DataStorable>(private val list:DataList<DS>) 
             throw NoSuchElementException("No more element to iterate")
         }
 
-        return this.list[this.index]
+        return this.list[this.index++]
     }
 }

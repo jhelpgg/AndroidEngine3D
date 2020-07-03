@@ -19,29 +19,53 @@ import fr.jhelp.engine.scene.Position3D
 import fr.jhelp.engine.scene.Scene3D
 import fr.jhelp.engine.scene.Texture
 import fr.jhelp.engine.view.View3D
+import fr.jhelp.tasks.parallel
 
-fun View3D.scene(scene: Scene3D.() -> Unit) = scene(this.scene3D)
+/**
+ * Manipulate [View3D] scene
+ */
+fun View3D.scene(scene: Scene3D.() -> Unit) =
+    parallel(scene) { sceneModifier -> sceneModifier(this.scene3D) }
 
+/**
+ * Scene roo position short cut
+ */
 val Scene3D.position get() = this.root.position
 
+/**
+ * Manipulate [Node3D] position
+ */
 fun <N : Node3D> N.position(position: Position3D.() -> Unit): N
 {
     position(this.position)
     return this
 }
 
+/**
+ * Manipulate [Object3D] material
+ */
 fun Object3D.material(material: Material.() -> Unit): Object3D
 {
     material(this.material)
     return this
 }
 
+/**
+ * Manipulate [Clone3D] material
+ */
 fun Clone3D.material(material: Material.() -> Unit): Clone3D
 {
     material(this.material)
     return this
 }
 
+/**
+ * Modify a texture, if not sealed.
+ *
+ * Automatically refreshed
+ *
+ * @param draw Described what drawing if texture not null and not sealed
+ */
 fun Texture?.draw(draw: (Bitmap, Canvas, Paint) -> Unit): Texture?
 {
     val bitmap = this?.bitmap()

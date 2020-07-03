@@ -203,10 +203,25 @@ class Database(context: Context, name: String)
     }
 
     fun <DS : DataStorable> select(dataStorableClass: Class<DS>, where: DataCondition,
+                                   collector: (DS) -> Unit) =
+        this.select(dataStorableClass, where, true, collector)
+
+    fun <DS : DataStorable> select(dataStorableClass: Class<DS>, where: DataCondition,
+                                   onlyNamedOnes: Boolean,
                                    collector: (DS) -> Unit)
     {
+        val selection =
+            if (onlyNamedOnes)
+            {
+                "$COLUMN_CLASS_NAME=? AND $COLUMN_NAME!=?"
+            }
+            else
+            {
+                "$COLUMN_CLASS_NAME=?"
+            }
+
         val mainCursor = this.database.query(TABLE_OBJECTS, SELECT_ID,
-                                             "$COLUMN_CLASS_NAME=? AND $COLUMN_NAME!=?",
+                                             selection,
                                              arrayOf(dataStorableClass.name, ""),
                                              null, null, null)
 

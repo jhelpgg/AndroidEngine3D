@@ -6,16 +6,14 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-package fr.jhelp.engine.tools
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
-import fr.jhelp.engine.scene.Node3D
-import fr.jhelp.utilities.sign
-
-/**
- * Oorder nodes by their 'Z'
- */
-object NodeOrderZ : Comparator<Node3D>
-{
-    override fun compare(node1: Node3D, node2: Node3D): Int =
-        (node2.zOrder - node1.zOrder).sign()
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'junit:junit:4.12'
 }
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

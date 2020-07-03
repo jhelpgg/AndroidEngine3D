@@ -11,6 +11,9 @@ package fr.jhelp.engine.resources
 import androidx.annotation.DrawableRes
 import fr.jhelp.engine.R
 
+/**
+ * Mouths texture. Used by [fr.jhelp.engine.scene.geom.robot.Robot]'s [fr.jhelp.engine.scene.geom.robot.Head]
+ */
 enum class Mouths(@DrawableRes private val drawableId: Int)
 {
     ANNOY_1(R.drawable.annoy1),

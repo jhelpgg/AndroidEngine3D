@@ -6,16 +6,12 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-package fr.jhelp.engine.tools
+package fr.jhelp.provided
 
-import fr.jhelp.engine.scene.Node3D
-import fr.jhelp.utilities.sign
+import kotlin.reflect.KProperty
 
-/**
- * Oorder nodes by their 'Z'
- */
-object NodeOrderZ : Comparator<Node3D>
+class Provided<T>(private val identifier: String)
 {
-    override fun compare(node1: Node3D, node2: Node3D): Int =
-        (node2.zOrder - node1.zOrder).sign()
+    operator fun getValue(thisRef: Any, property: KProperty<*>): T =
+        ProviderManager.provided(this.identifier) as T
 }

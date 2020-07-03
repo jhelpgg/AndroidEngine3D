@@ -11,6 +11,11 @@ package fr.jhelp.engine.tools
 import java.nio.FloatBuffer
 import java.util.concurrent.atomic.AtomicBoolean
 
+/**
+ * Dynamic sized Float array associated to a pending Float buffer.
+ *
+ * To save memory it can be sealed.? But can't change once it's sealed
+ */
 class BufferFloat
 {
     private var array: FloatArray? = FloatArray(128)
