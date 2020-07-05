@@ -28,8 +28,10 @@ import fr.jhelp.multitools.images.MaskedImageActivity
 import fr.jhelp.multitools.images.MultiplyImageActivity
 import fr.jhelp.multitools.images.ShiftImageActivity
 import fr.jhelp.multitools.images.TintImageActivity
+import fr.jhelp.multitools.tutorial.DicedActivity
 import fr.jhelp.multitools.tutorial.DiffuseMaterialActivity
 import fr.jhelp.multitools.tutorial.HelloWorldActivity
+import fr.jhelp.multitools.tutorial.RobotActivity
 import fr.jhelp.multitools.tutorial.TextureAndDiffuseMaterialActivity
 import fr.jhelp.multitools.tutorial.TextureMaterialActivity
 
@@ -77,15 +79,24 @@ object ShowRoomAdapter : RecyclerView.Adapter<ShowRoomViewHolder<*>>()
             // Tutorials
 
                 ShowRoomTitle(R.string.tutorialsTitle),
-                ShowRoomPreview(R.drawable.preview_hello_world, R.string.helloWorldTitle,
+                ShowRoomPreview(R.drawable.preview_hello_world,
+                                R.string.helloWorldTitle,
                                 HelloWorldActivity::class.java),
-                ShowRoomPreview(R.drawable.preview_diffuse, R.string.materialDiffuseTitle,
+                ShowRoomPreview(R.drawable.preview_diffuse,
+                                R.string.materialDiffuseTitle,
                                 DiffuseMaterialActivity::class.java),
-                ShowRoomPreview(R.drawable.preview_texture, R.string.materialTextureTitle,
+                ShowRoomPreview(R.drawable.preview_texture,
+                                R.string.materialTextureTitle,
                                 TextureMaterialActivity::class.java),
                 ShowRoomPreview(R.drawable.preview_texture_and_diffuse,
                                 R.string.materialTextureAndDiffuseTitle,
-                                TextureAndDiffuseMaterialActivity::class.java)
+                                TextureAndDiffuseMaterialActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_robot,
+                                R.string.robotTitle,
+                                RobotActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_dice,
+                                R.string.diceTitle,
+                                DicedActivity::class.java)
                )
 
     override fun onCreateViewHolder(parent: ViewGroup,

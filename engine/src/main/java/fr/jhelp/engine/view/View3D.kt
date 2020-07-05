@@ -110,6 +110,10 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
             this.manipulateNode.position.angleY += (x - this.touchX) * 0.25f
             this.manipulateNode.position.angleX += (y - this.touchY) * 0.25f
         }
+        else if (event.action == MotionEvent.ACTION_UP && this.hasOnClickListeners())
+        {
+            this.callOnClick()
+        }
 
         // TODO manage touche events for user interaction, depends on action mode
         // Example : angleY += (x - this.touchX)  | angleX += (y - this.touchY) => Fro a rotation mode

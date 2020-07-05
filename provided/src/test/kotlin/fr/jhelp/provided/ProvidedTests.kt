@@ -23,7 +23,7 @@ class ProvidedTests
     fun oneTimeShare()
     {
         val instance = InstanceTest(42)
-        provideSingle { instance as InterfaceTest }
+        provideSingle<InterfaceTest> { instance  }
         Assert.assertEquals(42, this.value.test())
         Assert.assertTrue(instance.called.get())
     }

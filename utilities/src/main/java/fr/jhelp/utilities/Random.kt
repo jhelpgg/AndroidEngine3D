@@ -74,3 +74,13 @@ fun random(bound1: Double, bound2: Double): Double
     val max = max(bound1, bound2)
     return min + (RANDOM.nextDouble() * (max - min))
 }
+
+fun <T> List<T>.random(): T =
+    this[random(0, this.size - 1)]
+
+fun <T> Array<T>.random(): T =
+    this[random(0, this.size - 1)]
+
+inline fun <reified E : Enum<E>> random(): E =
+    (E::class.java.getDeclaredMethod("values").invoke(null) as Array<E>).random()
+

@@ -125,6 +125,16 @@
             android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity">
         </activity>
+        <activity
+            android:name=".tutorial.RobotActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".tutorial.DicedActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
 
         <!-- Main -->
 

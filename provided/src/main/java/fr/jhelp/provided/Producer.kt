@@ -21,12 +21,9 @@ internal class Producer<T : Any>(private val single: Boolean, private val produc
             if (!this.created.getAndSet(true))
             {
                 this.value = this.producer()
-                this.value
             }
-            else
-            {
-                this.value
-            }
+
+            this.value
         }
         else
         {
