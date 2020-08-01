@@ -40,7 +40,7 @@ fun Canvas.neonLine(x1: Float, y1: Float, x2: Float, y2: Float, thin: Int, paint
     val stroke = paint.strokeWidth
     paint.style = Paint.Style.STROKE
 
-    var thin = thin
+    var thinLocal = thin
     var color = startColor
     val alpha = color and ALPHA_MASK
     var red = color.red
@@ -53,16 +53,16 @@ fun Canvas.neonLine(x1: Float, y1: Float, x2: Float, y2: Float, thin: Int, paint
     do
     {
         paint.color = color
-        paint.strokeWidth = thin.toFloat()
+        paint.strokeWidth = thinLocal.toFloat()
         this.drawLine(x1, y1, x2, y2, paint)
         y *= 1.2
         red = computeRed(y, u, v)
         green = computeGreen(y, u, v)
         blue = computeBlue(y, u, v)
         color = alpha or (red shl 16) or (green shl 8) or blue
-        thin = thin shr 1
+        thinLocal = thinLocal shr 1
     }
-    while (thin > 1)
+    while (thinLocal > 1)
 
     paint.color = startColor
     paint.style = style

@@ -444,7 +444,7 @@ inline fun Bitmap.pixelsOperation(operation: (IntArray) -> Unit)
 fun createBumped(source: Bitmap, bump: Bitmap,
                  contrast: Double = 0.75, dark: Int = 12, shiftX: Int = 1, shiftY: Int = 1): Bitmap
 {
-    var contrast = contrast
+    var contrastLocal = contrast
     val width = source.width
     val height = source.height
 
@@ -453,13 +453,13 @@ fun createBumped(source: Bitmap, bump: Bitmap,
         throw IllegalArgumentException("Images must have the same size")
     }
 
-    if (contrast < 0.5)
+    if (contrastLocal < 0.5)
     {
-        contrast *= 2.0
+        contrastLocal *= 2.0
     }
     else
     {
-        contrast = contrast * 18 - 8
+        contrastLocal = contrastLocal * 18 - 8
     }
 
     val bumped = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -467,7 +467,7 @@ fun createBumped(source: Bitmap, bump: Bitmap,
 
     bumped.copy(bump)
     bumped.grey()
-    bumped.contrast(contrast)
+    bumped.contrast(contrastLocal)
 
     temp.copy(bumped)
     temp.multiply(source)

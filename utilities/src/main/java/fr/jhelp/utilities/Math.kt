@@ -343,12 +343,12 @@ fun cubic(cp: Double, p1: Double, p2: Double, p3: Double, t: Double): Double
 fun cubic(cp: Double, p1: Double, p2: Double, p3: Double, precision: Int,
           cubic: DoubleArray? = null): DoubleArray
 {
-    var cubic = cubic
+    var cubicLocal = cubic
     var actual: Double
 
-    if (cubic == null || cubic.size < precision)
+    if (cubicLocal == null || cubicLocal.size < precision)
     {
-        cubic = DoubleArray(precision)
+        cubicLocal = DoubleArray(precision)
     }
 
     val step = 1.0 / (precision - 1.0)
@@ -361,11 +361,11 @@ fun cubic(cp: Double, p1: Double, p2: Double, p3: Double, precision: Int,
             actual = 1.0
         }
 
-        cubic[i] = cubic(cp, p1, p2, p3, actual)
+        cubicLocal[i] = cubic(cp, p1, p2, p3, actual)
         actual += step
     }
 
-    return cubic
+    return cubicLocal
 }
 
 
@@ -397,12 +397,12 @@ fun quadratic(cp: Double, p1: Double, p2: Double, t: Double): Double
 fun quadratic(cp: Double, p1: Double, p2: Double, precision: Int,
               quadratic: DoubleArray? = null): DoubleArray
 {
-    var quadratic = quadratic
+    var quadraticLocal = quadratic
     var actual: Double
 
-    if (quadratic == null || quadratic.size < precision)
+    if (quadraticLocal == null || quadraticLocal.size < precision)
     {
-        quadratic = DoubleArray(precision)
+        quadraticLocal = DoubleArray(precision)
     }
 
     val step = 1.0 / (precision - 1.0)
@@ -415,11 +415,11 @@ fun quadratic(cp: Double, p1: Double, p2: Double, precision: Int,
             actual = 1.0
         }
 
-        quadratic[i] = quadratic(cp, p1, p2, actual)
+        quadraticLocal[i] = quadratic(cp, p1, p2, actual)
         actual += step
     }
 
-    return quadratic
+    return quadraticLocal
 }
 
 
@@ -453,12 +453,12 @@ fun cubic(cp: Float, p1: Float, p2: Float, p3: Float, t: Float): Float
 fun cubic(cp: Float, p1: Float, p2: Float, p3: Float, precision: Int,
           cubic: FloatArray? = null): FloatArray
 {
-    var cubic = cubic
+    var cubicLocal = cubic
     var actual: Float
 
-    if (cubic == null || cubic.size < precision)
+    if (cubicLocal == null || cubicLocal.size < precision)
     {
-        cubic = FloatArray(precision)
+        cubicLocal = FloatArray(precision)
     }
 
     val step = 1.0f / (precision - 1.0f)
@@ -471,11 +471,11 @@ fun cubic(cp: Float, p1: Float, p2: Float, p3: Float, precision: Int,
             actual = 1.0f
         }
 
-        cubic[i] = cubic(cp, p1, p2, p3, actual)
+        cubicLocal[i] = cubic(cp, p1, p2, p3, actual)
         actual += step
     }
 
-    return cubic
+    return cubicLocal
 }
 
 
@@ -507,12 +507,12 @@ fun quadratic(cp: Float, p1: Float, p2: Float, t: Float): Float
 fun quadratic(cp: Float, p1: Float, p2: Float, precision: Int,
               quadratic: FloatArray? = null): FloatArray
 {
-    var quadratic = quadratic
+    var quadraticLocal = quadratic
     var actual: Float
 
-    if (quadratic == null || quadratic.size < precision)
+    if (quadraticLocal == null || quadraticLocal.size < precision)
     {
-        quadratic = FloatArray(precision)
+        quadraticLocal = FloatArray(precision)
     }
 
     val step = 1.0f / (precision - 1.0f)
@@ -525,11 +525,11 @@ fun quadratic(cp: Float, p1: Float, p2: Float, precision: Int,
             actual = 1.0f
         }
 
-        quadratic[i] = quadratic(cp, p1, p2, actual)
+        quadraticLocal[i] = quadratic(cp, p1, p2, actual)
         actual += step
     }
 
-    return quadratic
+    return quadraticLocal
 }
 
 /**
@@ -574,15 +574,15 @@ fun modulo(real: Float, modulo: Float) = moduloInterval(real, 0f, modulo)
  */
 fun modulo(integer: Int, modulo: Int): Int
 {
-    var integer = integer
-    integer %= modulo
+    var integerLocal = integer
+    integerLocal %= modulo
 
-    if (integer < 0 && modulo > 0 || integer > 0 && modulo < 0)
+    if (integerLocal < 0 && modulo > 0 || integerLocal > 0 && modulo < 0)
     {
-        integer += modulo
+        integerLocal += modulo
     }
 
-    return integer
+    return integerLocal
 }
 
 /**
@@ -637,32 +637,32 @@ fun modulo(integer: Long, modulo: Long): Long
  */
 fun moduloInterval(real: Double, min: Double, max: Double): Double
 {
-    var real = real
-    var min = min
-    var max = max
+    var realLocal = real
+    var minLocal = min
+    var maxLocal = max
 
-    if (min > max)
+    if (minLocal > maxLocal)
     {
-        val temp = min
-        min = max
-        max = temp
+        val temp = minLocal
+        minLocal = maxLocal
+        maxLocal = temp
     }
 
-    if (real >= min && real < max)
+    if (realLocal >= minLocal && realLocal < maxLocal)
     {
-        return real
+        return realLocal
     }
 
-    val space = max - min
+    val space = maxLocal - minLocal
 
     if (space.nul)
     {
         throw IllegalArgumentException("Can't take modulo in empty interval")
     }
 
-    real = (real - min) / space
+    realLocal = (realLocal - minLocal) / space
 
-    return space * (real - floor(real)) + min
+    return space * (realLocal - floor(realLocal)) + minLocal
 }
 
 /**
@@ -675,32 +675,32 @@ fun moduloInterval(real: Double, min: Double, max: Double): Double
  */
 fun moduloInterval(real: Float, min: Float, max: Float): Float
 {
-    var real = real
-    var min = min
-    var max = max
+    var realLocal = real
+    var minLocal = min
+    var maxLocal = max
 
-    if (min > max)
+    if (minLocal > maxLocal)
     {
-        val temp = min
-        min = max
-        max = temp
+        val temp = minLocal
+        minLocal = maxLocal
+        maxLocal = temp
     }
 
-    if (real >= min && real < max)
+    if (realLocal >= minLocal && realLocal < maxLocal)
     {
-        return real
+        return realLocal
     }
 
-    val space = max - min
+    val space = maxLocal - minLocal
 
     if (space.nul)
     {
         throw IllegalArgumentException("Can't take modulo in empty interval")
     }
 
-    real = (real - min) / space
+    realLocal = (realLocal - minLocal) / space
 
-    return space * (real - floor(real)) + min
+    return space * (realLocal - floor(realLocal)) + minLocal
 }
 
 fun degreeToGrade(degree: Double) = degree * 0.9

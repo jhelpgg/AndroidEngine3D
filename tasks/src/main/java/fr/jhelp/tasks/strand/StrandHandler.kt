@@ -83,6 +83,7 @@ internal class StrandHandler<I>(private val instance: I,
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 internal fun <I> strandCaller(interfaceType: Class<I>, instance: I, threadType: ThreadType): I
 {
     if (!interfaceType.isInterface)

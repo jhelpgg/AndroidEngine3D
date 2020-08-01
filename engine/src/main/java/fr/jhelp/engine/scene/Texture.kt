@@ -107,6 +107,7 @@ fun texture(bitmap: Bitmap, sealed: Boolean = true): Texture
  *
  * If the texture is sealed, the texture can't change
  */
+@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
 class Texture internal constructor(bitmap: Bitmap, sealed: Boolean) : Object()
 {
     private val intBuffer = intBuffer(1)

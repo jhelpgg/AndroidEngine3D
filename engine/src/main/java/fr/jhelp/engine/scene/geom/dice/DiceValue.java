@@ -10,5 +10,9 @@ package fr.jhelp.engine.scene.geom.dice;
 
 import androidx.annotation.IntDef;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 @IntDef({1,2,3,4,5,6})
+@Retention(RetentionPolicy.SOURCE)
 public @interface DiceValue {}

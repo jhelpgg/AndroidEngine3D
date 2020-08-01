@@ -37,7 +37,7 @@ class AddImageActivity : TwoImagesCombinationActivity(R.string.addImageTitle)
 
     override fun doOperation(first: Bitmap, second: Bitmap): Bitmap
     {
-        val result = this.createBitmap { bitmap, canvas, paint -> }
+        val result = this.createBitmap { _, _, _ -> }
         result.copy(first)
         result.add(second)
         return result

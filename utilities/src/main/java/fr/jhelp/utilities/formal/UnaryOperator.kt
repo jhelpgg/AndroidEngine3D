@@ -32,6 +32,7 @@ internal constructor(val parameter: MathFunction<*>) : MathFunction<UO>()
     /**
      * Do an action on this function, if its match the given class or create same operation type with try do action on parameters
      */
+    @Suppress("UNCHECKED_CAST")
     final override fun <M : MathFunction<M>> applyDeep(clazz: Class<M>,
                                                        action: (M) -> MathFunction<*>): MathFunction<*> =
         if (clazz == this.javaClass) action(this as M)

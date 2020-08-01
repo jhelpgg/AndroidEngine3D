@@ -81,6 +81,7 @@ fun <T> List<T>.random(): T =
 fun <T> Array<T>.random(): T =
     this[random(0, this.size - 1)]
 
+@Suppress("UNCHECKED_CAST")
 inline fun <reified E : Enum<E>> random(): E =
     (E::class.java.getDeclaredMethod("values").invoke(null) as Array<E>).random()
 

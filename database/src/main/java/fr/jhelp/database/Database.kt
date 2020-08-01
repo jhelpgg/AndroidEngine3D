@@ -117,6 +117,7 @@ class Database(context: Context, name: String)
         this.storeIntern(key, dataStorable)
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun <DS : DataStorable> read(key: String): DS?
     {
         if (key.isEmpty())
@@ -369,6 +370,7 @@ class Database(context: Context, name: String)
         return this.readObject(id)
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <DS : DataStorable> readObject(databaseID: Long): DS?
     {
         var className = ""

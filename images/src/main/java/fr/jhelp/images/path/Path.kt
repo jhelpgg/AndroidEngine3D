@@ -164,12 +164,12 @@ class Path
      */
     fun path(precision: Int, start: Float, end: Float): List<Segment>
     {
-        val precision = max(2, precision)
+        val precisionLoocal = max(2, precision)
         val lines = ArrayList<Segment>()
 
         for (element in this.path)
         {
-            element.appendSegments(lines, precision)
+            element.appendSegments(lines, precisionLoocal)
         }
 
         val distances = ArrayList<Float>()

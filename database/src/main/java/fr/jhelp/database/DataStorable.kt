@@ -104,6 +104,7 @@ abstract class DataStorable
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     protected fun <DS : DataStorable> getDataStorable(key: String): DS?
     {
         val data = this.data[key] ?: return null

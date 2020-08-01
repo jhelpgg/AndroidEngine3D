@@ -89,7 +89,7 @@ class MaskedImageActivity : TwoImagesCombinationActivity(R.string.maskImageTitle
 
     override fun doOperation(first: Bitmap, second: Bitmap): Bitmap
     {
-        val result = this.createBitmap { bitmap, canvas, paint -> }
+        val result = this.createBitmap { _, _, _ -> }
         result.copy(first)
         result.mask(second, 0, 0, 512, 512)
         return result

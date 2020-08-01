@@ -37,7 +37,7 @@ class MultiplyImageActivity : TwoImagesCombinationActivity(R.string.multiplyImag
 
     override fun doOperation(first: Bitmap, second: Bitmap): Bitmap
     {
-        val result = this.createBitmap { bitmap, canvas, paint ->  }
+        val result = this.createBitmap { _, _, _ ->  }
         result.copy(first)
         result.multiply(second)
         return result

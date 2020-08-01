@@ -121,6 +121,7 @@ object ShowRoomAdapter : RecyclerView.Adapter<ShowRoomViewHolder<*>>()
 
     override fun getItemCount() = this.content.size
 
+    @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: ShowRoomViewHolder<*>, position: Int)
     {
         (holder as ShowRoomViewHolder<ShowRoomElement>).update(this.content[position])

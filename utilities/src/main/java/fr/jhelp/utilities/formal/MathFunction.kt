@@ -112,6 +112,7 @@ abstract class MathFunction<MF : MathFunction<MF>> internal constructor() :
     /**
      * Do an action on this function, if its match the given class or create same operation type with try do action on parameters
      */
+    @Suppress("UNCHECKED_CAST")
     internal open fun <M : MathFunction<M>> applyDeep(clazz: Class<M>,
                                                       action: (M) -> MathFunction<*>): MathFunction<*> =
         if (clazz == this.javaClass) action(this as M)
@@ -211,6 +212,7 @@ abstract class MathFunction<MF : MathFunction<MF>> internal constructor() :
      */
     abstract fun derivative(variable: Variable): MathFunction<*>
 
+    @Suppress("UNCHECKED_CAST")
     final override fun equals(other: Any?): Boolean
     {
         if (this === other)

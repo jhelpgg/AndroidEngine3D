@@ -15,6 +15,7 @@ private val EMPTY = LinkedArray<Any>()
 /**
  * Obtain an empty linked array
  */
+@Suppress("UNCHECKED_CAST")
 fun <T> emptyLinkedArray() = EMPTY as LinkedArray<T>
 
 /**

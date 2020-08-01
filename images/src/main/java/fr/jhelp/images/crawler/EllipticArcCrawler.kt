@@ -39,8 +39,8 @@ internal class EllipticArcCrawler(private val startX: Float, private val startY:
 
     init
     {
-        var angleStart = 0.0f
-        var angleEnd = 0.0f
+        var angleStart : Float
+        var angleEnd : Float
         var radiusX = this.radiusX
         var radiusY = this.radiusY
 

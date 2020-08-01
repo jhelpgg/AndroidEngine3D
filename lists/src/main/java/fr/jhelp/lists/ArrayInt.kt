@@ -267,26 +267,26 @@ class ArrayInt(initialSize: Int = 128) : Iterable<Int>
      */
     fun insert(integer: Int, index: Int)
     {
-        var index = index
+        var indexLoocal = index
         this.expand(1)
 
-        if (index < 0)
+        if (indexLoocal < 0)
         {
-            index = 0
+            indexLoocal = 0
         }
 
-        if (index >= this.size)
+        if (indexLoocal >= this.size)
         {
             this.add(integer)
 
             return
         }
 
-        this.sorted = this.sorted && (index == 0 || integer >= this.array[index - 1]) && integer <= this.array[index]
+        this.sorted = this.sorted && (indexLoocal == 0 || integer >= this.array[indexLoocal - 1]) && integer <= this.array[indexLoocal]
 
-        System.arraycopy(this.array, index, this.array, index + 1, this.array.size - index - 1)
+        System.arraycopy(this.array, indexLoocal, this.array, indexLoocal + 1, this.array.size - indexLoocal - 1)
 
-        this.array[index] = integer
+        this.array[indexLoocal] = integer
         this.size++
     }
 

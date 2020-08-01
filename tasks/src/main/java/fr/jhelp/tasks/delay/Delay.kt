@@ -155,7 +155,7 @@ internal object Delay
 
     private fun run()
     {
-        var delayElement: DelayElement? = null
+        var delayElement: DelayElement?
         var waitBeforeExit = true
 
         do
