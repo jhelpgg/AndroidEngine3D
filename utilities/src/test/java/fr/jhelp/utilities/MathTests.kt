@@ -64,7 +64,5 @@ class MathTests
         Assert.assertEquals(-PI, moduloInterval(-PI, -PI, PI), EPSILON)
         Assert.assertEquals(-PI, moduloInterval(PI, -PI, PI), EPSILON)
         Assert.assertEquals(0.0, moduloInterval(720.0, 0.0, 360.0), EPSILON)
-
-        val f = X + 3 * X - cos(T)
     }
 }

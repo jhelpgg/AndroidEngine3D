@@ -75,12 +75,21 @@ fun random(bound1: Double, bound2: Double): Double
     return min + (RANDOM.nextDouble() * (max - min))
 }
 
+/**
+ * A random element from the list
+ */
 fun <T> List<T>.random(): T =
     this[random(0, this.size - 1)]
 
+/**
+ * A random element from the array
+ */
 fun <T> Array<T>.random(): T =
     this[random(0, this.size - 1)]
 
+/**
+ * A random element from the enum
+ */
 @Suppress("UNCHECKED_CAST")
 inline fun <reified E : Enum<E>> random(): E =
     (E::class.java.getDeclaredMethod("values").invoke(null) as Array<E>).random()

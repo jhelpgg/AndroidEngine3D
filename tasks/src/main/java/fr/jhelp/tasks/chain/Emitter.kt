@@ -20,7 +20,7 @@ import fr.jhelp.tasks.promise.Promise
 abstract class Emitter<T : Any>
 {
     /**
-     * Provide the net element
+     * Provide the next element
      *
      * @return Next element or `null` if there no more elements
      */

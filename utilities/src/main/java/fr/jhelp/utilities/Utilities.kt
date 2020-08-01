@@ -19,9 +19,9 @@ import java.util.Locale
 /**
  * Print log message with automatic tag management
  */
-inline fun log(message: () -> String)
+fun log(message: () -> String)
 {
-    val current = Throwable().stackTrace[0]
+    val current = Throwable().stackTrace[1]
     val className = current.className
     val index = className.lastIndexOf('.')
     val tag =
@@ -33,9 +33,9 @@ inline fun log(message: () -> String)
 /**
  * Print log error message with automatic tag management
  */
-inline fun logError(exception: Exception, message: () -> String)
+fun logError(exception: Exception, message: () -> String)
 {
-    val current = Throwable().stackTrace[0]
+    val current = Throwable().stackTrace[1]
     val className = current.className
     val index = className.lastIndexOf('.')
     val tag =
