@@ -145,6 +145,12 @@ class Addition(parameter1: MathFunction<*>, parameter2: MathFunction<*>) :
             // (F1 - F2) + (F3 - F4) -> (F1 + F3) - (F2 + F4)
             this.parameter1 is Subtraction && this.parameter2 is Subtraction                                                                                                ->
                 (this.parameter1.parameter1.simplify() + this.parameter2.parameter1.simplify()) - (this.parameter1.parameter2.simplify() + this.parameter2.parameter2.simplify())
+            // (F1 - F2) + F3 -> F1 + (F3 - F2)
+            this.parameter1 is Subtraction ->
+                this.parameter1.parameter1.simplify() + (this.parameter2 - this.parameter1.parameter2).simplify()
+            // F1 + (F2 - F3) -> (F1 - F3) + F2
+            this.parameter2 is Subtraction ->
+                (this.parameter1 - this.parameter2.parameter2).simplify() + this.parameter2.parameter1.simplify()
 
             // TODO other cases
             else                                                                                                                                                            ->

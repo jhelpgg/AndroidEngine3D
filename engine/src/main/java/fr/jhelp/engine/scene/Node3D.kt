@@ -32,6 +32,7 @@ open class Node3D : Iterable<Node3D>
         private set
     /**Current Z*/
     internal var zOrder = 0f
+    var visible = true
 
     /**
      * Node center

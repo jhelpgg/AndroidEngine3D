@@ -135,6 +135,15 @@ class Subtraction(parameter1: MathFunction<*>, parameter2: MathFunction<*>) :
             && this.parameter2 is Multiplication && this.parameter2.parameter1 is Cosinus && this.parameter2.parameter2 is Sinus
             && this.parameter1.parameter1.parameter == this.parameter2.parameter1.parameter && this.parameter1.parameter2.parameter == this.parameter2.parameter2.parameter ->
                 sin(this.parameter1.parameter2.parameter.simplify() - this.parameter1.parameter1.parameter.simplify())
+            // (F1 + F2) - (F3 + F4) -> (F1 - F3) + (F2 - F4)
+            this.parameter1 is Addition && this.parameter2 is Addition ->
+                (this.parameter1.parameter1 - this.parameter2.parameter1).simplify() + (this.parameter1.parameter2- this.parameter2.parameter2).simplify()
+            // (F1 + F2) - F3 -> (F1 - F3) + F2
+            this.parameter1 is Addition ->
+                (this.parameter1.parameter1 - this.parameter2).simplify() + this.parameter1.parameter2.simplify()
+            // F1 - (F2 + F3) -> (F1 - F2) + F3
+            this.parameter2 is Addition ->
+                (this.parameter1 - this.parameter2.parameter1).simplify() + this.parameter2.parameter2.simplify()
             // TODO other cases
             else                                                                                                                                                            ->
                 this.parameter1.simplify() - this.parameter2.simplify()

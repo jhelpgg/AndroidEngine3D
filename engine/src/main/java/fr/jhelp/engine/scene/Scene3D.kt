@@ -100,15 +100,18 @@ class Scene3D
         {
             current = stack.pop()
 
-            if (current.hasSomethingToDraw())
+            if (current.visible)
             {
-                current.zOrder = antiProjection(current, current.center()).z
-                nodes.add(current)
-            }
+                if (current.hasSomethingToDraw())
+                {
+                    current.zOrder = antiProjection(current, current.center()).z
+                    nodes.add(current)
+                }
 
-            for (child in current)
-            {
-                stack.push(child)
+                for (child in current)
+                {
+                    stack.push(child)
+                }
             }
         }
 
@@ -147,7 +150,7 @@ class Scene3D
             }
         }
 
-       // DeleteTexture.freeNext(gl)
+        // DeleteTexture.freeNext(gl)
     }
 
     operator fun Node3D.unaryPlus() = this@Scene3D.root.add(this)
