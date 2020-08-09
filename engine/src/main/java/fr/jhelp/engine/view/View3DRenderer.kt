@@ -8,9 +8,10 @@
 
 package fr.jhelp.engine.view
 
-import android.graphics.RectF
 import android.opengl.GLSurfaceView
+import fr.jhelp.engine.scene.Point3D
 import fr.jhelp.engine.scene.Scene3D
+import fr.jhelp.images.Point2D
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -19,8 +20,6 @@ import javax.microedition.khronos.opengles.GL10
  */
 internal class View3DRenderer(private val refreshDone: () -> Unit) : GLSurfaceView.Renderer
 {
-    val boundView = RectF()
-    val bound3D = RectF()
     val scene3D = Scene3D()
 
     override fun onDrawFrame(gl: GL10)
@@ -41,16 +40,10 @@ internal class View3DRenderer(private val refreshDone: () -> Unit) : GLSurfaceVi
         gl.glLoadIdentity()
         gl.glFrustumf(-ratio, ratio, -1f, 1f, 1f, 10f)
 
-        this.bound3D.left = -ratio
-        this.bound3D.right = ratio
-        this.bound3D.top = 1f
-        this.bound3D.bottom = -1f
-
-        this.boundView.left = 0f
-        this.boundView.right = width.toFloat()
-        this.boundView.top = 0f
-        this.boundView.bottom = height.toFloat()
-
+        viewBounds.changeValue(ViewBounds(Point3D(-ratio, 1f, 1f),
+                                          Point3D(ratio, -1f, 10f),
+                                          Point2D(0f, 0f),
+                                          Point2D(width.toFloat(), height.toFloat())))
     }
 
     override fun onSurfaceCreated(gl: GL10, config: EGLConfig?)

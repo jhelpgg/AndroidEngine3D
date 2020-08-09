@@ -10,7 +10,6 @@ package fr.jhelp.engine.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.RectF
 import android.opengl.GLSurfaceView
 import android.os.SystemClock
 import android.util.AttributeSet
@@ -19,6 +18,8 @@ import fr.jhelp.engine.resources.ResourcesAccess
 import fr.jhelp.engine.scene.Node3D
 import fr.jhelp.engine.scene.Point3D
 import fr.jhelp.tasks.delay
+import fr.jhelp.utilities.bounds
+import fr.jhelp.utilities.distance
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.max
 
@@ -33,6 +34,12 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
     private val alive = AtomicBoolean(true)
     private val renderer = View3DRenderer(this::refreshDone)
     private var startRefreshTime = 0L
+    var minimumAngleY = Float.NEGATIVE_INFINITY
+    var maximumAngleY = Float.POSITIVE_INFINITY
+    var minimumAngleX = Float.NEGATIVE_INFINITY
+    var maximumAngleX = Float.POSITIVE_INFINITY
+    var minimumZ = -9f
+    var maximumZ = -1f
 
     /**
      * Last touch X position
@@ -44,8 +51,11 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
      */
     private var touchY = 0f
 
-    val bounds3D get() = RectF(this.renderer.bound3D)
-    val boundsView get() = RectF(this.renderer.boundView)
+    private var numberFinger = 0
+    private var touchX1 = 0f
+    private var touchY1 = 0f
+    private var touchX2 = 0f
+    private var touchY2 = 0f
 
     /**
      * Scene draw on the view
@@ -87,43 +97,90 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
      */
     fun screenCoordinateTo3D(xScreen: Float, yScreen: Float, zFix: Float): Point3D
     {
-        val bound3D = this.renderer.bound3D
-        val boundView = this.renderer.boundView
-        val width3D: Float = bound3D.right - bound3D.left
-        val height3D: Float = bound3D.bottom - bound3D.top
-        val widthView: Float = boundView.right - boundView.left
-        val heightView: Float = boundView.bottom - boundView.top
-        return Point3D(bound3D.left + (width3D * xScreen) / widthView,
-                       bound3D.top + (height3D * yScreen) / heightView,
+        val bounds = viewBounds.value()
+        val topLeftNear = bounds.topLeftNear
+        val bottomRightFar = bounds.bottomRightFar
+        val topLeft = bounds.topLet
+        val bottomRight = bounds.bottomRight
+        val width3D: Float = bottomRightFar.x - topLeftNear.x
+        val height3D: Float = bottomRightFar.y - topLeftNear.y
+        val widthView: Float = bottomRight.x - topLeft.x
+        val heightView: Float = bottomRight.y - topLeft.y
+        return Point3D(topLeftNear.x + (width3D * xScreen) / widthView,
+                       topLeftNear.y + (height3D * yScreen) / heightView,
                        zFix)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean
     {
+        when (event.pointerCount)
+        {
+            1 -> this.oneFingerTouchEvent(event)
+            2 -> this.twoFingersTouchEvent(event)
+        }
+
+        return true
+    }
+
+    private fun oneFingerTouchEvent(event: MotionEvent)
+    {
+        this.numberFinger = 1
         val x = event.x
         val y = event.y
 
-        // Just form something happen now, TODO change it :
         if (event.action == MotionEvent.ACTION_MOVE)
         {
-            this.manipulateNode.position.angleY += (x - this.touchX) * 0.25f
-            this.manipulateNode.position.angleX += (y - this.touchY) * 0.25f
+            this.manipulateNode.position.angleY =
+                (this.manipulateNode.position.angleY + (x - this.touchX) * 0.25f)
+                    .bounds(this.minimumAngleY, this.maximumAngleY)
+            this.manipulateNode.position.angleX =
+                (this.manipulateNode.position.angleX + (y - this.touchY) * 0.25f)
+                    .bounds(this.minimumAngleX, this.maximumAngleX)
         }
-        else if (event.action == MotionEvent.ACTION_UP && this.hasOnClickListeners())
+        else if (event.action == MotionEvent.ACTION_UP)
         {
-            this.callOnClick()
+            this.numberFinger = 0
+
+            if (this.hasOnClickListeners())
+            {
+                this.callOnClick()
+            }
         }
 
-        // TODO manage touche events for user interaction, depends on action mode
-        // Example : angleY += (x - this.touchX)  | angleX += (y - this.touchY) => Fro a rotation mode
-        // Can be also a virtual joystick
-        // Object click detection
-        // ...
 
         this.touchX = x
         this.touchY = y
-        return true
+    }
+
+    private fun twoFingersTouchEvent(event: MotionEvent)
+    {
+        if (this.numberFinger == 1)
+        {
+            this.touchX1 = this.touchX
+            this.touchY1 = this.touchY
+        }
+
+        this.numberFinger = 2
+
+        val x1 = event.getX(0)
+        val y1 = event.getY(0)
+        val x2 = event.getX(1)
+        val y2 = event.getY(1)
+
+        if (event.actionMasked == MotionEvent.ACTION_MOVE)
+        {
+            val previousDistance = distance(this.touchX1, this.touchY1, this.touchX2, this.touchY2)
+            val currentDistance = distance(x1, y1, x2, y2)
+            this.manipulateNode.position.z =
+                (this.manipulateNode.position.z + 0.01f * (currentDistance - previousDistance))
+                    .bounds(this.minimumZ, this.maximumZ)
+        }
+
+        this.touchX1 = x1
+        this.touchY1 = y1
+        this.touchX2 = x2
+        this.touchY2 = y2
     }
 
     private fun refreshScene()
