@@ -9,6 +9,7 @@
 package fr.jhelp.images.path
 
 import fr.jhelp.utilities.angle.AngleFloat
+import fr.jhelp.utilities.bounds
 import fr.jhelp.utilities.distance
 import fr.jhelp.utilities.nul
 import fr.jhelp.utilities.same
@@ -52,6 +53,7 @@ class Path
      */
     fun moveTo(startX: Float, startY: Float): Path
     {
+        this.path.add(MoveToElement(startX, startY))
         this.startX = startX
         this.startY = startY
         this.x = startX
@@ -66,11 +68,17 @@ class Path
      */
     fun close(): Path
     {
+
         if (!this.startX.same(this.x) || !this.startY.same(this.y))
         {
+            this.path.add(CloseElement(true))
             this.path.add(LineElement(this.x, this.y, this.startX, this.startY))
             this.x = this.startX
             this.y = this.startY
+        }
+        else
+        {
+            this.path.add(CloseElement(false))
         }
 
         return this
@@ -164,12 +172,12 @@ class Path
      */
     fun path(precision: Int, start: Float, end: Float): List<Segment>
     {
-        val precisionLoocal = max(2, precision)
+        val precisionLocal = max(2, precision)
         val lines = ArrayList<Segment>()
 
         for (element in this.path)
         {
-            element.appendSegments(lines, precisionLoocal)
+            element.appendSegments(lines, precisionLocal)
         }
 
         val distances = ArrayList<Float>()
@@ -199,5 +207,128 @@ class Path
         }
 
         return lines
+    }
+
+    fun toAndroidPolygon(percent: Int = 100, precision: Int = 16): android.graphics.Path
+    {
+        val androidPath = android.graphics.Path()
+        val percentLocal = percent.bounds(0, 100)
+        val precisionLocal = max(2, precision)
+        val segmentOrPointInfo = ArrayList<SegmentPointCloseInfo>()
+        val lines = ArrayList<Segment>()
+        var ignoreNext = false
+
+        for (element in this.path)
+        {
+            if (ignoreNext)
+            {
+                ignoreNext = false
+                continue
+            }
+
+            when (element)
+            {
+                is MoveToElement ->
+                {
+                    segmentOrPointInfo.add(PointInfo(element.startX, element.startY))
+                }
+                is CloseElement  ->
+                {
+                    segmentOrPointInfo.add(CloseInfo)
+                    ignoreNext = element.ignoreNext
+                }
+                else             ->
+                {
+                    lines.clear()
+                    element.appendSegments(lines, precisionLocal)
+
+                    for (segment in lines)
+                    {
+                        segmentOrPointInfo.add(SegmentInfo(segment))
+                    }
+                }
+            }
+        }
+
+        val number = (segmentOrPointInfo.size * percentLocal) / 100
+
+        var segmentPointClose: SegmentPointCloseInfo
+        var segment: Segment
+        var open = false
+
+        for (index in 0 until number)
+        {
+            segmentPointClose = segmentOrPointInfo[index]
+
+            when (segmentPointClose)
+            {
+                CloseInfo      ->
+                {
+                    open = false
+                    androidPath.close()
+                }
+                is PointInfo   ->
+                {
+                    open = true
+                    androidPath.moveTo(segmentPointClose.x, segmentPointClose.y)
+                }
+                is SegmentInfo ->
+                {
+                    segment = segmentPointClose.segment
+                    androidPath.lineTo(segment.endX, segment.endY)
+                }
+            }
+        }
+
+        if (open)
+        {
+            androidPath.close()
+        }
+
+        return androidPath
+    }
+
+    fun toAndroidPath(ellipseArcPrecision: Int = 16): android.graphics.Path
+    {
+        val precision = max(2, ellipseArcPrecision)
+        val androidPath = android.graphics.Path()
+        var ignoreNext = false
+
+        for (element in this.path)
+        {
+            if (ignoreNext)
+            {
+                ignoreNext = false
+                continue
+            }
+
+            when (element)
+            {
+                is CloseElement       ->
+                {
+                    androidPath.close()
+                    ignoreNext = element.ignoreNext
+                }
+                is MoveToElement      -> androidPath.moveTo(element.startX, element.startY)
+                is LineElement        -> androidPath.lineTo(element.endX, element.endY)
+                is QuadraticElement   -> androidPath.quadTo(element.controlX, element.controlY,
+                                                            element.endX, element.endY)
+                is CubicElement       -> androidPath.cubicTo(element.control1X, element.control1Y,
+                                                             element.control2X, element.control2Y,
+                                                             element.endX, element.endY)
+                is EllipticArcElement ->
+                {
+                    val segments = ArrayList<Segment>()
+                    element.appendSegments(segments, precision)
+
+                    for (segment in segments)
+                    {
+                        androidPath.lineTo(segment.endX, segment.endY)
+                    }
+                }
+            }
+        }
+
+        return androidPath
     }
 }

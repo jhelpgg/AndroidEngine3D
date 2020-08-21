@@ -19,8 +19,18 @@ internal sealed class PathElement
     abstract fun appendSegments(segments: MutableList<Segment>, precision: Int)
 }
 
-internal class LineElement(private val startX: Float, private val startY: Float,
-                           private val endX: Float, private val endY: Float) : PathElement()
+internal class CloseElement(val ignoreNext:Boolean) : PathElement()
+{
+    override fun appendSegments(segments: MutableList<Segment>, precision: Int) = Unit
+}
+
+internal class MoveToElement(val startX: Float, val startY: Float) : PathElement()
+{
+    override fun appendSegments(segments: MutableList<Segment>, precision: Int) = Unit
+}
+
+internal class LineElement(val startX: Float, val startY: Float,
+                           val endX: Float, val endY: Float) : PathElement()
 {
     override fun appendSegments(segments: MutableList<Segment>, precision: Int)
     {
@@ -29,9 +39,9 @@ internal class LineElement(private val startX: Float, private val startY: Float,
     }
 }
 
-internal class QuadraticElement(private val startX: Float, private val startY: Float,
-                                private val controlX: Float, private val controlY: Float,
-                                private val endX: Float, private val endY: Float) : PathElement()
+internal class QuadraticElement(val startX: Float, val startY: Float,
+                                val controlX: Float, val controlY: Float,
+                                val endX: Float, val endY: Float) : PathElement()
 {
     override fun appendSegments(segments: MutableList<Segment>, precision: Int)
     {
@@ -47,10 +57,10 @@ internal class QuadraticElement(private val startX: Float, private val startY: F
     }
 }
 
-internal class CubicElement(private val startX: Float, private val startY: Float,
-                            private val control1X: Float, private val control1Y: Float,
-                            private val control2X: Float, private val control2Y: Float,
-                            private val endX: Float, private val endY: Float) : PathElement()
+internal class CubicElement(val startX: Float, val startY: Float,
+                            val control1X: Float, val control1Y: Float,
+                            val control2X: Float, val control2Y: Float,
+                            val endX: Float, val endY: Float) : PathElement()
 {
     override fun appendSegments(segments: MutableList<Segment>, precision: Int)
     {
@@ -66,11 +76,11 @@ internal class CubicElement(private val startX: Float, private val startY: Float
     }
 }
 
-internal class EllipticArcElement(private val startX: Float, private val startY: Float,
-                                  private val radiusX: Float, private val radiusY: Float,
-                                  private val rotationAxisX: AngleFloat,
-                                  private val largeArc: Boolean, private val sweep: Boolean,
-                                  private val endX: Float, private val endY: Float) : PathElement()
+internal class EllipticArcElement(val startX: Float, val startY: Float,
+                                  val radiusX: Float, val radiusY: Float,
+                                  val rotationAxisX: AngleFloat,
+                                  val largeArc: Boolean, val sweep: Boolean,
+                                  val endX: Float, val endY: Float) : PathElement()
 {
     override fun appendSegments(segments: MutableList<Segment>, precision: Int)
     {
