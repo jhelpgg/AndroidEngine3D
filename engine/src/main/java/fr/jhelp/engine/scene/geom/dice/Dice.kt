@@ -9,9 +9,9 @@
 package fr.jhelp.engine.scene.geom.dice
 
 import fr.jhelp.engine.R
-import fr.jhelp.engine.animation.Animation
-import fr.jhelp.engine.animation.AnimationList
-import fr.jhelp.engine.animation.AnimationTask
+import fr.jhelp.animations.Animation
+import fr.jhelp.animations.AnimationList
+import fr.jhelp.animations.AnimationTask
 import fr.jhelp.engine.animation.keyFrame.AnimationNode3D
 import fr.jhelp.engine.resources.ResourcesAccess
 import fr.jhelp.engine.scene.Color3D
@@ -69,7 +69,8 @@ class Dice(@DiceValue value: Int = random(1, 6)) : Node3D()
         val animationNode = AnimationNode3D(this.dice)
         animationNode.frame(max(1, numberFrame), DICE_POSITIONS[diceValue - 1])
         animation.add(animationNode)
-        animation.add(AnimationTask(diceValue, this.changeValue))
+        animation.add(
+            AnimationTask(diceValue, this.changeValue))
         return animation
     }
 

@@ -8,7 +8,7 @@
 
 package fr.jhelp.engine.scene.geom.robot.animation
 
-import fr.jhelp.engine.animation.Animation
+import fr.jhelp.animations.Animation
 import fr.jhelp.engine.scene.geom.robot.Robot
 import fr.jhelp.engine.scene.geom.robot.RobotAnimation
 import fr.jhelp.engine.scene.geom.robot.RobotPosition

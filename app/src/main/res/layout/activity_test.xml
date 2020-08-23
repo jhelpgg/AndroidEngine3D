@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  <h1>License :</h1> <br/>
+  ~ The following code is deliver as is. <br/>
+  ~  You can use, modify, the code as your need for any usage.<br/>
+  ~  But you can't do any action that avoid me or other person use, modify this code.<br/>
+  ~  The code is free for usage and modification, you can't change that fact.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:graphics="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <fr.jhelp.graphics.progress.circle.ProgressCircleView
+        android:id="@+id/testPercent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       graphics:animated="true"
+        graphics:percent="100"
+        graphics:shape="halfRing"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

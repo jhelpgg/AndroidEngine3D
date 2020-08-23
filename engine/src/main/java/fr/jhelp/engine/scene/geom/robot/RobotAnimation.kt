@@ -8,7 +8,7 @@
 
 package fr.jhelp.engine.scene.geom.robot
 
-import fr.jhelp.engine.animation.keyFrame.AnimationKeyFrame
+import fr.jhelp.animations.keyFrame.AnimationKeyFrame
 
 /**
  * Animation for robot

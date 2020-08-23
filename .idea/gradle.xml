@@ -10,9 +10,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/animations" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/engine" />
+            <option value="$PROJECT_DIR$/graphics" />
             <option value="$PROJECT_DIR$/images" />
             <option value="$PROJECT_DIR$/io" />
             <option value="$PROJECT_DIR$/lists" />

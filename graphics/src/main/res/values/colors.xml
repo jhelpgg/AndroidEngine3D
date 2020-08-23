@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  <h1>License :</h1> <br/>
+  ~ The following code is deliver as is. <br/>
+  ~  You can use, modify, the code as your need for any usage.<br/>
+  ~  But you can't do any action that avoid me or other person use, modify this code.<br/>
+  ~  The code is free for usage and modification, you can't change that fact.
+  -->
+
+<resources>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRed">#DE1248</color>
+    <color name="colorGreen">#12DE48</color>
+    <color name="colorBlue">#1248DE</color>
+</resources>

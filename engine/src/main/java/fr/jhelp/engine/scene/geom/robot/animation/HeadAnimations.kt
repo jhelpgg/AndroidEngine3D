@@ -8,12 +8,13 @@
 
 package fr.jhelp.engine.scene.geom.robot.animation
 
-import fr.jhelp.engine.animation.Animation
+import fr.jhelp.animations.Animation
 import fr.jhelp.engine.scene.geom.robot.Robot
 import fr.jhelp.engine.scene.geom.robot.RobotAnimation
 import fr.jhelp.engine.scene.geom.robot.RobotPosition
 
-val Robot.headYesAnimation : Animation get()
+val Robot.headYesAnimation : Animation
+    get()
 {
     val animation = RobotAnimation(this)
     animation.frame(8, RobotPosition(neckAngleX = 35f))
@@ -24,7 +25,8 @@ val Robot.headYesAnimation : Animation get()
     return animation
 }
 
-val Robot.headNoAnimation: Animation get()
+val Robot.headNoAnimation: Animation
+    get()
 {
     val angle = 45f
     val animation = RobotAnimation(this)

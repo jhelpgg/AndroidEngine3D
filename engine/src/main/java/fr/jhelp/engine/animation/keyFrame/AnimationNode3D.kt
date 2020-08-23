@@ -8,6 +8,7 @@
 
 package fr.jhelp.engine.animation.keyFrame
 
+import fr.jhelp.animations.keyFrame.AnimationKeyFrame
 import fr.jhelp.engine.OpenGLThread
 import fr.jhelp.engine.scene.Node3D
 import fr.jhelp.engine.scene.Position3D

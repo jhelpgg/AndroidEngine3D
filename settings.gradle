@@ -5,6 +5,8 @@
  *  But you can't do any action that avoid me or other person use, modify this code.<br/>
  *  The code is free for usage and modification, you can't change that fact.
  */
+include ':animations'
+include ':graphics'
 
 rootProject.name='multitools'
 include ':app'

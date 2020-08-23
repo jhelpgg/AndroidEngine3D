@@ -20,11 +20,13 @@ import fr.jhelp.engine.scene.RED
 import fr.jhelp.engine.scene.geom.Plane
 import fr.jhelp.engine.scene.geom.Revolution
 import fr.jhelp.engine.view.View3D
+import fr.jhelp.graphics.progress.circle.ProgressCircleShape
 import fr.jhelp.images.path.Path
 import fr.jhelp.sound.SoundManager
-import fr.jhelp.tasks.parallel
+import fr.jhelp.tasks.delay
 import fr.jhelp.utilities.PI_FLOAT
 import fr.jhelp.utilities.random
+import kotlinx.android.synthetic.main.activity_test.testPercent
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
@@ -37,8 +39,9 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        parallel(this.findViewById(R.id.view3D), this::createScene)
+        setContentView(R.layout.activity_test)
+        testPercent.setOnClickListener { delay(128) {testPercent.setStartColor(this.resources.getColor(R.color.colorBlue, null)) } }
+        //  parallel(this.findViewById(R.id.view3D), this::createScene)
     }
 
     private fun createScene(view3D: View3D)
@@ -76,7 +79,7 @@ class MainActivity : AppCompatActivity()
 
         scene.play { frame ->
             val ray = min(2f, frame / 250f)
-            var theta = thetaStep/2f
+            var theta = thetaStep / 2f
             var gama = 0f
             material.diffuse = Color3D(ray / 2f, 1f - (ray / 2f), 1f - (ray / 2f))
 

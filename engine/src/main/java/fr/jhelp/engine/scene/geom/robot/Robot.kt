@@ -10,10 +10,6 @@ package fr.jhelp.engine.scene.geom.robot
 
 import androidx.annotation.DrawableRes
 import fr.jhelp.engine.R
-import fr.jhelp.engine.animation.Animation
-import fr.jhelp.engine.animation.interpoolation.DecelerationInterpolation
-import fr.jhelp.engine.animation.interpoolation.Interpolation
-import fr.jhelp.engine.animation.interpoolation.LinearInterpolation
 import fr.jhelp.engine.resources.ResourcesAccess
 import fr.jhelp.engine.scene.Clone3D
 import fr.jhelp.engine.scene.Color3D
@@ -27,7 +23,6 @@ import fr.jhelp.engine.scene.geom.Sphere
 import fr.jhelp.images.path.Path
 import fr.jhelp.utilities.bounds
 import fr.jhelp.utilities.moduloInterval
-import kotlin.math.max
 
 private fun createCylinder(): Revolution
 {

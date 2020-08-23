@@ -9,8 +9,8 @@
 package fr.jhelp.engine.scene
 
 import fr.jhelp.engine.OpenGLThread
-import fr.jhelp.engine.animation.Animation
-import fr.jhelp.engine.animation.AnimationFunction
+import fr.jhelp.animations.Animation
+import fr.jhelp.animations.AnimationFunction
 import fr.jhelp.engine.tools.NodeOrderZ
 import fr.jhelp.engine.tools.antiProjection
 import fr.jhelp.lists.SortedArray

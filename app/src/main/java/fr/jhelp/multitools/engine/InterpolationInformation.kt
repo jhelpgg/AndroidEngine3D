@@ -8,7 +8,7 @@
 
 package fr.jhelp.multitools.engine
 
-import fr.jhelp.engine.animation.interpoolation.Interpolation
+import fr.jhelp.animations.interpoolation.Interpolation
 
 class InterpolationInformation(val interpolation: Interpolation)
 {

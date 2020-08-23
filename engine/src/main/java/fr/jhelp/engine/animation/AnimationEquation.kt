@@ -8,6 +8,7 @@
 
 package fr.jhelp.engine.animation
 
+import fr.jhelp.animations.Animation
 import fr.jhelp.engine.scene.Node3D
 import fr.jhelp.utilities.formal.Constant
 import fr.jhelp.utilities.formal.MathFunction
