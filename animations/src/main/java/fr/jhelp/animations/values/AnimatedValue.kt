@@ -31,7 +31,7 @@ abstract class AnimatedValue<V : Any, A : AnimationValue<V>>(value: V,
     private val animation = animationCreator(this.reference)
     val animating get() = this.playing.get()
 
-    fun clear()
+    fun stop()
     {
         this.playing.set(false)
         this.animation.clear()
@@ -43,14 +43,31 @@ abstract class AnimatedValue<V : Any, A : AnimationValue<V>>(value: V,
         this.animation.start()
     }
 
+    /**
+     * Stop any animation and fix immediately the value
+     */
     fun setValue(value: V)
     {
+        this.stop()
         this.reference.set(value)
     }
 
     fun setValueIn(value: V, milliseconds: Int,
-                   interpolation: Interpolation = LinearInterpolation)
+                   interpolation: Interpolation = LinearInterpolation,
+                   stopAnimationIfPlaying: Boolean = true)
     {
+        val stopAndRestartAnimation = stopAnimationIfPlaying && this.animating
+
+        if (stopAndRestartAnimation)
+        {
+            this.stop()
+        }
+
         this.animation.time(milliseconds, value, interpolation)
+
+        if (stopAndRestartAnimation)
+        {
+            this.start()
+        }
     }
 }

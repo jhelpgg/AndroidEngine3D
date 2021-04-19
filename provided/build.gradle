@@ -12,8 +12,8 @@ apply plugin: 'maven-publish'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'junit:junit:4.13'
+    implementation "$kotlin_library"
+    implementation "$junit_library"
 }
 
 sourceCompatibility = "1.7"

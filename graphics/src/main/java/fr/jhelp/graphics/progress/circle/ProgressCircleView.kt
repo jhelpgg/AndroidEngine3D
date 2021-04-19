@@ -102,16 +102,7 @@ class ProgressCircleView(context: Context, attributes: AttributeSet?, defaultSty
         this.paintShadow.style = Paint.Style.FILL
         this.paintShadow.color = 0x99101010.toInt()
         this.paintShadow.maskFilter = BlurMaskFilter(8f, BlurMaskFilter.Blur.NORMAL)
-
-
-        if (this.animated)
-        {
-            this.percentDraw.setValueIn(this.percent, 4096, SinusInterpolation)
-        }
-        else
-        {
-            this.percentDraw.setValue(this.percent)
-        }
+        this.updatePercents()
 
         typeArray.recycle()
     }
@@ -123,24 +114,26 @@ class ProgressCircleView(context: Context, attributes: AttributeSet?, defaultSty
         if (this.percent != value)
         {
             this.percent = value
-            this.percentDraw.clear()
-
-            if (this.animated)
-            {
-                this.percentDraw.setValueIn(this.percent, 4096, SinusInterpolation)
-                this.percentDraw.start()
-            }
-            else
-            {
-                this.percentDraw.setValue(this.percent)
-            }
-
+            this.updatePercents()
             this.refreshView()
         }
     }
 
-    fun setBorderColor(@ColorInt color:Int) {
-        if(this.borderColor!=color)
+    private fun updatePercents()
+    {
+        if (this.animated)
+        {
+            this.percentDraw.setValueIn(this.percent, 4096, SinusInterpolation)
+        }
+        else
+        {
+            this.percentDraw.setValue(this.percent)
+        }
+    }
+
+    fun setBorderColor(@ColorInt color: Int)
+    {
+        if (this.borderColor != color)
         {
             this.borderColor = color
             this.paintBorder.color = color
@@ -148,32 +141,40 @@ class ProgressCircleView(context: Context, attributes: AttributeSet?, defaultSty
         }
     }
 
-    fun setStartColor(@ColorInt color:Int) {
-        if(this.startColor!=color) {
+    fun setStartColor(@ColorInt color: Int)
+    {
+        if (this.startColor != color)
+        {
             this.startColor = color
             this.updateFillColors()
             this.postInvalidate()
         }
     }
 
-    fun setEndColor(@ColorInt color:Int) {
-        if(this.endColor!=color) {
+    fun setEndColor(@ColorInt color: Int)
+    {
+        if (this.endColor != color)
+        {
             this.endColor = color
             this.updateFillColors()
             this.postInvalidate()
         }
     }
 
-    fun setTextColor(@ColorInt color:Int) {
-        if(this.textColor!=color) {
+    fun setTextColor(@ColorInt color: Int)
+    {
+        if (this.textColor != color)
+        {
             this.textColor = color
             this.paintText.color = color
             this.postInvalidate()
         }
     }
 
-    fun setShape(shape:ProgressCircleShape) {
-        if(this.shape != shape) {
+    fun setShape(shape: ProgressCircleShape)
+    {
+        if (this.shape != shape)
+        {
             this.shape = shape
             this.updatePaths()
             this.updateFillColors()
@@ -406,6 +407,11 @@ class ProgressCircleView(context: Context, attributes: AttributeSet?, defaultSty
     override fun animationStarted()
     {
         this.percentDraw.start()
+    }
+
+    override fun animationStopped()
+    {
+        this.percentDraw.setValue(this.percent)
     }
 
     override fun drawing(canvas: Canvas)

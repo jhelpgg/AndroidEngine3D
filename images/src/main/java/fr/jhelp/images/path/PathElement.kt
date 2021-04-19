@@ -19,7 +19,7 @@ internal sealed class PathElement
     abstract fun appendSegments(segments: MutableList<Segment>, precision: Int)
 }
 
-internal class CloseElement(val ignoreNext:Boolean) : PathElement()
+internal class CloseElement(val ignoreNext: Boolean) : PathElement()
 {
     override fun appendSegments(segments: MutableList<Segment>, precision: Int) = Unit
 }
@@ -95,7 +95,7 @@ internal class EllipticArcElement(val startX: Float, val startY: Float,
         var first = ellipticArcToCrawler[0]
         var second: Point2D
 
-        for (index in 1 until ellipticArcToCrawler.numberStep)
+        for (index in 1..ellipticArcToCrawler.numberStep)
         {
             second = ellipticArcToCrawler[index]
             segments.add(Segment(first, 0f, second, 1f))

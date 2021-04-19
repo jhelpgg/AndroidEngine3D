@@ -48,6 +48,10 @@ abstract class GraphicView(context: Context, attributes: AttributeSet?, defaultS
             {
                 this.startAnimation()
             }
+            else
+            {
+                this.stopAnimation()
+            }
         }
     }
 
@@ -71,6 +75,16 @@ abstract class GraphicView(context: Context, attributes: AttributeSet?, defaultS
             this.animationStarted()
             this.futureAnimation = delay(256L, this::playAnimation)
             this.futureAnimation.onCancel { this.animationLock.unlock() }
+        }
+    }
+
+    private fun stopAnimation()
+    {
+        if (this.onAnimation.getAndSet(false))
+        {
+            this.animationStopped()
+            this.futureAnimation.cancel("stop")
+            this.postInvalidate()
         }
     }
 
@@ -108,6 +122,7 @@ abstract class GraphicView(context: Context, attributes: AttributeSet?, defaultS
     }
 
     protected abstract fun animationStarted()
+    protected abstract fun animationStopped()
     protected abstract fun updateValues(): Boolean
     protected abstract fun drawing(canvas: Canvas)
 
