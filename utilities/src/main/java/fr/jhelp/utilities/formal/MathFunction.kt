@@ -13,7 +13,7 @@ import java.util.Stack
 import java.util.TreeSet
 
 /**
- * Generic mathemetical function
+ * Generic mathematical function
  */
 abstract class MathFunction<MF : MathFunction<MF>> internal constructor() :
     Comparable<MathFunction<*>>

@@ -54,7 +54,7 @@ A sealed object take less memory but it's mesh can't change anymore.
 Methods **`addTriangle`** and **`addSquare`** modify the mesh object (does nothing if object is sealed),
 by add respectively 1 or 2 triangles.
 
-Triangles in mesh are mash of 3 vertex. A vertex is composed of :
+Triangles in mesh are made of 3 vertex. A vertex is composed of :
 * 3D coordinates (x, y, z) relative to object coordinate system
 * UV (u,v) : coordinates in texture. Those coordinates are express in percent of texture width and height 
   to bo easily adapted to any texture size.
@@ -85,7 +85,7 @@ In package **`fr.jhelp.engine.scene.geom`** can find some predefined [Object3D](
   See [Field3D](field3D/Field3D.md)
 
 Their also more complex objects :
-* [fr.jhelp.engine.scene.geom.dice;Dice](../../main/java/fr/jhelp/engine/scene/geom/dice/Dice.kt) : A textured dice with animation.
+* [fr.jhelp.engine.scene.geom.dice.Dice](../../main/java/fr/jhelp/engine/scene/geom/dice/Dice.kt) : A textured dice with animation.
   See [Dice](dice/Dice.md)
 * [fr.jhelp.engine.scene.geom.robot.Robot](../../main/java/fr/jhelp/engine/scene/geom/robot/Robot.kt) : A textured robot with animation.
   See [Robot](robot/Robot.md)

@@ -20,11 +20,12 @@ package fr.jhelp.multitools.tutorial
 
 import android.app.Activity
 import android.os.Bundle
+import fr.jhelp.engine.scene
 import fr.jhelp.engine.scene.BLUE_GREY
+import fr.jhelp.engine.scene.Scene3D
 import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.parallel
 
 /**
  * Hello world tutorial
@@ -35,17 +36,16 @@ class DiffuseMaterialActivity : Activity()
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
-        // Get the 3D view and draw it in independent thread to free the UI thread
-        parallel(this.findViewById(R.id.view3D), this::drawScene)
+        // Get the 3D view and draw draw 3D scene on it
+        this.findViewById<View3D>(R.id.view3D).scene(this::drawScene)
     }
 
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
-        // Get scene in 3D view
-        val scene3D = view3D.scene3D
         // Position the root node in front of the camera to able see the scene
         scene3D.root.position.z = -2f
         // Create a box
@@ -58,6 +58,7 @@ class DiffuseMaterialActivity : Activity()
     }
 }
 ```` 
+
 Will make the box blue/grey:
 ![Blue grey box](preview_diffuse.png)
 
@@ -74,10 +75,11 @@ package fr.jhelp.multitools.tutorial
 import android.app.Activity
 import android.os.Bundle
 import fr.jhelp.engine.resources.ResourcesAccess
+import fr.jhelp.engine.scene
+import fr.jhelp.engine.scene.Scene3D
 import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.parallel
 
 /**
  * Hello world tutorial
@@ -88,17 +90,16 @@ class TextureMaterialActivity : Activity()
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
-        // Get the 3D view and draw it in independent thread to free the UI thread
-        parallel(this.findViewById(R.id.view3D), this::drawScene)
+        // Get the 3D view and draw draw 3D scene on it
+        this.findViewById<View3D>(R.id.view3D).scene(this::drawScene)
     }
 
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
-        // Get scene in 3D view
-        val scene3D = view3D.scene3D
         // Position the root node in front of the camera to able see the scene
         scene3D.root.position.z = -2f
         // Create a box
@@ -113,15 +114,15 @@ class TextureMaterialActivity : Activity()
 ````
 
 And do:
-![Boject with texture](preview_texture.png)
+![Object with texture](preview_texture.png)
 
-[ResourcesAccess](../../main/java/fr/jhelp/engine/resources/ResourcesAccess.kt) is usable only if theire at leat one [View3D](../../main/java/fr/jhelp/engine/view/View3D.kt)
+[ResourcesAccess](../../main/java/fr/jhelp/engine/resources/ResourcesAccess.kt) is usable only if there at least one [View3D](../../main/java/fr/jhelp/engine/view/View3D.kt)
 on the current activity.
 
 Look at [Texture](../../main/java/fr/jhelp/engine/scene/Texture.kt) to have other ways to create a texture.
 More about [Texture](../../main/java/fr/jhelp/engine/scene/Texture.kt) at : [Textures](Texture.md)
 
-By default, box draw the texture on each face. It's possible to change this behavior. See [Box detils](../scene/box/Box.md)
+By default, box draw the texture on each face. It's possible to change this behavior. See [Box details](../scene/box/Box.md)
 
 ### Texture and diffuse
 
@@ -130,16 +131,18 @@ Often use the `WHITE` color to make texture brighter.
 
 Here example with light red:
 ````kotlin
+
 package fr.jhelp.multitools.tutorial
 
 import android.app.Activity
 import android.os.Bundle
 import fr.jhelp.engine.resources.ResourcesAccess
+import fr.jhelp.engine.scene
 import fr.jhelp.engine.scene.LIGHT_RED
+import fr.jhelp.engine.scene.Scene3D
 import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.parallel
 
 /**
  * Hello world tutorial
@@ -150,17 +153,16 @@ class TextureAndDiffuseMaterialActivity : Activity()
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
-        // Get the 3D view and draw it in independent thread to free the UI thread
-        parallel(this.findViewById(R.id.view3D), this::drawScene)
+        // Get the 3D view and draw draw 3D scene on it
+        this.findViewById<View3D>(R.id.view3D).scene(this::drawScene)
     }
 
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
-        // Get scene in 3D view
-        val scene3D = view3D.scene3D
         // Position the root node in front of the camera to able see the scene
         scene3D.root.position.z = -2f
         // Create a box

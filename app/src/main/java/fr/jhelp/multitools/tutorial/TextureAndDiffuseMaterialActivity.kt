@@ -11,11 +11,12 @@ package fr.jhelp.multitools.tutorial
 import android.app.Activity
 import android.os.Bundle
 import fr.jhelp.engine.resources.ResourcesAccess
+import fr.jhelp.engine.scene
 import fr.jhelp.engine.scene.LIGHT_RED
+import fr.jhelp.engine.scene.Scene3D
 import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.parallel
 
 /**
  * Hello world tutorial
@@ -26,17 +27,16 @@ class TextureAndDiffuseMaterialActivity : Activity()
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
-        // Get the 3D view and draw it in independent thread to free the UI thread
-        parallel(this.findViewById(R.id.view3D), this::drawScene)
+        // Get the 3D view and draw draw 3D scene on it
+        this.findViewById<View3D>(R.id.view3D).scene(this::drawScene)
     }
 
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
-        // Get scene in 3D view
-        val scene3D = view3D.scene3D
         // Position the root node in front of the camera to able see the scene
         scene3D.root.position.z = -2f
         // Create a box

@@ -17,7 +17,7 @@ is received.
 Then register the user in `PostOffice` with the method `registerUser`.
 Each user must have a different name.
 
-Onec register the `PostUser` can receive message or send message with its method
+Once register the `PostUser` can receive message or send message with its method
 `toUser` or `toGroup`.
 
 If the `PostUser` is not registered, it can't send message, so no message are delivered.

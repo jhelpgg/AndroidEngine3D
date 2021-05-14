@@ -40,9 +40,11 @@ package fr.jhelp.multitools.tutorial
 
 import android.app.Activity
 import android.os.Bundle
+import fr.jhelp.engine.scene
+import fr.jhelp.engine.scene.Scene3D
+import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.parallel
 
 /**
  * Hello world tutorial
@@ -53,14 +55,15 @@ class HelloWorldActivity : Activity()
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
-        // Get the 3D view and draw it in independent thread to free the UI thread
-        parallel(this.findViewById(R.id.view3D), this::drawScene)
+        // Get the 3D view and draw draw 3D scene on it
+        this.findViewById<View3D>(R.id.view3D).scene(this::drawScene)
     }
 
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
     }
 }
@@ -68,12 +71,11 @@ class HelloWorldActivity : Activity()
 
 Like this it will draw a white rectangle, since nothing is draw on the 3D view.
 
-Add/modify things in 3D view can be done from any thread, that's why we launch it in independent thread.
-We free the UI thread and not take the risk to slow it or cause an ANR.
+The method `drawScene` will be called in independent thread.
+Doing so we free the UI thread and not take the risk to slow it or cause an ANR.
+It works because 3D scene can be modified from any thread.
 
 ### Second step : add something in 3D view
-
-[fr.jhelp.engine.view.View3D](../../main/java/fr/jhelp/engine/view/View3D.kt) contains a [fr.jhelp.engine.view.Scene3D](../../main/java/fr/jhelp/engine/scene/Scene3D.kt).
 
 [Scene3D](../../main/java/fr/jhelp/engine/scene/Scene3D.kt) represents the scene graph. In top of it their a root, 
 where all objects will be attach.
@@ -83,17 +85,17 @@ To get it :
 ````kotlin
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
-        // Get scene in 3D view
-        val scene3D = view3D.scene3D
         // Position the root node in front of the camera to able see the scene
         scene3D.root.position.z = -2f
     }
 ````
 
-By default the manipulated node (by drag on the screen) is the scene root.
+By default the manipulated node is the scene root.
+
 To be able see future thinks we put on it, we just put the root in front of camera.
 
 For have something to see, we will use a prebuilt object : [fr.jhelp.engine.scene.geom.Box](../../main/java/fr/jhelp/engine/scene/geom/Box.kt)
@@ -115,10 +117,11 @@ package fr.jhelp.multitools.tutorial
 
 import android.app.Activity
 import android.os.Bundle
+import fr.jhelp.engine.scene
+import fr.jhelp.engine.scene.Scene3D
 import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.parallel
 
 /**
  * Hello world tutorial
@@ -129,17 +132,16 @@ class HelloWorldActivity : Activity()
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
-        // Get the 3D view and draw it in independent thread to free the UI thread
-        parallel(this.findViewById(R.id.view3D), this::drawScene)
+        // Get the 3D view and draw draw 3D scene on it
+        this.findViewById<View3D>(R.id.view3D).scene(this::drawScene)
     }
 
     /**
      * Draw scene on 3D view
+     * @param scene3D Scene where add 3D objects
      */
-    private fun drawScene(view3D: View3D)
+    private fun drawScene(scene3D: Scene3D)
     {
-        // Get scene in 3D view
-        val scene3D = view3D.scene3D
         // Position the root node in front of the camera to able see the scene
         scene3D.root.position.z = -2f
         // Create a box
@@ -153,4 +155,5 @@ class HelloWorldActivity : Activity()
 Do :
 ![Hello world](preview_hello_world.png)
 
-Move your finger in the screen to rotate the scene.
+Move one finger in the screen to rotate the scene.
+Pinch change z position, so give a zoom effect.
