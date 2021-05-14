@@ -31,6 +31,7 @@ import fr.jhelp.multitools.images.TintImageActivity
 import fr.jhelp.multitools.tutorial.DicedActivity
 import fr.jhelp.multitools.tutorial.DiffuseMaterialActivity
 import fr.jhelp.multitools.tutorial.HelloWorldActivity
+import fr.jhelp.multitools.tutorial.ParticleActivity
 import fr.jhelp.multitools.tutorial.RobotActivity
 import fr.jhelp.multitools.tutorial.TextureAndDiffuseMaterialActivity
 import fr.jhelp.multitools.tutorial.TextureMaterialActivity
@@ -96,14 +97,17 @@ object ShowRoomAdapter : RecyclerView.Adapter<ShowRoomViewHolder<*>>()
                                 RobotActivity::class.java),
                 ShowRoomPreview(R.drawable.preview_dice,
                                 R.string.diceTitle,
-                                DicedActivity::class.java)
+                                DicedActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_particle,
+                                R.string.particleTitle,
+                                ParticleActivity::class.java)
                )
 
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ShowRoomViewHolder<*> =
         when (viewType)
         {
-            SHOW_ROOM_TITLE_TYPE   ->
+            SHOW_ROOM_TITLE_TYPE ->
             {
                 val layoutInflater = parent.context.getSystemService(LayoutInflater::class.java)!!
                 val view = layoutInflater.inflate(R.layout.show_room_title, parent, false)

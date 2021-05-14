@@ -26,6 +26,21 @@ data class Position3D(var x: Float = 0f, var y: Float = 0f, var z: Float = 0f,
 
     fun copy() = Position3D(this)
 
+    fun set(position: Position3D)
+    {
+        this.x = position.x
+        this.y = position.y
+        this.z = position.z
+
+        this.angleX = position.angleX
+        this.angleY = position.angleY
+        this.angleZ = position.angleZ
+
+        this.scaleX = position.scaleX
+        this.scaleY = position.scaleY
+        this.scaleZ = position.scaleZ
+    }
+
     fun position(x: Float, y: Float, z: Float)
     {
         this.x = x
@@ -95,4 +110,40 @@ data class Position3D(var x: Float = 0f, var y: Float = 0f, var z: Float = 0f,
         vector = Rotation3D(AXIS_X, AngleFloat(-this.angleX, AngleUnit.DEGREE)).rotateVector(vector)
         return Point3D(vector.x - this.x, vector.y - this.y, vector.z - this.z)
     }
+
+    operator fun plus(position: Position3D): Position3D =
+        Position3D(this.x + position.x,
+                   this.y + position.y,
+                   this.z + position.z,
+                   this.angleX + position.angleX,
+                   this.angleY + position.angleY,
+                   this.angleZ + position.angleZ,
+                   this.scaleX + position.scaleX,
+                   this.scaleY + position.scaleY,
+                   this.scaleZ + position.scaleZ)
+
+    operator fun minus(position: Position3D): Position3D =
+        Position3D(this.x - position.x,
+                   this.y - position.y,
+                   this.z - position.z,
+                   this.angleX - position.angleX,
+                   this.angleY - position.angleY,
+                   this.angleZ - position.angleZ,
+                   this.scaleX - position.scaleX,
+                   this.scaleY - position.scaleY,
+                   this.scaleZ - position.scaleZ)
+
+    operator fun times(times: Float): Position3D =
+        Position3D(times * this.x,
+                   times * this.y,
+                   times * this.z,
+                   times * this.angleX,
+                   times * this.angleY,
+                   times * this.angleZ,
+                   times * this.scaleX,
+                   times * this.scaleY,
+                   times * this.scaleZ)
+
+    operator fun times(number: Number): Position3D =
+        this.times(number.toFloat())
 }

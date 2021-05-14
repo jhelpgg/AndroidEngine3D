@@ -8,9 +8,10 @@
 
 package fr.jhelp.engine.scene
 
-import fr.jhelp.engine.OpenGLThread
 import fr.jhelp.animations.Animation
 import fr.jhelp.animations.AnimationFunction
+import fr.jhelp.engine.OpenGLThread
+import fr.jhelp.engine.animation.effect.ParticleEffect
 import fr.jhelp.engine.tools.NodeOrderZ
 import fr.jhelp.engine.tools.antiProjection
 import fr.jhelp.lists.SortedArray
@@ -24,6 +25,7 @@ import javax.microedition.khronos.opengles.GL10
 class Scene3D
 {
     private val animations = ArrayList<Animation>()
+    private val particleEffects = ArrayList<ParticleEffect>()
 
     /**
      * Scene background color.
@@ -63,6 +65,19 @@ class Scene3D
         return animationFunction
     }
 
+    fun play(particleEffect: ParticleEffect)
+    {
+        parallel(particleEffect)
+        { effect ->
+            effect.start()
+
+            synchronized(this.particleEffects)
+            {
+                this.particleEffects.add(effect)
+            }
+        }
+    }
+
     /**
      * Stop an animation
      */
@@ -75,6 +90,20 @@ class Scene3D
                 if (this.animations.remove(anim))
                 {
                     anim.finished()
+                }
+            }
+        }
+    }
+
+    fun stop(particleEffect: ParticleEffect)
+    {
+        parallel(particleEffect)
+        { effect ->
+            synchronized(this.particleEffects)
+            {
+                if (this.particleEffects.remove(effect))
+                {
+                    effect.stop()
                 }
             }
         }
@@ -149,6 +178,25 @@ class Scene3D
                 }
             }
         }
+
+        gl.glDisable(GL10.GL_DEPTH_TEST)
+
+        synchronized(this.particleEffects)
+        {
+            for (index in this.particleEffects.size - 1 downTo 0)
+            {
+                val particleEffect = this.particleEffects[index]
+                val alive = particleEffect.update()
+                particleEffect.render(gl)
+
+                if (!alive)
+                {
+                    this.particleEffects.removeAt(index)
+                }
+            }
+        }
+
+        gl.glEnable(GL10.GL_DEPTH_TEST)
 
         // DeleteTexture.freeNext(gl)
     }

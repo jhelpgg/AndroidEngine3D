@@ -106,7 +106,7 @@ open class Object3D : NodeWithBoundingBox()
     }
 
     /**
-     * Add square to meesh
+     * Add square to mesh
      */
     fun addSquare(topLeftX: Float, topLeftY: Float, topLeftZ: Float,
                   topLeftU: Float, topLeftV: Float,

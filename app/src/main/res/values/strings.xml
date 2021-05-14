@@ -27,6 +27,7 @@
     <string name="materialTextureAndDiffuseTitle">Material texture and diffuse</string>
     <string name="robotTitle">Robot sample</string>
     <string name="diceTitle">Dice sample</string>
+    <string name="particleTitle">Particle effect</string>
 
     <string name="robotRun">Run</string>
     <string name="robotWalk">Walk</string>
@@ -35,6 +36,9 @@
     <string name="robotNo">Say no</string>
     <string name="robotEyes">Eye color</string>
     <string name="robotFace">Face expression</string>
+
+    <string name="particleSword">Sword</string>
+    <string name="particleExplode">Explode</string>
 
     <string name="imageDescription">Image</string>
 </resources>

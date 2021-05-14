@@ -34,7 +34,6 @@ class RobotActivity : Activity()
     private val run by lazy { this.robot.run(8, 16) }
     private lateinit var scene: Scene3D
 
-
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)

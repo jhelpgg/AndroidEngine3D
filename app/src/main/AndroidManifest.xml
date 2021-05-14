@@ -135,6 +135,11 @@
             android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity">
         </activity>
+        <activity
+            android:name=".tutorial.ParticleActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
 
         <!-- Main -->
 
