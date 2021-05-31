@@ -9,6 +9,7 @@
 package fr.jhelp.images
 
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import fr.jhelp.utilities.bounds
 import fr.jhelp.utilities.minimum
 import kotlin.math.max
@@ -434,6 +435,14 @@ inline fun Bitmap.pixelsOperation(operation: (IntArray) -> Unit)
     this.getPixels(pixels, 0, this.width, 0, 0, this.width, this.height)
     operation(pixels)
     this.setPixels(pixels, 0, this.width, 0, 0, this.width, this.height)
+}
+
+/**
+ * Draw a bitmap scaled to take all place in this bitmap
+ */
+fun Bitmap.fitSpace(bitmap:Bitmap) {
+    val canvas = Canvas(this)
+    canvas.fitRectangle(bitmap, 0,0, this.width,this.height)
 }
 
 /**

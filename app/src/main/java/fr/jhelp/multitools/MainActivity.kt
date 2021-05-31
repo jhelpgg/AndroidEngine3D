@@ -20,13 +20,12 @@ import fr.jhelp.engine.scene.RED
 import fr.jhelp.engine.scene.geom.Plane
 import fr.jhelp.engine.scene.geom.Revolution
 import fr.jhelp.engine.view.View3D
-import fr.jhelp.graphics.progress.circle.ProgressCircleShape
+import fr.jhelp.graphics.progress.circle.ProgressCircleView
 import fr.jhelp.images.path.Path
 import fr.jhelp.sound.SoundManager
 import fr.jhelp.tasks.delay
 import fr.jhelp.utilities.PI_FLOAT
 import fr.jhelp.utilities.random
-import kotlinx.android.synthetic.main.activity_test.testPercent
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
@@ -36,11 +35,18 @@ private const val gamStep = 2f * PI_FLOAT / 10f
 
 class MainActivity : AppCompatActivity()
 {
+    private lateinit var testPercent: ProgressCircleView
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-        testPercent.setOnClickListener { delay(128) {testPercent.setStartColor(this.resources.getColor(R.color.colorBlue, null)) } }
+        this.testPercent = this.findViewById(R.id.testPercent)
+        this.testPercent.setOnClickListener {
+            delay(128) {
+                this.testPercent.setStartColor(this.resources.getColor(R.color.colorBlue, null))
+            }
+        }
         //  parallel(this.findViewById(R.id.view3D), this::createScene)
     }
 

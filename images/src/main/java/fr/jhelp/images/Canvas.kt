@@ -11,6 +11,7 @@ package fr.jhelp.images
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.RectF
 import fr.jhelp.images.crawler.SegmentCrawler
 import kotlin.math.min
@@ -100,4 +101,15 @@ fun Canvas.repeatOnLine(bitmap: Bitmap, x1: Float, y1: Float, x2: Float, y2: Flo
         val (x, y) = segmentCrawler.next(step)
         this.center(bitmap, x.toFloat(), y.toFloat())
     }
+}
+
+/**
+ * Draw bitmap to toke all place in given rectangle
+ */
+fun Canvas.fitRectangle(bitmap: Bitmap, x: Int, y: Int, width: Int, height: Int)
+{
+    this.drawBitmap(bitmap,
+                    Rect(0, 0, bitmap.width, bitmap.height),
+                    Rect(x, y, width, height),
+                    null)
 }

@@ -8,7 +8,6 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven-publish'
 
 android {
@@ -45,6 +44,8 @@ dependencies {
 
     implementation project(path: ':utilities')
     implementation project(path: ':lists')
+    implementation project(path: ':tasks')
+    implementation project(path: ':animations')
 }
 
 afterEvaluate {

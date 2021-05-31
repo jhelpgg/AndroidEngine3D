@@ -21,14 +21,9 @@ import fr.jhelp.engine.scene.geom.Plane
 import fr.jhelp.engine.scene.geom.dice.Dice
 import fr.jhelp.engine.scene.texture
 import fr.jhelp.engine.view.View3D
-import fr.jhelp.images.COLOR_ALPHA_LOWER
-import fr.jhelp.images.COLOR_AMBER_0200
 import fr.jhelp.images.COLOR_BLACK
 import fr.jhelp.images.clear
-import fr.jhelp.images.useAlpha
 import fr.jhelp.multitools.R
-import fr.jhelp.utilities.log
-import kotlinx.android.synthetic.main.activity_main.view3D
 
 /**
  * Hello world tutorial
@@ -38,15 +33,16 @@ class DicedActivity : Activity()
     private val dice by lazy { Dice() }
     private lateinit var scene3D: Scene3D
     private val valueTexture by lazy { texture(64, 64) }
+    private lateinit var view3D: View3D
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_main)
         // Get the 3D view and draw it in independent thread to free the UI thread
-        val view3D = this.findViewById<View3D>(R.id.view3D)
-        view3D.scene(this::drawScene)
-        view3D.setOnClickListener { this.scene3D.play(this.dice.roll()) }
+        this.view3D = this.findViewById<View3D>(R.id.view3D)
+        this.view3D.scene(this::drawScene)
+        this.view3D.setOnClickListener { this.scene3D.play(this.dice.roll()) }
     }
 
     private fun updateValue(value: Int)
@@ -72,10 +68,10 @@ class DicedActivity : Activity()
         this.dice.color(GREEN)
         this.scene3D.root.add(this.dice)
         val plane = Plane()
-        plane.position.x =  -1.75f
+        plane.position.x = -1.75f
         plane.position.y = 1f
 
-            plane.position.z = -2f
+        plane.position.z = -2f
 
         plane.material.diffuse = WHITE
         plane.material.texture = this.valueTexture

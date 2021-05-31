@@ -24,3 +24,5 @@ This documentation presents how to use it and its capacities in version 1.0.0
         1. [Field3D](scene/field3D/Field3D.md)
         1. [Dice](scene/dice/Dice.md)
         1. [Robot](scene/robot/Robot.md)
+
+TODO : Sounds (management, 3D effect), Animations, Particles, View3D tricks (manipulate a specific node, root, disable manipulation. Add click action, View bounds (actual and register on change))

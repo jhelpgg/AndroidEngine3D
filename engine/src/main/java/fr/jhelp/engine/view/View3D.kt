@@ -85,7 +85,7 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
     /**
      * Manipulate the scene root
      */
-    fun manipulateRoo()
+    fun manipulateRoot()
     {
         this.manipulateNode = this.scene3D.root
     }

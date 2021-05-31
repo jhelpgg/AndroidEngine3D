@@ -19,6 +19,7 @@
     <string name="revolutionTitle">Revolution</string>
     <string name="fieldTitle">Field : Z = f(X,Y)</string>
     <string name="animationTitle">Animations samples</string>
+    <string name="textureAnimationTitle">Texture animations</string>
 
     <string name="tutorialsTitle">Tutorials</string>
     <string name="helloWorldTitle">Hello world</string>

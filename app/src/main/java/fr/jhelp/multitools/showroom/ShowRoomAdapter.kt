@@ -18,6 +18,7 @@ import fr.jhelp.multitools.engine.FieldActivity
 import fr.jhelp.multitools.engine.PlaneActivity
 import fr.jhelp.multitools.engine.RevolutionActivity
 import fr.jhelp.multitools.engine.SphereActivity
+import fr.jhelp.multitools.engine.TextureAnimationActivity
 import fr.jhelp.multitools.images.AddImageActivity
 import fr.jhelp.multitools.images.BumpedImageActivity
 import fr.jhelp.multitools.images.ContrastImageActivity
@@ -76,6 +77,9 @@ object ShowRoomAdapter : RecyclerView.Adapter<ShowRoomViewHolder<*>>()
                                 FieldActivity::class.java),
                 ShowRoomPreview(R.drawable.preview_animation, R.string.animationTitle,
                                 AnimationActivity::class.java),
+                ShowRoomPreview(R.drawable.preview_texture_animation,
+                                R.string.textureAnimationTitle,
+                                TextureAnimationActivity::class.java),
 
             // Tutorials
 
@@ -107,7 +111,7 @@ object ShowRoomAdapter : RecyclerView.Adapter<ShowRoomViewHolder<*>>()
                                     viewType: Int): ShowRoomViewHolder<*> =
         when (viewType)
         {
-            SHOW_ROOM_TITLE_TYPE ->
+            SHOW_ROOM_TITLE_TYPE   ->
             {
                 val layoutInflater = parent.context.getSystemService(LayoutInflater::class.java)!!
                 val view = layoutInflater.inflate(R.layout.show_room_title, parent, false)

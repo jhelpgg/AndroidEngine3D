@@ -2,18 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="multitools.animations" target="1.8" />
-      <module name="multitools.app" target="1.8" />
-      <module name="multitools.database" target="1.8" />
-      <module name="multitools.engine" target="1.8" />
-      <module name="multitools.graphics" target="1.8" />
-      <module name="multitools.images" target="1.8" />
-      <module name="multitools.io" target="1.8" />
-      <module name="multitools.lists" target="1.8" />
-      <module name="multitools.security" target="1.8" />
-      <module name="multitools.sound" target="1.8" />
-      <module name="multitools.tasks" target="1.8" />
-      <module name="multitools.utilities" target="1.8" />
+      <module name="multitools.animations" target="11" />
+      <module name="multitools.app" target="11" />
+      <module name="multitools.database" target="11" />
+      <module name="multitools.engine" target="11" />
+      <module name="multitools.graphics" target="11" />
+      <module name="multitools.images" target="11" />
+      <module name="multitools.io" target="11" />
+      <module name="multitools.lists" target="11" />
+      <module name="multitools.security" target="11" />
+      <module name="multitools.sound" target="11" />
+      <module name="multitools.tasks" target="11" />
+      <module name="multitools.utilities" target="11" />
       <module name="provided" target="1.7" />
     </bytecodeTargetLevel>
   </component>

@@ -15,7 +15,7 @@ It can be also used for animation
 To animate the robot, can use [RobotAnimation](../../../main/java/fr/jhelp/engine/scene/geom/robot/RobotAnimation.kt).
 It places the robot at specific position at a frame and interpolate between defined frames. More about [animations](../../animations/Animations.md) 
 
-Some prebuilt animations exists via extensions to `Robot`class:
+Some prebuilt animations exists via extensions to `Robot` class:
 * For run : [Run animation](../../../main/java/fr/jhelp/engine/scene/geom/robot/animation/RunAnimation.kt)
 * For walk : [Walk animation](../../../main/java/fr/jhelp/engine/scene/geom/robot/animation/WalkAnimation.kt)
 * For return to default position : [Stand animation](../../../main/java/fr/jhelp/engine/scene/geom/robot/animation/StandAnimation.kt)

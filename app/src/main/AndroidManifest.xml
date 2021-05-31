@@ -102,6 +102,11 @@
             android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity">
         </activity>
+        <activity
+            android:name=".engine.TextureAnimationActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
 
         <!-- Tutorial -->
 

@@ -75,7 +75,7 @@ open class Node3D : Iterable<Node3D>
     }
 
     /**
-     * Add node aas children
+     * Add node as children
      */
     fun add(node: Node3D)
     {
