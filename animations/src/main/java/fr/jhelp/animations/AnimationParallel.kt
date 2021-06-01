@@ -43,7 +43,7 @@ class AnimationParallel : Animation(25)
 
         for (index in 0 until this.length)
         {
-            animate = animate || this.animations[index].animate()
+            animate = this.animations[index].animate() || animate
         }
 
         return animate

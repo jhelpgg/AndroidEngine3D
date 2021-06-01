@@ -10,6 +10,7 @@
       <module name="multitools.images" target="11" />
       <module name="multitools.io" target="11" />
       <module name="multitools.lists" target="11" />
+      <module name="multitools.models" target="11" />
       <module name="multitools.security" target="11" />
       <module name="multitools.sound" target="11" />
       <module name="multitools.tasks" target="11" />

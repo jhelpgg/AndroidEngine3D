@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import fr.jhelp.engine.position
 import fr.jhelp.engine.scene.Clone3D
 import fr.jhelp.engine.scene.Color3D
+import fr.jhelp.engine.scene.GREEN
 import fr.jhelp.engine.scene.LIGHT_GREEN
 import fr.jhelp.engine.scene.Material
 import fr.jhelp.engine.scene.Node3D
@@ -22,8 +23,10 @@ import fr.jhelp.engine.scene.geom.Revolution
 import fr.jhelp.engine.view.View3D
 import fr.jhelp.graphics.progress.circle.ProgressCircleView
 import fr.jhelp.images.path.Path
+import fr.jhelp.models.objects.Horse
 import fr.jhelp.sound.SoundManager
 import fr.jhelp.tasks.delay
+import fr.jhelp.tasks.parallel
 import fr.jhelp.utilities.PI_FLOAT
 import fr.jhelp.utilities.random
 import kotlin.math.cos
@@ -40,14 +43,27 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
-        this.testPercent = this.findViewById(R.id.testPercent)
-        this.testPercent.setOnClickListener {
-            delay(128) {
-                this.testPercent.setStartColor(this.resources.getColor(R.color.colorBlue, null))
-            }
-        }
-        //  parallel(this.findViewById(R.id.view3D), this::createScene)
+        setContentView(R.layout.activity_main)//activity_test)
+//        this.testPercent = this.findViewById(R.id.testPercent)
+//        this.testPercent.setOnClickListener {
+//            delay(128) {
+//                this.testPercent.setStartColor(this.resources.getColor(R.color.colorBlue, null))
+//            }
+//        }
+          parallel(this.findViewById(R.id.view3D), this::showHorse)//this::createScene)
+    }
+
+    private fun showHorse(view3D: View3D)
+    {
+        val scene = view3D.scene3D
+        scene.root.position.z = -2f
+        val horse = Horse()
+        val material = Material()
+        material.diffuse = GREEN
+        horse.node.applyMaterialHierarchically(material)
+        scene.root.add(horse.node)
+
+        delay(4096) {scene.play(horse.runAnimation())}
     }
 
     private fun createScene(view3D: View3D)

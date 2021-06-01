@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/images" />
             <option value="$PROJECT_DIR$/io" />
             <option value="$PROJECT_DIR$/lists" />
+            <option value="$PROJECT_DIR$/models" />
             <option value="$PROJECT_DIR$/provided" />
             <option value="$PROJECT_DIR$/security" />
             <option value="$PROJECT_DIR$/sound" />
@@ -26,7 +27,6 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

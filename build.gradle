@@ -1,6 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        kotlin_version = '1.5.10'
+    }
+
     // Libraries
     ext.kotlin_library = 'org.jetbrains.kotlin:kotlin-stdlib:1.4.32'
     ext.appcompat_library = 'androidx.appcompat:appcompat:1.2.0'

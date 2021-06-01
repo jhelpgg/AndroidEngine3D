@@ -6,21 +6,23 @@
  *  The code is free for usage and modification, you can't change that fact.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'maven-publish'
+}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
 
     defaultConfig {
-        applicationId "fr.jhelp.multitools"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,32 +31,38 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "$kotlin_library"
     implementation "$appcompat_library"
     implementation "$androidx_core_library"
-    implementation "$constraintlayout_library"
-    implementation "$lifecycle_extensions_library"
-    implementation "$lifecycle_viewmodel_library"
     testImplementation "$junit_library"
     androidTestImplementation "$androidx_test_library"
     androidTestImplementation "$espresso_library"
-    implementation "$androidx_recyclerview_library"
 
     implementation project(path: ':utilities')
-    implementation project(path: ':tasks')
-    implementation project(path: ':lists')
-    implementation project(path: ':io')
-    implementation project(path: ':security')
-    implementation project(path: ':engine')
     implementation project(path: ':images')
-    implementation project(path: ':sound')
-    implementation project(path: ':database')
-    implementation project(path: ':graphics')
     implementation project(path: ':animations')
-    implementation project(path: ':models')
+    implementation project(path: ':engine')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'fr.jhelp.multitool'
+                artifactId = "models"
+                version = '1.0'
+                from components.release
+            }
+        }
+    }
 }
