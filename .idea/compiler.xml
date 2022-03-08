@@ -14,6 +14,7 @@
       <module name="multitools.security" target="11" />
       <module name="multitools.sound" target="11" />
       <module name="multitools.tasks" target="11" />
+      <module name="multitools.ui" target="11" />
       <module name="multitools.utilities" target="11" />
       <module name="provided" target="1.7" />
     </bytecodeTargetLevel>

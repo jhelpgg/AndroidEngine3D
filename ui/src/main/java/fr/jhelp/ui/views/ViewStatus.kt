@@ -5,20 +5,12 @@
  *  But you can't do any action that avoid me or other person use, modify this code.<br/>
  *  The code is free for usage and modification, you can't change that fact.
  */
-include ':animations'
-include ':graphics'
 
-rootProject.name='multitools'
-include ':app'
-include ':utilities'
-include ':tasks'
-include ':lists'
-include ':security'
-include ':io'
-include ':engine'
-include ':images'
-include ':sound'
-include ':database'
-include ':provided'
-include ':models'
-include ':ui'
+package fr.jhelp.ui.views
+
+enum class ViewStatus
+{
+    NOT_CREATED,
+    DETACHED,
+    ATTACHED
+}
