@@ -14,5 +14,6 @@
   ~  The code is free for usage and modification, you can't change that fact.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
     package="fr.jhelp.sound" />
+
