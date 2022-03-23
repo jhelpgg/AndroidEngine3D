@@ -9,8 +9,8 @@
 package fr.jhelp.utilities.regex
 
 import fr.jhelp.utilities.text.interval
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
 class RegexTests
 {
@@ -18,177 +18,177 @@ class RegexTests
     fun regexText()
     {
         val regex = "Hello".regexText()
-        Assert.assertTrue(regex.matches("Hello"))
-        Assert.assertFalse(regex.matches("World"))
+        Assertions.assertTrue(regex.matches("Hello"))
+        Assertions.assertFalse(regex.matches("World"))
     }
 
     @Test
     fun plus()
     {
         val regex = "Hello".regexText() + ANY + "World"
-        Assert.assertTrue(regex.matches("Hello World"))
-        Assert.assertTrue(regex.matches("Hello-World"))
-        Assert.assertTrue(regex.matches("Hello*World"))
-        Assert.assertTrue(regex.matches("Hello/World"))
-        Assert.assertTrue(regex.matches("Hello_World"))
-        Assert.assertFalse(regex.matches("HelloWorld"))
-        Assert.assertFalse(regex.matches("Hello"))
-        Assert.assertFalse(regex.matches("World"))
+        Assertions.assertTrue(regex.matches("Hello World"))
+        Assertions.assertTrue(regex.matches("Hello-World"))
+        Assertions.assertTrue(regex.matches("Hello*World"))
+        Assertions.assertTrue(regex.matches("Hello/World"))
+        Assertions.assertTrue(regex.matches("Hello_World"))
+        Assertions.assertFalse(regex.matches("HelloWorld"))
+        Assertions.assertFalse(regex.matches("Hello"))
+        Assertions.assertFalse(regex.matches("World"))
     }
 
     @Test
     fun or()
     {
         val regex = "Hello".regexText() OR "World".regexText()
-        Assert.assertFalse(regex.matches("HelloWorld"))
-        Assert.assertFalse(regex.matches("Hello World"))
-        Assert.assertTrue(regex.matches("Hello"))
-        Assert.assertTrue(regex.matches("World"))
+        Assertions.assertFalse(regex.matches("HelloWorld"))
+        Assertions.assertFalse(regex.matches("Hello World"))
+        Assertions.assertTrue(regex.matches("Hello"))
+        Assertions.assertTrue(regex.matches("World"))
     }
 
     @Test
     fun regexIn()
     {
         val regex = interval('C', 'R').regexIn()
-        Assert.assertTrue(regex.matches("F"))
-        Assert.assertTrue(regex.matches("K"))
-        Assert.assertTrue(regex.matches("J"))
-        Assert.assertTrue(regex.matches("C"))
-        Assert.assertTrue(regex.matches("R"))
-        Assert.assertFalse(regex.matches("A"))
-        Assert.assertFalse(regex.matches("B"))
-        Assert.assertFalse(regex.matches("S"))
-        Assert.assertFalse(regex.matches("Y"))
-        Assert.assertEquals("-AVA -S ---- !", regex.replaceAll("JAVA IS COOL !", "-"))
+        Assertions.assertTrue(regex.matches("F"))
+        Assertions.assertTrue(regex.matches("K"))
+        Assertions.assertTrue(regex.matches("J"))
+        Assertions.assertTrue(regex.matches("C"))
+        Assertions.assertTrue(regex.matches("R"))
+        Assertions.assertFalse(regex.matches("A"))
+        Assertions.assertFalse(regex.matches("B"))
+        Assertions.assertFalse(regex.matches("S"))
+        Assertions.assertFalse(regex.matches("Y"))
+        Assertions.assertEquals("-AVA -S ---- !", regex.replaceAll("JAVA IS COOL !", "-"))
     }
 
     @Test
     fun regexOut()
     {
         val regex = interval('C', 'R').regexOut()
-        Assert.assertFalse(regex.matches("F"))
-        Assert.assertFalse(regex.matches("K"))
-        Assert.assertFalse(regex.matches("J"))
-        Assert.assertFalse(regex.matches("C"))
-        Assert.assertFalse(regex.matches("R"))
-        Assert.assertTrue(regex.matches("A"))
-        Assert.assertTrue(regex.matches("B"))
-        Assert.assertTrue(regex.matches("S"))
-        Assert.assertTrue(regex.matches("Y"))
-        Assert.assertEquals("J----I--COOL--", regex.replaceAll("JAVA IS COOL !", "-"))
+        Assertions.assertFalse(regex.matches("F"))
+        Assertions.assertFalse(regex.matches("K"))
+        Assertions.assertFalse(regex.matches("J"))
+        Assertions.assertFalse(regex.matches("C"))
+        Assertions.assertFalse(regex.matches("R"))
+        Assertions.assertTrue(regex.matches("A"))
+        Assertions.assertTrue(regex.matches("B"))
+        Assertions.assertTrue(regex.matches("S"))
+        Assertions.assertTrue(regex.matches("Y"))
+        Assertions.assertEquals("J----I--COOL--", regex.replaceAll("JAVA IS COOL !", "-"))
     }
 
     @Test
     fun regexCharArray()
     {
         val regex = charArrayOf('A', 'R', 'T').regex()
-        Assert.assertTrue(regex.matches("A"))
-        Assert.assertTrue(regex.matches("R"))
-        Assert.assertTrue(regex.matches("T"))
-        Assert.assertFalse(regex.matches("F"))
-        Assert.assertFalse(regex.matches("K"))
-        Assert.assertFalse(regex.matches("J"))
-        Assert.assertEquals("-HE H--- BOUNCE", regex.replaceAll("THE HART BOUNCE", "-"))
+        Assertions.assertTrue(regex.matches("A"))
+        Assertions.assertTrue(regex.matches("R"))
+        Assertions.assertTrue(regex.matches("T"))
+        Assertions.assertFalse(regex.matches("F"))
+        Assertions.assertFalse(regex.matches("K"))
+        Assertions.assertFalse(regex.matches("J"))
+        Assertions.assertEquals("-HE H--- BOUNCE", regex.replaceAll("THE HART BOUNCE", "-"))
     }
 
     @Test
     fun regexOutCharArray()
     {
         val regex = charArrayOf('A', 'R', 'T').regexOut()
-        Assert.assertFalse(regex.matches("A"))
-        Assert.assertFalse(regex.matches("R"))
-        Assert.assertFalse(regex.matches("T"))
-        Assert.assertTrue(regex.matches("F"))
-        Assert.assertTrue(regex.matches("K"))
-        Assert.assertTrue(regex.matches("J"))
-        Assert.assertEquals("T----ART-------", regex.replaceAll("THE HART BOUNCE", "-"))
+        Assertions.assertFalse(regex.matches("A"))
+        Assertions.assertFalse(regex.matches("R"))
+        Assertions.assertFalse(regex.matches("T"))
+        Assertions.assertTrue(regex.matches("F"))
+        Assertions.assertTrue(regex.matches("K"))
+        Assertions.assertTrue(regex.matches("J"))
+        Assertions.assertEquals("T----ART-------", regex.replaceAll("THE HART BOUNCE", "-"))
     }
 
     @Test
     fun regexChar()
     {
         val regex = 'E'.regex()
-        Assert.assertTrue(regex.matches("E"))
-        Assert.assertFalse(regex.matches("F"))
-        Assert.assertFalse(regex.matches("K"))
-        Assert.assertFalse(regex.matches("J"))
-        Assert.assertEquals("-L-PHANT", regex.replaceAll("ELEPHANT", "-"))
+        Assertions.assertTrue(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("F"))
+        Assertions.assertFalse(regex.matches("K"))
+        Assertions.assertFalse(regex.matches("J"))
+        Assertions.assertEquals("-L-PHANT", regex.replaceAll("ELEPHANT", "-"))
     }
 
     @Test
     fun regexOutChar()
     {
         val regex = 'E'.regexOut()
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertTrue(regex.matches("F"))
-        Assert.assertTrue(regex.matches("K"))
-        Assert.assertTrue(regex.matches("J"))
-        Assert.assertEquals("E-E-----", regex.replaceAll("ELEPHANT", "-"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertTrue(regex.matches("F"))
+        Assertions.assertTrue(regex.matches("K"))
+        Assertions.assertTrue(regex.matches("J"))
+        Assertions.assertEquals("E-E-----", regex.replaceAll("ELEPHANT", "-"))
     }
 
     @Test
     fun zeroOrMore()
     {
         val regex = 'A'.regex().zeroOrMore()
-        Assert.assertTrue(regex.matches(""))
-        Assert.assertTrue(regex.matches("A"))
-        Assert.assertTrue(regex.matches("AA"))
-        Assert.assertTrue(regex.matches("AAA"))
-        Assert.assertTrue(regex.matches("AAAAA"))
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertFalse(regex.matches("AE"))
+        Assertions.assertTrue(regex.matches(""))
+        Assertions.assertTrue(regex.matches("A"))
+        Assertions.assertTrue(regex.matches("AA"))
+        Assertions.assertTrue(regex.matches("AAA"))
+        Assertions.assertTrue(regex.matches("AAAAA"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("AE"))
     }
 
     @Test
     fun zeroOrOne()
     {
         val regex = 'A'.regex().zeroOrOne()
-        Assert.assertTrue(regex.matches(""))
-        Assert.assertTrue(regex.matches("A"))
-        Assert.assertFalse(regex.matches("AA"))
-        Assert.assertFalse(regex.matches("AAA"))
-        Assert.assertFalse(regex.matches("AAAAA"))
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertFalse(regex.matches("AE"))
+        Assertions.assertTrue(regex.matches(""))
+        Assertions.assertTrue(regex.matches("A"))
+        Assertions.assertFalse(regex.matches("AA"))
+        Assertions.assertFalse(regex.matches("AAA"))
+        Assertions.assertFalse(regex.matches("AAAAA"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("AE"))
     }
 
     @Test
     fun oneOrMore()
     {
         val regex = 'A'.regex().oneOrMore()
-        Assert.assertFalse(regex.matches(""))
-        Assert.assertTrue(regex.matches("A"))
-        Assert.assertTrue(regex.matches("AA"))
-        Assert.assertTrue(regex.matches("AAA"))
-        Assert.assertTrue(regex.matches("AAAAA"))
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertFalse(regex.matches("AE"))
+        Assertions.assertFalse(regex.matches(""))
+        Assertions.assertTrue(regex.matches("A"))
+        Assertions.assertTrue(regex.matches("AA"))
+        Assertions.assertTrue(regex.matches("AAA"))
+        Assertions.assertTrue(regex.matches("AAAAA"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("AE"))
     }
 
     @Test
     fun atLeast()
     {
         val regex = 'A'.regex().atLeast(3)
-        Assert.assertFalse(regex.matches(""))
-        Assert.assertFalse(regex.matches("A"))
-        Assert.assertFalse(regex.matches("AA"))
-        Assert.assertTrue(regex.matches("AAA"))
-        Assert.assertTrue(regex.matches("AAAAA"))
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertFalse(regex.matches("AE"))
+        Assertions.assertFalse(regex.matches(""))
+        Assertions.assertFalse(regex.matches("A"))
+        Assertions.assertFalse(regex.matches("AA"))
+        Assertions.assertTrue(regex.matches("AAA"))
+        Assertions.assertTrue(regex.matches("AAAAA"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("AE"))
     }
 
     @Test
     fun exactly()
     {
         val regex = 'A'.regex().exactly(3)
-        Assert.assertFalse(regex.matches(""))
-        Assert.assertFalse(regex.matches("A"))
-        Assert.assertFalse(regex.matches("AA"))
-        Assert.assertTrue(regex.matches("AAA"))
-        Assert.assertFalse(regex.matches("AAAAA"))
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertFalse(regex.matches("AE"))
+        Assertions.assertFalse(regex.matches(""))
+        Assertions.assertFalse(regex.matches("A"))
+        Assertions.assertFalse(regex.matches("AA"))
+        Assertions.assertTrue(regex.matches("AAA"))
+        Assertions.assertFalse(regex.matches("AAAAA"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("AE"))
     }
 
 
@@ -196,13 +196,13 @@ class RegexTests
     fun between()
     {
         val regex = 'A'.regex().between(1, 3)
-        Assert.assertFalse(regex.matches(""))
-        Assert.assertTrue(regex.matches("A"))
-        Assert.assertTrue(regex.matches("AA"))
-        Assert.assertTrue(regex.matches("AAA"))
-        Assert.assertFalse(regex.matches("AAAAA"))
-        Assert.assertFalse(regex.matches("E"))
-        Assert.assertFalse(regex.matches("AE"))
+        Assertions.assertFalse(regex.matches(""))
+        Assertions.assertTrue(regex.matches("A"))
+        Assertions.assertTrue(regex.matches("AA"))
+        Assertions.assertTrue(regex.matches("AAA"))
+        Assertions.assertFalse(regex.matches("AAAAA"))
+        Assertions.assertFalse(regex.matches("E"))
+        Assertions.assertFalse(regex.matches("AE"))
     }
 
     @Test
@@ -211,9 +211,9 @@ class RegexTests
         val headerFooter = ('{'.regex() + ANY.zeroOrMore() + '}'.regex()).group()
         val something = ANY.oneOrMore().group()
         val regex = headerFooter + something + headerFooter.same()
-        Assert.assertTrue(regex.matches("{42}The answer{42}"))
-        Assert.assertFalse(regex.matches("{24}Not same{37}"))
-        Assert.assertEquals("-*-{24}Not same{37}-*-", regex.replaceAll(
+        Assertions.assertTrue(regex.matches("{42}The answer{42}"))
+        Assertions.assertFalse(regex.matches("{24}Not same{37}"))
+        Assertions.assertEquals("-*-{24}Not same{37}-*-", regex.replaceAll(
             "{42}The answer{42}{24}Not same{37}{73}Magic number{73}", "-*-"))
         val replacer =
             regex.replacer()
@@ -221,9 +221,9 @@ class RegexTests
                 .append(something)
                 .append("]:")
                 .append(headerFooter)
-        Assert.assertEquals("[The answer]:{42}", replacer.replaceAll("{42}The answer{42}"))
-        Assert.assertEquals("[The answer]:{42}{24}Not same{37}[Magic number]:{73}",
-                            replacer.replaceAll(
-                                "{42}The answer{42}{24}Not same{37}{73}Magic number{73}"))
+        Assertions.assertEquals("[The answer]:{42}", replacer.replaceAll("{42}The answer{42}"))
+        Assertions.assertEquals("[The answer]:{42}{24}Not same{37}[Magic number]:{73}",
+                                replacer.replaceAll(
+                                    "{42}The answer{42}{24}Not same{37}{73}Magic number{73}"))
     }
 }

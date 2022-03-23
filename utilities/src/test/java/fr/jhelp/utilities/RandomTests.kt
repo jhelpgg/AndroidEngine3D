@@ -8,8 +8,9 @@
 
 package fr.jhelp.utilities
 
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+
 
 const val TIMES = 16
 
@@ -24,7 +25,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = random(min, max)
-            Assert.assertTrue("$value not in [$min, $max]", value in min..max)
+            Assertions.assertTrue(value in min..max, "$value not in [$min, $max]")
         }
     }
 
@@ -37,7 +38,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = random(min, max)
-            Assert.assertTrue("$value not in [$min, $max]", value in min..max)
+            Assertions.assertTrue(value in min..max, "$value not in [$min, $max]")
         }
     }
 
@@ -50,7 +51,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = random(min, max)
-            Assert.assertTrue("$value not in [$min, $max[", value >= min && value < max)
+            Assertions.assertTrue(value >= min && value < max, "$value not in [$min, $max[")
         }
     }
 
@@ -63,7 +64,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = random(min, max)
-            Assert.assertTrue("$value not in [$min, $max[", value >= min && value < max)
+            Assertions.assertTrue(value >= min && value < max, "$value not in [$min, $max[")
         }
     }
 
@@ -75,7 +76,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = list.random()
-            Assert.assertTrue("$value not in $list", value in list)
+            Assertions.assertTrue(value in list, "$value not in $list")
         }
     }
 
@@ -87,7 +88,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = array.random()
-            Assert.assertTrue("$value not in $array", value in array)
+            Assertions.assertTrue(value in array, "$value not in $array")
         }
     }
 
@@ -99,7 +100,7 @@ class RandomTests
         for (time in 0 until TIMES)
         {
             val value = random<TestEnum>()
-            Assert.assertTrue("$value not in $values", value in values)
+            Assertions.assertTrue(value in values, "$value not in $values")
         }
     }
 }

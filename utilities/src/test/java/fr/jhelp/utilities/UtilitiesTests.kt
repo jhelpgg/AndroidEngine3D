@@ -9,8 +9,8 @@
 package fr.jhelp.utilities
 
 import android.util.Log
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
 class UtilitiesTests
 {
@@ -19,9 +19,9 @@ class UtilitiesTests
     {
         log { "Test" }
 
-        Assert.assertEquals("UtilitiesTests", Log.tag)
-        Assert.assertEquals("fr.jhelp.utilities.UtilitiesTests.log at 20 : Test", Log.message)
-        Assert.assertNull(Log.throwable)
+        Assertions.assertEquals("UtilitiesTests", Log.tag)
+        Assertions.assertEquals("fr.jhelp.utilities.UtilitiesTests.log at 20 : Test", Log.message)
+        Assertions.assertNull(Log.throwable)
     }
 
     @Test
@@ -29,8 +29,8 @@ class UtilitiesTests
     {
         logError(Exception("Exception")) { "Test" }
 
-        Assert.assertEquals("UtilitiesTests", Log.tag)
-        Assert.assertEquals("fr.jhelp.utilities.UtilitiesTests.logError at 30 : Test", Log.message)
-        Assert.assertEquals("Exception", Log.throwable!!.message)
+        Assertions.assertEquals("UtilitiesTests", Log.tag)
+        Assertions.assertEquals("fr.jhelp.utilities.UtilitiesTests.logError at 30 : Test", Log.message)
+        Assertions.assertEquals("Exception", Log.throwable!!.message)
     }
 }
