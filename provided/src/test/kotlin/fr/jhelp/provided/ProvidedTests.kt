@@ -23,7 +23,7 @@ class ProvidedTests
     fun oneTimeShare()
     {
         val instance = InstanceTest(42)
-        provideSingle<InterfaceTest> { instance  }
+        provideSingle<InterfaceTest> { instance }
         Assert.assertEquals(42, this.value.test())
         Assert.assertTrue(instance.called.get())
     }
@@ -33,13 +33,13 @@ class ProvidedTests
     {
         val instance1 = InstanceTest(42)
         val instance2 = InstanceTest(73)
-        provideSingle { instance1 as InterfaceTest }
+        provideSingle<InterfaceTest> { instance1 }
         Assert.assertEquals(42, this.value.test())
         Assert.assertTrue(instance1.called.get())
         Assert.assertFalse(instance2.called.get())
 
         instance1.called.set(false)
-        provideSingle { instance2 as InterfaceTest }
+        provideSingle<InterfaceTest> { instance2 }
         Assert.assertEquals(73, this.value.test())
         Assert.assertFalse(instance1.called.get())
         Assert.assertTrue(instance2.called.get())
@@ -50,8 +50,8 @@ class ProvidedTests
     {
         val instance1 = InstanceTest(42)
         val instance2 = InstanceTest(73)
-        provideSingle("42") { instance1 as InterfaceTest }
-        provideSingle("73") { instance2 as InterfaceTest }
+        provideSingle<InterfaceTest>("42") { instance1 }
+        provideSingle<InterfaceTest>("73") { instance2 }
         Assert.assertEquals(42, this.value42.test())
         Assert.assertTrue(instance1.called.get())
         Assert.assertEquals(73, this.value73.test())
@@ -79,8 +79,8 @@ class ProvidedTests
     @Test
     fun singletonMultipleTest()
     {
-        provideSingle("Single") { InstanceTest(42) as InterfaceTest }
-        provideMultiple("Multiple") { InstanceTest(73) as InterfaceTest }
+        provideSingle<InterfaceTest>("Single") { InstanceTest(42) }
+        provideMultiple<InterfaceTest>("Multiple") { InstanceTest(73) }
 
         Assert.assertEquals(42, this.valueSingle.test())
         var value = this.valueMultiple
