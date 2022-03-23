@@ -14,5 +14,6 @@ plugins {
 dependencies {
     implementation(Constants.kotlinLibrary)
     implementation(Constants.junitLibrary)
+    testRuntimeOnly(Constants.junitLibraryEngine)
 }
 
