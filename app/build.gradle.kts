@@ -33,6 +33,7 @@ dependencies {
     implementation(Constants.lifecycleExtensionsLibrary)
     implementation(Constants.lifecycleViewmodelLibrary)
     testImplementation(Constants.junitLibrary)
+    testRuntimeOnly(Constants.junitLibraryEngine)
     androidTestImplementation(Constants.androidxTestLibrary)
     androidTestImplementation(Constants.espressoLibrary)
     implementation(Constants.androidxRecyclerviewLibrary)

@@ -19,6 +19,7 @@ dependencies {
     implementation(Constants.androidxCoreLibrary)
     implementation(Constants.appcompatLibrary)
     testImplementation(Constants.junitLibrary)
+    testRuntimeOnly(Constants.junitLibraryEngine)
     androidTestImplementation(Constants.androidxTestLibrary)
     androidTestImplementation(Constants.espressoLibrary)
 

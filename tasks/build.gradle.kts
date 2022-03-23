@@ -30,6 +30,7 @@ dependencies {
     implementation(Constants.lifecycleViewmodelLibrary)
     implementation(Constants.lifecycleExtensionsLibrary)
     testImplementation(Constants.junitLibrary)
+    testRuntimeOnly(Constants.junitLibraryEngine)
     androidTestImplementation(Constants.androidxTestLibrary)
     androidTestImplementation(Constants.espressoLibrary)
 
