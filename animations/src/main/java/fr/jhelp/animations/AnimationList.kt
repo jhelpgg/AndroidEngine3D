@@ -8,8 +8,6 @@
 
 package fr.jhelp.animations
 
-import fr.jhelp.animations.Animation
-
 /**
  * List of animation played one after other
  */
