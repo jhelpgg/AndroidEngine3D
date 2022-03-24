@@ -8,135 +8,126 @@
 
 package fr.jhelp.tasks
 
+import fr.jhelp.tasks.dispatchers.LimitedTaskInSameTimeDispatcher
+import fr.jhelp.tasks.dispatchers.NetworkDispatcher
+import fr.jhelp.tasks.promise.FutureResult
+import fr.jhelp.tasks.promise.Promise
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.concurrent.CancellationException
+import kotlin.coroutines.CoroutineContext
+import kotlin.math.max
+
 /**
  * Type of thread.
  *
  * Task are executed in specific thread type
  */
-sealed class ThreadType
+enum class ThreadType(private val coroutineScope: CoroutineScope,
+                      private val coroutineContext: CoroutineContext)
 {
-    abstract operator fun <R> invoke(task: () -> R)
+    UI(MainScope(), Dispatchers.Main),
+    IO(CoroutineScope(LimitedTaskInSameTimeDispatcher(2)), Dispatchers.IO),
+    SHORT(CoroutineScope(LimitedTaskInSameTimeDispatcher(8)), Dispatchers.Default),
+    HEAVY(CoroutineScope(LimitedTaskInSameTimeDispatcher(4)), Dispatchers.Default),
+    NETWORK(CoroutineScope(NetworkDispatcher), Dispatchers.Default),
+    ;
 
-    abstract operator fun <P, R> invoke(parameter: P, task: (P) -> R)
-
-    abstract operator fun <P1, P2, R> invoke(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
-
-    abstract operator fun <P1, P2, P3, R> invoke(parameter1: P1, parameter2: P2, parameter3: P3,
-                                                 task: (P1, P2, P3) -> R)
-}
-
-/**
- * Tasks are played in background. Use this type for tasks not related to network, main thread or IO
- */
-object IndependentThread : ThreadType()
-{
-    override operator fun <R> invoke(task: () -> R)
+    fun <R : Any> parallel(task: () -> R): FutureResult<R>
     {
-        parallel(task)
+        val promise = Promise<R>()
+
+        val job = this.coroutineScope.launch {
+            withContext(this.coroutineContext)
+            {
+                try
+                {
+                    promise.result(task())
+                }
+                catch (exception: Exception)
+                {
+                    promise.error(exception)
+                }
+            }
+        }
+
+        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        return promise.future
     }
 
-    override operator fun <P, R> invoke(parameter: P, task: (P) -> R)
+    fun <P, R : Any> parallel(parameter: P, task: (P) -> R): FutureResult<R>
     {
-        parallel(parameter, task)
+        val promise = Promise<R>()
+
+        val job = this.coroutineScope.launch {
+            withContext(this.coroutineContext)
+            {
+                try
+                {
+                    promise.result(task(parameter))
+                }
+                catch (exception: Exception)
+                {
+                    promise.error(exception)
+                }
+            }
+        }
+
+        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        return promise.future
     }
 
-    override operator fun <P1, P2, R> invoke(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
+    fun <R : Any> delay(milliseconds: Long, task: () -> R): FutureResult<R>
     {
-        parallel(parameter1, parameter2, task)
+        val promise = Promise<R>()
+
+        val job = this.coroutineScope.launch {
+
+            delay(max(1L, milliseconds))
+
+            withContext(this.coroutineContext)
+            {
+                try
+                {
+                    promise.result(task())
+                }
+                catch (exception: Exception)
+                {
+                    promise.error(exception)
+                }
+            }
+        }
+
+        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        return promise.future
     }
 
-    override operator fun <P1, P2, P3, R> invoke(parameter1: P1, parameter2: P2, parameter3: P3,
-                                                 task: (P1, P2, P3) -> R)
+    fun <P, R : Any> delay(milliseconds: Long, parameter: P, task: (P) -> R): FutureResult<R>
     {
-        parallel(parameter1, parameter2, parameter3, task)
-    }
-}
+        val promise = Promise<R>()
 
-/**
- * Play tasks in Main/:UI thread.
- *
- * It is reserved only for operations to do in Main/UI thread like change a text in TextView, hide/show a view, dialog, ...
- *
- * Don't do other operation in this thread
- */
-object MainThread : ThreadType()
-{
-    override operator fun <R> invoke(task: () -> R)
-    {
-        parallelUI(task)
-    }
+        val job = this.coroutineScope.launch {
 
-    override operator fun <P, R> invoke(parameter: P, task: (P) -> R)
-    {
-        parallelUI(parameter, task)
-    }
+            delay(max(1L, milliseconds))
 
-    override operator fun <P1, P2, R> invoke(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
-    {
-        parallelUI(parameter1, parameter2, task)
-    }
+            withContext(this.coroutineContext)
+            {
+                try
+                {
+                    promise.result(task(parameter))
+                }
+                catch (exception: Exception)
+                {
+                    promise.error(exception)
+                }
+            }
+        }
 
-    override operator fun <P1, P2, P3, R> invoke(parameter1: P1, parameter2: P2, parameter3: P3,
-                                                 task: (P1, P2, P3) -> R)
-    {
-        parallelUI(parameter1, parameter2, parameter3, task)
-    }
-}
-
-/**
- * Dedicated to al I/:O operations
- */
-object IOThread : ThreadType()
-{
-    override operator fun <R> invoke(task: () -> R)
-    {
-        parallelIO(task)
-    }
-
-    override fun <P, R> invoke(parameter: P, task: (P) -> R)
-    {
-        parallelIO(parameter, task)
-    }
-
-    override operator fun <P1, P2, R> invoke(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
-    {
-        parallelIO(parameter1, parameter2, task)
-    }
-
-    override operator fun <P1, P2, P3, R> invoke(parameter1: P1, parameter2: P2, parameter3: P3,
-                                                 task: (P1, P2, P3) -> R)
-    {
-        parallelIO(parameter1, parameter2, parameter3, task)
-    }
-}
-
-/**
- * Do action when Internet connection available.
- *
- * Action will be queued and played when Internet is available. So its recommended for server requests
- *
- * Need [fr.jhelp.tasks.network.NetworkStatusManager] initialized for work
- */
-object NetworkThread : ThreadType()
-{
-    override operator fun <R> invoke(task: () -> R)
-    {
-        parallelNetwork(task)
-    }
-
-    override operator fun <P, R> invoke(parameter: P, task: (P) -> R)
-    {
-        parallelNetwork(parameter, task)
-    }
-
-    override operator fun <P1, P2, R> invoke(parameter1: P1, parameter2: P2, task: (P1, P2) -> R)
-    {
-        parallelNetwork(parameter1, parameter2, task)
-    }
-
-    override operator fun <P1, P2, P3, R> invoke(parameter1: P1, parameter2: P2, parameter3: P3,
-                                                 task: (P1, P2, P3) -> R)
-    {
-        parallelNetwork(parameter1, parameter2, parameter3, task)
+        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        return promise.future
     }
 }

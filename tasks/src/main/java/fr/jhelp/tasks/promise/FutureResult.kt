@@ -8,7 +8,6 @@
 
 package fr.jhelp.tasks.promise
 
-import fr.jhelp.tasks.IndependentThread
 import fr.jhelp.tasks.ThreadType
 import fr.jhelp.tasks.parallel
 import fr.jhelp.utilities.ALWAYS_TRUE
@@ -69,7 +68,7 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
         synchronized(this.listeners) {
             for (pair in this.listeners)
             {
-                pair.second(this, pair.first)
+                pair.second.parallel(this, pair.first)
             }
 
             this.listeners.clear()
@@ -121,23 +120,26 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
             }
         }
 
-    private fun errorListener(errorListener: (Exception) -> Unit, threadType: ThreadType) =
-        { future: FutureResult<R> ->
+    private fun errorListener(errorListener: (Exception) -> Unit,
+                              threadType: ThreadType): (FutureResult<R>) -> Unit
+    {
+        return { future: FutureResult<R> ->
             when (future.status())
             {
                 FutureResultStatus.FAILED   ->
-                    threadType(future.error, errorListener)
+                    threadType.parallel(future.error, errorListener)
                 FutureResultStatus.CANCELED ->
-                    threadType(CancellationException(this.cancelReason), errorListener)
+                    threadType.parallel(CancellationException(this.cancelReason), errorListener)
                 else                        -> Unit
             }
         }
+    }
 
     private fun cancelListener(cancelListener: (String) -> Unit, threadType: ThreadType) =
         { future: FutureResult<R> ->
             if (future.status() == FutureResultStatus.CANCELED)
             {
-                threadType(this.cancelReason, cancelListener)
+                threadType.parallel(this.cancelReason, cancelListener)
             }
         }
 
@@ -152,13 +154,13 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      * @param listener Listener to register
      * @param threadType : Thread type where execute the listener
      */
-    fun register(threadType: ThreadType = IndependentThread, listener: (FutureResult<R>) -> Unit)
+    fun register(threadType: ThreadType = ThreadType.SHORT, listener: (FutureResult<R>) -> Unit)
     {
         synchronized(this.lock)
         {
             if (this.status.get() != FutureResultStatus.COMPUTING)
             {
-                threadType(this, listener)
+                threadType.parallel(this, listener)
                 return@register
             }
 
@@ -254,7 +256,7 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
                                               FutureResultStatus.CANCELED))
                 {
                     this.cancelReason = reason
-                    parallel(reason, this.promise::cancel)
+                    this.promise::cancel.parallel(reason)
                     true
                 }
                 else
@@ -276,7 +278,7 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      *
      * @return Future result represents the combination of the result follow by the task
      */
-    fun <R1 : Any> and(threadType: ThreadType = IndependentThread,
+    fun <R1 : Any> and(threadType: ThreadType = ThreadType.SHORT,
                        continuation: (R) -> R1): FutureResult<R1>
     {
         val promise = Promise<R1>()
@@ -286,10 +288,10 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
     }
 
     /**
-     * Do task, in [IndependentThread], when result complete and if succeed to compute and result match given condition
+     * Do task, in [ThreadType.SHORT], when result complete and if succeed to compute and result match given condition
      */
     fun <R1 : Any> andIf(condition: (R) -> Boolean, continuation: (R) -> R1) =
-        this.andIf(IndependentThread, condition, continuation)
+        this.andIf(ThreadType.SHORT, condition, continuation)
 
     /**
      * Do task, in specified thread type, when result complete and if succeed to compute and result match given condition
@@ -311,7 +313,7 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      *
      * @return Future result represents the combination of the result follow by the task
      */
-    fun <R1 : Any> then(threadType: ThreadType = IndependentThread,
+    fun <R1 : Any> then(threadType: ThreadType = ThreadType.SHORT,
                         continuation: (FutureResult<R>) -> R1): FutureResult<R1>
     {
         val promise = Promise<R1>()
@@ -325,17 +327,17 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      *
      * @return Future result represents the combination of the result follow by the task
      */
-    fun <R1 : Any> andUnwrap(threadType: ThreadType = IndependentThread,
+    fun <R1 : Any> andUnwrap(threadType: ThreadType = ThreadType.SHORT,
                              continuation: (R) -> FutureResult<R1>): FutureResult<R1> =
         this.and(threadType, continuation).unwrap()
 
     /**
-     * Do task, in [IndependentThread], when result complete and if succeed to compute and result match given condition
+     * Do task, in [ThreadType.SHORT], when result complete and if succeed to compute and result match given condition
      *
      * @return Future result represents the combination of the result follow by the task
      */
     fun <R1 : Any> andIfUnwrap(condition: (R) -> Boolean, continuation: (R) -> FutureResult<R1>) =
-        this.andIfUnwrap(IndependentThread, condition, continuation)
+        this.andIfUnwrap(ThreadType.SHORT, condition, continuation)
 
     /**
      * Do task, in specified thread type, when result complete and if succeed to compute and result match given condition
@@ -352,7 +354,7 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      *
      * @return Future result represents the combination of the result follow by the task
      */
-    fun <R1 : Any> thenUnwrap(threadType: ThreadType = IndependentThread,
+    fun <R1 : Any> thenUnwrap(threadType: ThreadType = ThreadType.SHORT,
                               continuation: (FutureResult<R>) -> FutureResult<R1>): FutureResult<R1> =
         this.then(threadType, continuation).unwrap()
 
@@ -361,10 +363,10 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      *
      * @return This future result. Convenient for chaining
      */
-    fun onError(threadType: ThreadType = IndependentThread,
+    fun onError(threadType: ThreadType = ThreadType.SHORT,
                 errorListener: (Exception) -> Unit): FutureResult<R>
     {
-        this.register(IndependentThread, this.errorListener(errorListener, threadType))
+        this.register(ThreadType.SHORT, this.errorListener(errorListener, threadType))
         return this
     }
 
@@ -373,10 +375,10 @@ class FutureResult<R : Any> internal constructor(private val promise: Promise<R>
      *
      * @return This future result. Convenient for chaining
      */
-    fun onCancel(threadType: ThreadType = IndependentThread,
+    fun onCancel(threadType: ThreadType = ThreadType.SHORT,
                  cancelListener: (String) -> Unit): FutureResult<R>
     {
-        this.register(IndependentThread, this.cancelListener(cancelListener, threadType))
+        this.register(ThreadType.SHORT, this.cancelListener(cancelListener, threadType))
         return this
     }
 

@@ -73,7 +73,7 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
         this.setRenderer(this.renderer)
         // Render the view only when there is a change
         this.renderMode = RENDERMODE_WHEN_DIRTY
-        delay(1024, this::refreshScene)
+        this::refreshScene.delay(1024)
     }
 
     override fun onDetachedFromWindow()
@@ -202,6 +202,6 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
         }
 
         val timeLeft = max(1L, 32L - SystemClock.elapsedRealtime() + this.startRefreshTime)
-        delay(timeLeft, this::refreshScene)
+        this::refreshScene.delay(timeLeft)
     }
 }

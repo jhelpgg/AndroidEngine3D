@@ -44,13 +44,8 @@ class MainActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)//activity_test)
-//        this.testPercent = this.findViewById(R.id.testPercent)
-//        this.testPercent.setOnClickListener {
-//            delay(128) {
-//                this.testPercent.setStartColor(this.resources.getColor(R.color.colorBlue, null))
-//            }
-//        }
-          parallel(this.findViewById(R.id.view3D), this::showHorse)//this::createScene)
+        this::showHorse.parallel(this.findViewById(R.id.view3D))
+        //this::createScene.parallel(this.findViewById(R.id.view3D))
     }
 
     private fun showHorse(view3D: View3D)
@@ -63,7 +58,7 @@ class MainActivity : AppCompatActivity()
         horse.node.applyMaterialHierarchically(material)
         scene.root.add(horse.node)
 
-        delay(4096) {scene.play(horse.runAnimation())}
+        ({ scene.play(horse.runAnimation()) }).delay(4096)
     }
 
     private fun createScene(view3D: View3D)

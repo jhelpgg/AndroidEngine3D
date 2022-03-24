@@ -51,7 +51,7 @@ class TaskQueue<K, P, R>(private val taskCreator: (K) -> (P) -> R,
         {
             when
             {
-                !this.running.getAndSet(true) -> parallel(this::run)
+                !this.running.getAndSet(true) -> this::run.parallel()
                 this.waiting.get()            -> this.lock.notify()
             }
 

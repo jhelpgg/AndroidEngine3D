@@ -73,7 +73,7 @@ abstract class GraphicView(context: Context, attributes: AttributeSet?, defaultS
         if (!this.onAnimation.getAndSet(true))
         {
             this.animationStarted()
-            this.futureAnimation = delay(256L, this::playAnimation)
+            this.futureAnimation = this::playAnimation.delay(256L)
             this.futureAnimation.onCancel { this.animationLock.unlock() }
         }
     }
@@ -109,8 +109,8 @@ abstract class GraphicView(context: Context, attributes: AttributeSet?, defaultS
 
             if (this.onAnimation.get())
             {
-                this.futureAnimation = delay(max(1L, 32L - (SystemClock.elapsedRealtime() - time)),
-                                             this::playAnimation)
+                this.futureAnimation =
+                    this::playAnimation.delay(max(1L, 32L - (SystemClock.elapsedRealtime() - time)))
                 this.futureAnimation.onCancel { this.animationLock.unlock() }
             }
         }

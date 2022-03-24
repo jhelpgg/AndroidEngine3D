@@ -68,7 +68,7 @@ class Promise<R : Any>
     {
         if (this.canceled)
         {
-            parallel { cancelListener(this.cancelReason) }
+             { cancelListener(this.cancelReason) }.parallel()
             return
         }
 

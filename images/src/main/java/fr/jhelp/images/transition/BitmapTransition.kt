@@ -69,10 +69,10 @@ abstract class BitmapTransition
             scaled.recycle()
         }
 
-        delay(1024) {
+        {
             this.initialize()
             this.updatePercent(0f)
-        }
+        }.delay(1024)
     }
 
     internal constructor(bitmapStart: Bitmap, bitmapEnd: Bitmap, bitmapResult: Bitmap)
@@ -107,10 +107,10 @@ abstract class BitmapTransition
             scaled.recycle()
         }
 
-        delay(1024) {
+        {
             this.initialize()
             this.updatePercent(0f)
-        }
+        }.delay(1024)
     }
 
     /**

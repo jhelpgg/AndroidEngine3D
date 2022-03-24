@@ -44,15 +44,14 @@ class Scene3D
      */
     fun play(animation: Animation)
     {
-        parallel(animation)
-        { anim ->
+        { anim: Animation ->
             anim.start()
 
             synchronized(this.animations)
             {
                 this.animations.add(anim)
             }
-        }
+        }.parallel(animation)
     }
 
     /**
@@ -67,15 +66,14 @@ class Scene3D
 
     fun play(particleEffect: ParticleEffect)
     {
-        parallel(particleEffect)
-        { effect ->
+        { effect: ParticleEffect ->
             effect.start()
 
             synchronized(this.particleEffects)
             {
                 this.particleEffects.add(effect)
             }
-        }
+        }.parallel(particleEffect)
     }
 
     /**
@@ -83,8 +81,7 @@ class Scene3D
      */
     fun stop(animation: Animation)
     {
-        parallel(animation)
-        { anim ->
+        { anim: Animation ->
             synchronized(this.animations)
             {
                 if (this.animations.remove(anim))
@@ -92,13 +89,12 @@ class Scene3D
                     anim.finished()
                 }
             }
-        }
+        }.parallel(animation)
     }
 
     fun stop(particleEffect: ParticleEffect)
     {
-        parallel(particleEffect)
-        { effect ->
+        { effect: ParticleEffect ->
             synchronized(this.particleEffects)
             {
                 if (this.particleEffects.remove(effect))
@@ -106,7 +102,7 @@ class Scene3D
                     effect.stop()
                 }
             }
-        }
+        }.parallel(particleEffect)
     }
 
     /**
@@ -174,7 +170,7 @@ class Scene3D
                 if (!animation.animate())
                 {
                     this.animations.removeAt(index)
-                    parallel(animation) { anim -> anim.finished() }
+                    ({ anim: Animation -> anim.finished() }).parallel(animation)
                 }
             }
         }
