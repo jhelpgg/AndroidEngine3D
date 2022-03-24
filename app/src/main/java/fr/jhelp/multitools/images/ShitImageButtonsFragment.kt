@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import fr.jhelp.images.Point
 import fr.jhelp.multitools.R
 import fr.jhelp.tasks.observable.Observable
+import fr.jhelp.tasks.observable.ObservableValue
 
 private const val STEP = 10
 private const val REPEAT_TIME = 128L
@@ -49,7 +50,7 @@ class ShitImageButtonsFragment : Fragment(), View.OnTouchListener
         }
 
         this.lastActionTime = SystemClock.elapsedRealtime()
-        var (x, y) = shiftImageCoordinates.value()
+        var (x, y) = shiftImageCoordinates.value
 
         when (view.id)
         {
@@ -60,9 +61,10 @@ class ShitImageButtonsFragment : Fragment(), View.OnTouchListener
         }
 
         this.coordinatesTextView.text = "($x, $y)"
-        shiftImageCoordinates.changeValue(Point(x, y))
+        shiftImageCoordinatesObservableValue.value = Point(x, y)
         return true
     }
 }
 
-val shiftImageCoordinates = Observable(Point(0, 0))
+internal val shiftImageCoordinatesObservableValue = ObservableValue<Point>(Point(0, 0))
+val shiftImageCoordinates: Observable<Point> = shiftImageCoordinatesObservableValue.observable

@@ -40,10 +40,10 @@ internal class View3DRenderer(private val refreshDone: () -> Unit) : GLSurfaceVi
         gl.glLoadIdentity()
         gl.glFrustumf(-ratio, ratio, -1f, 1f, 1f, 10f)
 
-        viewBounds.changeValue(ViewBounds(Point3D(-ratio, 1f, 1f),
-                                          Point3D(ratio, -1f, 10f),
-                                          Point2D(0f, 0f),
-                                          Point2D(width.toFloat(), height.toFloat())))
+        viewBoundsObservableValue.value = ViewBounds(Point3D(-ratio, 1f, 1f),
+                                                     Point3D(ratio, -1f, 10f),
+                                                     Point2D(0f, 0f),
+                                                     Point2D(width.toFloat(), height.toFloat()))
     }
 
     override fun onSurfaceCreated(gl: GL10, config: EGLConfig?)

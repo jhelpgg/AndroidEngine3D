@@ -11,6 +11,9 @@ package fr.jhelp.engine.view
 import fr.jhelp.engine.scene.Point3D
 import fr.jhelp.images.Point2D
 import fr.jhelp.tasks.observable.Observable
+import fr.jhelp.tasks.observable.ObservableValue
 
-val viewBounds = Observable(ViewBounds(Point3D(0f, 0f, 0f), Point3D(0f, 0f, 0f),
-                                       Point2D(0f, 0f), Point2D(0f, 0f)))
+internal val viewBoundsObservableValue =
+    ObservableValue<ViewBounds>(ViewBounds(Point3D(0f, 0f, 0f), Point3D(0f, 0f, 0f),
+                                           Point2D(0f, 0f), Point2D(0f, 0f)))
+val viewBounds: Observable<ViewBounds> = viewBoundsObservableValue.observable
