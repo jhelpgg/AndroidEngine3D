@@ -67,7 +67,7 @@ class PostOffice<M>
         {
             val senderName = this.userName(sender)
             val postUser = this.users[userName] ?: return false
-            parallel { postUser.receive(senderName, MessageFor(true, ""), message) }
+             { postUser.receive(senderName, MessageFor(true, ""), message) }.parallel()
             return true
         }
     }
@@ -116,7 +116,7 @@ class PostOffice<M>
     {
         synchronized(this.groups)
         {
-            this.groups.getOrPut(groupName, { ArrayList() }).add(postUser)
+            this.groups.getOrPut(groupName) { ArrayList() }.add(postUser)
         }
     }
 

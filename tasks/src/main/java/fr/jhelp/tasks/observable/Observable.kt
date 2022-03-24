@@ -11,7 +11,6 @@ package fr.jhelp.tasks.observable
 import android.util.SparseArray
 import androidx.core.util.valueIterator
 import fr.jhelp.tasks.Cancelable
-import fr.jhelp.tasks.IndependentThread
 import fr.jhelp.tasks.ThreadType
 import fr.jhelp.tasks.chain.TaskChain
 import fr.jhelp.tasks.promise.FutureResult
@@ -55,7 +54,7 @@ class Observable<V : Any>(value: V)
 
                 if (observer.matcher(newValue))
                 {
-                    observer.threadType(newValue, observer.observer)
+                    observer.threadType.parallel(newValue, observer.observer)
                 }
             }
         }
@@ -76,15 +75,15 @@ class Observable<V : Any>(value: V)
 
         if (matcher(value))
         {
-            threadType(value, observer)
+            threadType.parallel(value, observer)
         }
     }
 
     fun observe(observer: (V) -> Unit) =
-        this.observe(IndependentThread, ALWAYS_TRUE, observer)
+        this.observe(ThreadType.SHORT, ALWAYS_TRUE, observer)
 
     fun observe(matcher: (V) -> Boolean, observer: (V) -> Unit) =
-        this.observe(IndependentThread, matcher, observer)
+        this.observe(ThreadType.SHORT, matcher, observer)
 
     fun observe(threadType: ThreadType, observer: (V) -> Unit) =
         this.observe(threadType, ALWAYS_TRUE, observer)
@@ -133,7 +132,7 @@ class Observable<V : Any>(value: V)
                 promise.result(value)
             }
 
-        this.observe(id, IndependentThread, matcher, observer)
+        this.observe(id, ThreadType.SHORT, matcher, observer)
         promise.register { this.stopObserve(id) }
         return promise.future
     }
@@ -146,7 +145,7 @@ class Observable<V : Any>(value: V)
      * @return Cancelable to unregister the emit
      */
     fun <R : Any> eachTime(matcher: (V) -> Boolean, taskChain: TaskChain<V, R>) =
-        this.observe(matcher, { value -> taskChain.emit(value) })
+        this.observe(matcher) { value -> taskChain.emit(value) }
 
     /**
      * Emit each change oon given task chain

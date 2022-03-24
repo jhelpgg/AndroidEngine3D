@@ -8,7 +8,7 @@
 
 package fr.jhelp.tasks.promise
 
-import fr.jhelp.tasks.IndependentThread
+import fr.jhelp.tasks.ThreadType
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -57,8 +57,29 @@ fun List<FutureResult<*>>.join(): FutureResult<List<FutureResult<*>>>
 
     for (future in this)
     {
-        future.then(IndependentThread, continuation)
+        future.then(ThreadType.SHORT, continuation)
     }
 
+    return promise.future
+}
+
+fun <T : Any> T.future(): FutureResult<T>
+{
+    val promise = Promise<T>()
+    promise.result(this)
+    return promise.future
+}
+
+fun <T : Any> Exception.futureError(): FutureResult<T>
+{
+    val promise = Promise<T>()
+    promise.error(this)
+    return promise.future
+}
+
+fun <T : Any> String.futureCancel(): FutureResult<T>
+{
+    val promise = Promise<T>()
+    promise.future.cancel(this)
     return promise.future
 }

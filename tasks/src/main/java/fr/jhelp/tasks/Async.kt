@@ -28,16 +28,16 @@ import java.util.concurrent.atomic.AtomicInteger
  * @return future to be able chain with something else when all action are done.
  * Or to cancel execution at any time
  */
-fun <T> Iterable<T>.forEachAsync(threadType: ThreadType = IndependentThread,
+fun <T> Iterable<T>.forEachAsync(threadType: ThreadType = ThreadType.SHORT,
                                  action: (T) -> Unit): FutureResult<Iterable<T>>
 {
     val promise = Promise<Iterable<T>>()
     val counter = AtomicInteger(this.count())
 
-    val future = launch(this, threadType, action) { iterable, thread, task ->
+    val future = { (iterable, thread, task): Triple<Iterable<T>, ThreadType, (T) -> Unit> ->
         for (element in iterable)
         {
-            thread(iterable, element, task) { result, value, taskToDo ->
+            thread.parallel(Triple(iterable, element, task)) { (result, value, taskToDo) ->
                 try
                 {
                     if (!promise.canceled)
@@ -56,7 +56,7 @@ fun <T> Iterable<T>.forEachAsync(threadType: ThreadType = IndependentThread,
                 }
             }
         }
-    }
+    }.parallel(Triple(this, threadType, action))
 
     promise.register { reason -> future.cancel(reason) }
     return promise.future
@@ -73,16 +73,16 @@ fun <T> Iterable<T>.forEachAsync(threadType: ThreadType = IndependentThread,
  * @return future to be able chain with something else when all action are done.
  * Or to cancel execution at any time
  */
-fun <T> Array<T>.forEachAsync(threadType: ThreadType = IndependentThread,
+fun <T> Array<T>.forEachAsync(threadType: ThreadType = ThreadType.SHORT,
                               action: (T) -> Unit): FutureResult<Array<T>>
 {
     val promise = Promise<Array<T>>()
     val counter = AtomicInteger(this.size)
 
-    val future = launch(this, threadType, action) { array, thread, task ->
+    val future = { (array, thread, task): Triple<Array<T>, ThreadType, (T) -> Unit> ->
         for (element in array)
         {
-            thread(array, element, task) { result, value, taskToDo ->
+            thread.parallel(Triple(array, element, task)) { (result, value, taskToDo) ->
                 try
                 {
                     if (!promise.canceled)
@@ -101,7 +101,7 @@ fun <T> Array<T>.forEachAsync(threadType: ThreadType = IndependentThread,
                 }
             }
         }
-    }
+    }.parallel(Triple(this, threadType, action))
 
     promise.register { reason -> future.cancel(reason) }
     return promise.future

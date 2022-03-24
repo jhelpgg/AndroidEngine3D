@@ -25,7 +25,7 @@ import fr.jhelp.tasks.parallel
  * Manipulate [View3D] scene
  */
 fun View3D.scene(scene: Scene3D.() -> Unit) =
-    parallel(scene) { sceneModifier -> sceneModifier(this.scene3D) }
+    { sceneModifier: (Scene3D) -> Unit -> sceneModifier(this.scene3D) }.parallel(scene)
 
 /**
  * Scene roo position short cut

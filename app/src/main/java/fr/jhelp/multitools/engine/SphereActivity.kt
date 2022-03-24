@@ -28,9 +28,9 @@ class SphereActivity : Activity3D()
 
     private fun imageClicked(@DrawableRes image: Int)
     {
-        parallel(image) { imageID ->
+        { imageID: Int ->
             this.sphere.material.texture = ResourcesAccess.obtainTexture(imageID)
-        }
+        }.parallel(image)
     }
 
     override fun fill3D(view3D: View3D)

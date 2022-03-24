@@ -10,6 +10,7 @@ package fr.jhelp.tasks.network
 
 import fr.jhelp.lists.Queue
 import fr.jhelp.tasks.Cancelable
+import fr.jhelp.tasks.ThreadType
 import fr.jhelp.tasks.cancellable
 import fr.jhelp.tasks.parallel
 import java.util.concurrent.atomic.AtomicBoolean
@@ -47,13 +48,13 @@ internal object NetworkStatusQueue
     private fun wakeup(networkStatus: Boolean)
     {
         if ((networkStatus || NetworkStatusCallback.availableObservable.value())
-            && !this.alive.getAndSet(true))
+            && this.alive.compareAndSet(false, true))
         {
             synchronized(this.tasks)
             {
                 if (this.tasks.notEmpty)
                 {
-                    parallel(this::run)
+                    this::run.parallel(ThreadType.HEAVY)
                 }
             }
         }

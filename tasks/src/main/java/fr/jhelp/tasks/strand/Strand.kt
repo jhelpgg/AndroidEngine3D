@@ -8,7 +8,6 @@
 
 package fr.jhelp.tasks.strand
 
-import fr.jhelp.tasks.IndependentThread
 import fr.jhelp.tasks.ThreadType
 
 /**
@@ -31,7 +30,7 @@ import fr.jhelp.tasks.ThreadType
  * @param instance The interface implementation reference. This instance must be use only their
  * @param threadType Thread type where execute the method
  */
-class Strand<I>(interfaceType: Class<I>, instance: I, threadType: ThreadType = IndependentThread)
+class Strand<I>(interfaceType: Class<I>, instance: I, threadType: ThreadType = ThreadType.SHORT)
 {
     private val caller = strandCaller(interfaceType, instance, threadType)
 
