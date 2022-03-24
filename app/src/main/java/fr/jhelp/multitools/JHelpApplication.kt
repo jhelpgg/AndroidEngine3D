@@ -9,16 +9,19 @@
 package fr.jhelp.multitools
 
 import android.app.Application
-import fr.jhelp.sound.SoundManager
-import fr.jhelp.utilities.ContextReference
+import fr.jhelp.provided.provideSingle
 
-class JHelpApplication : Application() {
-    override fun onCreate() {
+class JHelpApplication : Application()
+{
+    override fun onCreate()
+    {
         super.onCreate()
-        ContextReference.initialize(this)
+        val applicationContext = this.applicationContext
+        provideSingle { applicationContext }
     }
 
-    override fun onTerminate() {
+    override fun onTerminate()
+    {
         super.onTerminate()
     }
 }

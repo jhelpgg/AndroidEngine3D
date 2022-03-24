@@ -21,6 +21,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/LICENSE*")
+        resources.excludes.add("META-INF/NOTICE*")
+    }
 }
 
 dependencies {

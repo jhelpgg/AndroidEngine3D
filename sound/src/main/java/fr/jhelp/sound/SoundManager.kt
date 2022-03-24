@@ -8,15 +8,19 @@
 
 package fr.jhelp.sound
 
+import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.util.SparseIntArray
 import androidx.annotation.RawRes
+import fr.jhelp.provided.provided
+import fr.jhelp.sound.SoundManager.background
+import fr.jhelp.sound.SoundManager.effect
 import fr.jhelp.sound.SoundManager.pause
 import fr.jhelp.sound.SoundManager.resume
+import fr.jhelp.sound.SoundManager.sound
 import fr.jhelp.sound.SoundManager.stopSounds
 import fr.jhelp.tasks.delay
-import fr.jhelp.utilities.ContextReference
 
 /**
  * Manage 3 types of sound :
@@ -29,9 +33,12 @@ import fr.jhelp.utilities.ContextReference
  *
  * Its recommended to call [stopSounds] when no sounds are need, so in [android.app.Activity.onDestroy]
  * is a good place
+ *
+ * It supposes that the application context is provided by [fr.jhelp.provided.provideSingle] or [fr.jhelp.provided.provideMultiple] before call [sound], [background] or [effect]
  */
 object SoundManager
 {
+    private val context by provided<Context>()
     private val soundPool =
         SoundPool.Builder()
             .setMaxStreams(3)
@@ -50,6 +57,8 @@ object SoundManager
      * Start a background sound in loop.
      *
      * If a background sound playing, it stops and the given one starts
+     *
+     * It supposes that the application context is provided by [fr.jhelp.provided.provideSingle] or [fr.jhelp.provided.provideMultiple] before call it
      */
     fun background(@RawRes soundResource: Int)
     {
@@ -60,6 +69,8 @@ object SoundManager
      * Play a sound one time
      *
      * If an effect sound playing, it stops and the given one starts
+     *
+     * It supposes that the application context is provided by [fr.jhelp.provided.provideSingle] or [fr.jhelp.provided.provideMultiple] before call it
      */
     fun effect(@RawRes soundResource: Int)
     {
@@ -70,6 +81,8 @@ object SoundManager
      * Play a volume control sound
      *
      * If a volume control sound playing, it stops and the given one starts
+     *
+     * It supposes that the application context is provided by [fr.jhelp.provided.provideSingle] or [fr.jhelp.provided.provideMultiple] before call it
      */
     fun sound(sound: Sound)
     {
@@ -92,7 +105,7 @@ object SoundManager
 
             if (sound.soundId < 0)
             {
-                sound.soundId = this.soundPool.load(ContextReference, sound.resource, 1)
+                sound.soundId = this.soundPool.load(this.context, sound.resource, 1)
             }
 
             synchronized(this.loadedSounds)
@@ -158,6 +171,9 @@ object SoundManager
                                 1f)
     }
 
+    /**
+     * It supposes that the application context is provided by [fr.jhelp.provided.provideSingle] or [fr.jhelp.provided.provideMultiple] before call it
+     */
     private fun play(@RawRes soundResource: Int, background: Boolean)
     {
         var soundId =
@@ -179,7 +195,7 @@ object SoundManager
         }
         else
         {
-            soundId = this.soundPool.load(ContextReference, soundResource, 1)
+            soundId = this.soundPool.load(this.context, soundResource, 1)
 
             synchronized(this.loadedSounds)
             {

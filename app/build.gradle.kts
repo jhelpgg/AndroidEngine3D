@@ -23,6 +23,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/LICENSE*")
+        resources.excludes.add("META-INF/NOTICE*")
+    }
 }
 
 dependencies {
@@ -50,4 +55,5 @@ dependencies {
     implementation(project(path = ":graphics"))
     implementation(project(path = ":animations"))
     implementation(project(path = ":models"))
+    implementation(project(path = ":provided"))
 }
