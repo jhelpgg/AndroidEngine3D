@@ -97,7 +97,7 @@ class View3D(context: Context, attributes: AttributeSet? = null) :
      */
     fun screenCoordinateTo3D(xScreen: Float, yScreen: Float, zFix: Float): Point3D
     {
-        val bounds = viewBounds.value()
+        val bounds = viewBounds.value
         val topLeftNear = bounds.topLeftNear
         val bottomRightFar = bounds.bottomRightFar
         val topLeft = bounds.topLet

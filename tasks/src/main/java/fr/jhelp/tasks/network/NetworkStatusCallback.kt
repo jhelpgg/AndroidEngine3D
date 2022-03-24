@@ -11,21 +11,23 @@ package fr.jhelp.tasks.network
 import android.net.ConnectivityManager
 import android.net.Network
 import fr.jhelp.tasks.observable.Observable
+import fr.jhelp.tasks.observable.ObservableValue
 
 /**
  * React to Network status changed
  */
-internal object NetworkStatusCallback :ConnectivityManager.NetworkCallback()
+internal object NetworkStatusCallback : ConnectivityManager.NetworkCallback()
 {
-    val availableObservable = Observable(false)
+    private val availableObservableValue = ObservableValue<Boolean>(false)
+    val availableObservable: Observable<Boolean> = this.availableObservableValue.observable
 
     override fun onAvailable(network: Network)
     {
-        this.availableObservable.changeValue(true)
+        this.availableObservableValue.value = true
     }
 
     override fun onLost(network: Network)
     {
-        this.availableObservable.changeValue(false)
+        this.availableObservableValue.value = false
     }
 }

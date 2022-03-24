@@ -19,13 +19,13 @@ class ShiftImageActivity : ImageActivity(R.string.shiftImageTitle)
 {
     override fun doImageOperation(bitmap: Bitmap, canvas: Canvas, paint: Paint)
     {
-        val (x, y) = shiftImageCoordinates.value()
+        val (x, y) = shiftImageCoordinates.value
         bitmap.shift(x, y)
     }
 
     override fun obtainFragmentButtons(): Fragment?
     {
-        shiftImageCoordinates.observe { this.refreshImage() }
+        shiftImageCoordinates.observedBy { this.refreshImage() }
         return ShitImageButtonsFragment()
     }
 }
