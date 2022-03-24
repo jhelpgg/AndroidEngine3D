@@ -8,12 +8,11 @@
 
 package fr.jhelp.graphics.chart.model
 
-import fr.jhelp.tasks.IndependentThread
 import fr.jhelp.tasks.ThreadType
 
 class ChartData internal constructor(animated: Boolean,
                                      private val updateListener: () -> Unit,
-                                     private val updateThreadType: ThreadType = IndependentThread)
+                                     private val updateThreadType: ThreadType = ThreadType.SHORT)
 {
     var animated = animated
         private set
@@ -44,7 +43,7 @@ class ChartData internal constructor(animated: Boolean,
             this.elements.add(CharDataElement(value, this.animated))
         }
 
-        this.updateThreadType(this.updateListener)
+        this.updateThreadType.parallel(this.updateListener)
     }
 
     operator fun get(index: Int): Float =
@@ -54,6 +53,6 @@ class ChartData internal constructor(animated: Boolean,
     {
         synchronized(this.elements) { this.elements[index].value(value, this.animated) }
 
-        this.updateThreadType(this.updateListener)
+        this.updateThreadType.parallel(this.updateListener)
     }
 }

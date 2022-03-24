@@ -51,10 +51,10 @@ class FieldActivity : Activity3D()
 
     private fun functionSelected(mathFunction: MathFunction<*>)
     {
-        parallel {
+        {
             this.mainNode.removeAllChildren()
             this.mainNode.add(this.field3D(mathFunction))
-        }
+        }.parallel()
     }
 
     private fun field3D(mathFunction: MathFunction<*>): Field3D =

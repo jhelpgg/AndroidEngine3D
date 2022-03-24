@@ -8,7 +8,7 @@
 
 package fr.jhelp.tasks.chain
 
-import fr.jhelp.tasks.launch
+import fr.jhelp.tasks.parallel
 import fr.jhelp.tasks.promise.FutureResult
 import fr.jhelp.tasks.promise.Promise
 
@@ -35,7 +35,7 @@ abstract class Emitter<T : Any>
     fun <R : Any> emit(taskChain: TaskChain<T, R>): FutureResult<Unit>
     {
         val promise = Promise<Unit>()
-        val future = launch {
+        val future = {
             var value = this.next()
 
             while (value != null && !promise.canceled)
@@ -45,7 +45,7 @@ abstract class Emitter<T : Any>
             }
 
             promise.result(Unit)
-        }
+        }.parallel()
 
         promise.register { reason -> future.cancel(reason) }
         return promise.future

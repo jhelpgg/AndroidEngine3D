@@ -113,7 +113,7 @@ object SoundManager
                 this.loadedSounds.put(sound.resource, sound.soundId)
             }
 
-            delay(1024, sound, this::playSound)
+            this::playSound.delay(sound, 1024)
         }
         else
         {
@@ -204,11 +204,11 @@ object SoundManager
 
             if (background)
             {
-                delay(1024, soundId, this::playBackground)
+                this::playBackground.delay(soundId, 1024)
             }
             else
             {
-                delay(1024, soundId, this::playEffect)
+                this::playEffect.delay(soundId, 1024)
             }
         }
     }

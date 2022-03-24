@@ -21,8 +21,8 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.MainThread
-import fr.jhelp.tasks.launch
+import fr.jhelp.tasks.ThreadType
+import fr.jhelp.tasks.parallel
 import fr.jhelp.utilities.logError
 
 abstract class TwoImagesCombinationActivity(@StringRes private val title: Int) : Activity(),
@@ -190,11 +190,11 @@ abstract class TwoImagesCombinationActivity(@StringRes private val title: Int) :
 
     private fun updateResult()
     {
-        launch {
+        {
             this.doOperation(this.firstImageChoice(this.currentFirst),
                              this.secondImageChoice(this.currentSecond))
-        }
-            .and(MainThread) { result -> this.resultImage.setImageBitmap(result) }
+        }.parallel()
+            .and(ThreadType.UI) { result -> this.resultImage.setImageBitmap(result) }
             .onError { logError(it) { "Oups" } }
     }
 }
