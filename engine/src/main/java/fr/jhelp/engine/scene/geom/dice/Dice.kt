@@ -8,10 +8,10 @@
 
 package fr.jhelp.engine.scene.geom.dice
 
-import fr.jhelp.engine.R
 import fr.jhelp.animations.Animation
 import fr.jhelp.animations.AnimationList
 import fr.jhelp.animations.AnimationTask
+import fr.jhelp.engine.R
 import fr.jhelp.engine.animation.keyFrame.AnimationNode3D
 import fr.jhelp.engine.resources.ResourcesAccess
 import fr.jhelp.engine.scene.Color3D
@@ -20,9 +20,8 @@ import fr.jhelp.engine.scene.Node3D
 import fr.jhelp.engine.scene.Position3D
 import fr.jhelp.engine.scene.geom.Box
 import fr.jhelp.engine.scene.geom.CrossUV
-import fr.jhelp.tasks.ThreadType
-import fr.jhelp.tasks.chain.TaskChain
 import fr.jhelp.tasks.observable.Observable
+import fr.jhelp.tasks.observable.ObservableValue
 import fr.jhelp.utilities.bounds
 import fr.jhelp.utilities.random
 import kotlin.math.max
@@ -42,10 +41,12 @@ class Dice(@DiceValue value: Int = random(1, 6)) : Node3D()
     private val dice = Box(CrossUV())
     var value = value.bounds(1, 6)
         private set
-    private val diceValue = Observable(DiceInfo(this.id, this.name, this.value))
+    private val diceInfoObservableValue =
+        ObservableValue<DiceInfo>(DiceInfo(this.id, this.name, this.value))
+    val diceInfoObservable: Observable<DiceInfo> = this.diceInfoObservableValue.observable
     private val changeValue = { value: Int ->
         this.value = value
-        this.diceValue.changeValue(DiceInfo(this.id, this.name, this.value))
+        this.diceInfoObservableValue.value = DiceInfo(this.id, this.name, this.value)
     }
 
     init
@@ -69,8 +70,7 @@ class Dice(@DiceValue value: Int = random(1, 6)) : Node3D()
         val animationNode = AnimationNode3D(this.dice)
         animationNode.frame(max(1, numberFrame), DICE_POSITIONS[diceValue - 1])
         animation.add(animationNode)
-        animation.add(
-            AnimationTask(diceValue, this.changeValue))
+        animation.add(AnimationTask(diceValue, this.changeValue))
         return animation
     }
 
@@ -109,26 +109,4 @@ class Dice(@DiceValue value: Int = random(1, 6)) : Node3D()
     {
         this.dice.material.diffuse = color
     }
-
-    fun observe(observer: (DiceInfo) -> Unit) =
-        this.diceValue.observe(observer)
-
-    fun observe(matcher: (DiceInfo) -> Boolean, observer: (DiceInfo) -> Unit) =
-        this.diceValue.observe(matcher, observer)
-
-    fun observe(threadType: ThreadType, observer: (DiceInfo) -> Unit) =
-        this.diceValue.observe(threadType, observer)
-
-    fun observe(threadType: ThreadType, matcher: (DiceInfo) -> Boolean,
-                observer: (DiceInfo) -> Unit) =
-        this.diceValue.observe(threadType, matcher, observer)
-
-    fun nextTime(matcher: (DiceInfo) -> Boolean) =
-        this.diceValue.nextTime(matcher)
-
-    fun <R : Any> eachTime(matcher: (DiceInfo) -> Boolean, taskChain: TaskChain<DiceInfo, R>) =
-        this.diceValue.eachTime(matcher, taskChain)
-
-    fun <R : Any> onEachChange(taskChain: TaskChain<DiceInfo, R>) =
-        this.diceValue.onEachChange(taskChain)
 }

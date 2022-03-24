@@ -19,12 +19,12 @@ class ContrastImageActivity : ImageActivity(R.string.contrastImageTitle)
 {
     override fun doImageOperation(bitmap: Bitmap, canvas: Canvas, paint: Paint)
     {
-        bitmap.contrast(contrastValue.value())
+        bitmap.contrast(contrastValue.value)
     }
 
     override fun obtainFragmentButtons(): Fragment?
     {
-        contrastValue.observe { this.refreshImage() }
+        contrastValue.observedBy { this.refreshImage() }
         return ContrastImageButtonsFragment()
     }
 }

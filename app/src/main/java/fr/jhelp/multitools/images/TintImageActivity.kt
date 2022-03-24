@@ -19,12 +19,12 @@ class TintImageActivity : ImageActivity(R.string.tintImageTitle)
 {
     override fun doImageOperation(bitmap: Bitmap, canvas: Canvas, paint: Paint)
     {
-        bitmap.tint(tintColorObservable.value())
+        bitmap.tint(tintColorObservable.value)
     }
 
     override fun obtainFragmentButtons(): Fragment?
     {
-        tintColorObservable.observe { this.refreshImage() }
+        tintColorObservable.observedBy { this.refreshImage() }
         return TintImageButtonsFragment()
     }
 }

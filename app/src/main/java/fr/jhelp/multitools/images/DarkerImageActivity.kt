@@ -19,12 +19,12 @@ class DarkerImageActivity : ImageActivity(R.string.darkerImageTitle)
 {
     override fun doImageOperation(bitmap: Bitmap, canvas: Canvas, paint: Paint)
     {
-        bitmap.darker(darkValue.value())
+        bitmap.darker(darkValue.value)
     }
 
     override fun obtainFragmentButtons(): Fragment?
     {
-        darkValue.observe { this.refreshImage() }
+        darkValue.observedBy { this.refreshImage() }
         return DarkerImageButtonsFragment()
     }
 }

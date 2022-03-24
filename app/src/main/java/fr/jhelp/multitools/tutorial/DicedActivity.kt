@@ -76,6 +76,6 @@ class DicedActivity : Activity()
         plane.material.diffuse = WHITE
         plane.material.texture = this.valueTexture
         this.scene3D.root.add(plane)
-        this.dice.observe { diceInfo -> this.updateValue(diceInfo.diceValue) }
+        this.dice.diceInfoObservable.observedBy { diceInfo -> this.updateValue(diceInfo.diceValue) }
     }
 }

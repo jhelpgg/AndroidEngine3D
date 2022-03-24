@@ -17,9 +17,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import fr.jhelp.multitools.R
 import fr.jhelp.tasks.observable.Observable
-import fr.jhelp.utilities.compare
-import fr.jhelp.utilities.log
-import kotlin.math.floor
+import fr.jhelp.tasks.observable.ObservableValue
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.round
@@ -40,14 +38,14 @@ class ContrastImageButtonsFragment : Fragment(), View.OnClickListener
 
     override fun onClick(view: View)
     {
-        var contrast = contrastValue.value()
+        var contrast = contrastValue.value
 
         when (view.id)
         {
             R.id.buttonRight ->
             {
                 contrast =
-                    if (contrast.compare(1.0) >= 0)
+                    if (contrast >= 1.0)
                     {
                         min(10.0, round(contrast + 1.0))
                     }
@@ -59,7 +57,7 @@ class ContrastImageButtonsFragment : Fragment(), View.OnClickListener
             R.id.buttonLeft  ->
             {
                 contrast =
-                    if (contrast.compare(1.0) > 0)
+                    if (contrast > 1.0)
                     {
                         round(contrast - 1.0)
                     }
@@ -71,8 +69,9 @@ class ContrastImageButtonsFragment : Fragment(), View.OnClickListener
         }
 
         this.contrastTextView.text = "$contrast"
-        contrastValue.changeValue(contrast)
+        contrastValueObservableValue.value = contrast
     }
 }
 
-val contrastValue = Observable(1.0)
+internal val contrastValueObservableValue = ObservableValue<Double>(1.0)
+val contrastValue: Observable<Double> = contrastValueObservableValue.observable

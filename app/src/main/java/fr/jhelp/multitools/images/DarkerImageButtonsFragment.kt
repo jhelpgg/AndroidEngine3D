@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import fr.jhelp.multitools.R
 import fr.jhelp.tasks.observable.Observable
+import fr.jhelp.tasks.observable.ObservableValue
 import kotlin.math.max
 import kotlin.math.min
 
@@ -38,7 +39,7 @@ class DarkerImageButtonsFragment : Fragment(), View.OnClickListener
 
     override fun onClick(view: View)
     {
-        var dark = darkValue.value()
+        var dark = darkValue.value
 
         when (view.id)
         {
@@ -47,8 +48,9 @@ class DarkerImageButtonsFragment : Fragment(), View.OnClickListener
         }
 
         this.darkerTextView.text = "$dark"
-        darkValue.changeValue(dark)
+        darkValueObservableValue.value = dark
     }
 }
 
-val darkValue = Observable(0)
+internal val darkValueObservableValue = ObservableValue<Int>(0)
+val darkValue: Observable<Int> = darkValueObservableValue.observable

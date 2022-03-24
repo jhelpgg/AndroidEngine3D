@@ -25,7 +25,7 @@ internal object NetworkStatusQueue
 
     init
     {
-        NetworkStatusCallback.availableObservable.observe(this::networkAvailable)
+        NetworkStatusCallback.availableObservable.observedBy(this::networkAvailable)
     }
 
     fun add(task: () -> Unit): Cancelable
@@ -47,7 +47,7 @@ internal object NetworkStatusQueue
 
     private fun wakeup(networkStatus: Boolean)
     {
-        if ((networkStatus || NetworkStatusCallback.availableObservable.value())
+        if ((networkStatus || NetworkStatusCallback.availableObservable.value)
             && this.alive.compareAndSet(false, true))
         {
             synchronized(this.tasks)
@@ -82,7 +82,7 @@ internal object NetworkStatusQueue
                     // If exception happen and connection was lost,
                     // the failure is probably due network lost while doing the task.
                     // In this case we will retry do the action next time network comes back
-                    if (!NetworkStatusCallback.availableObservable.value())
+                    if (!NetworkStatusCallback.availableObservable.value)
                     {
                         synchronized(this.tasks)
                         {

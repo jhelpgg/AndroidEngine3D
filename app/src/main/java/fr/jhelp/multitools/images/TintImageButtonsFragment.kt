@@ -21,6 +21,7 @@ import fr.jhelp.images.COLOR_RED_0500
 import fr.jhelp.images.COLOR_TEAL_0500
 import fr.jhelp.multitools.R
 import fr.jhelp.tasks.observable.Observable
+import fr.jhelp.tasks.observable.ObservableValue
 
 class TintImageButtonsFragment : Fragment(), View.OnClickListener
 {
@@ -50,8 +51,9 @@ class TintImageButtonsFragment : Fragment(), View.OnClickListener
 
     override fun onClick(v: View)
     {
-        tintColorObservable.changeValue((v.background as ColorDrawable).color)
+        tintColorObservableValue.value = (v.background as ColorDrawable).color
     }
 }
 
-val tintColorObservable = Observable(COLOR_BLUE_0500)
+internal val tintColorObservableValue = ObservableValue<Int>(COLOR_BLUE_0500)
+val tintColorObservable: Observable<Int> = tintColorObservableValue.observable
