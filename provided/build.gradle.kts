@@ -7,13 +7,31 @@
  */
 
 plugins {
-    id("java-library")
-    id("kotlin")
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+android {
+    compileSdk = Constants.compileSdkVersion
+
+    defaultConfig {
+        minSdk = Constants.minSdkVersion
+        targetSdk = Constants.targetSdkVersion
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/LICENSE*")
+        resources.excludes.add("META-INF/NOTICE*")
+    }
 }
 
 dependencies {
     implementation(Constants.kotlinLibrary)
     implementation(Constants.junitLibrary)
     testRuntimeOnly(Constants.junitLibraryEngine)
+    androidTestImplementation(Constants.androidxTestLibrary)
+    androidTestImplementation(Constants.espressoLibrary)
 }
 
