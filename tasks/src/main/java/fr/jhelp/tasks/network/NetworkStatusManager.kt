@@ -13,11 +13,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.annotation.RequiresPermission
+import fr.jhelp.tasks.ThreadType
+import fr.jhelp.tasks.network.NetworkStatusManager.destroy
+import fr.jhelp.tasks.network.NetworkStatusManager.initialize
 import java.util.concurrent.atomic.AtomicBoolean
-import fr.jhelp.tasks.NetworkThread
 
 /**
- * Network manager, for make work [NetworkThread]
+ * Network manager, for make work [ThreadType.NETWORK]
  *
  * It will requires the permissions:
  * * android.Manifest.permission.INTERNET
@@ -52,7 +54,7 @@ object NetworkStatusManager
      */
     fun destroy(context: Context)
     {
-        if(this.initialized.getAndSet(false))
+        if (this.initialized.getAndSet(false))
         {
             context.getSystemService(ConnectivityManager::class.java)
                 ?.unregisterNetworkCallback(NetworkStatusCallback)

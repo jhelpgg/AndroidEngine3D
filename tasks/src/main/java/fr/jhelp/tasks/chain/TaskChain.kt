@@ -8,15 +8,7 @@
 
 package fr.jhelp.tasks.chain
 
-import fr.jhelp.tasks.IOThread
-import fr.jhelp.tasks.IndependentThread
-import fr.jhelp.tasks.MainThread
-import fr.jhelp.tasks.NetworkThread
 import fr.jhelp.tasks.ThreadType
-import fr.jhelp.tasks.launch
-import fr.jhelp.tasks.launchIO
-import fr.jhelp.tasks.launchNetwork
-import fr.jhelp.tasks.launchUI
 import fr.jhelp.tasks.promise.FutureResult
 import fr.jhelp.tasks.promise.join
 
@@ -37,7 +29,7 @@ import fr.jhelp.tasks.promise.join
  * @param threadType Environment where execute the action. If not set, independent environment will be used
  * @param action Action to play by the task
  */
-class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = IndependentThread,
+class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = ThreadType.SHORT,
                                   private val action: (P) -> R)
 {
     private val continuations = ArrayList<TaskChain<R, *>>()
@@ -49,16 +41,7 @@ class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = Independe
      */
     fun emit(parameter: P): FutureResult<R>
     {
-        val future =
-            when (this.threadType)
-            {
-                IndependentThread -> launch(parameter, this.action)
-                MainThread        -> launchUI(parameter, this.action)
-                IOThread          -> launchIO(parameter, this.action)
-                NetworkThread     -> launchNetwork(parameter, this.action)
-            }
-
-
+        val future = threadType.parallel(parameter, this.action)
         val list = ArrayList<FutureResult<*>>()
         list.add(future)
 
@@ -128,7 +111,7 @@ class TaskChain<P : Any, R : Any>(private val threadType: ThreadType = Independe
      * @return Chained task
      */
     fun <R1 : Any> andIf(condition: (R) -> Boolean, action: (R) -> R1) =
-        this.andIf(IndependentThread, condition, action)
+        this.andIf(ThreadType.SHORT, condition, action)
 
     /**
      * Chain an task chain to call after action execution when emit if the given condition match

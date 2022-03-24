@@ -8,15 +8,7 @@
 
 package fr.jhelp.tasks.strand
 
-import fr.jhelp.tasks.IOThread
-import fr.jhelp.tasks.IndependentThread
-import fr.jhelp.tasks.MainThread
-import fr.jhelp.tasks.NetworkThread
 import fr.jhelp.tasks.ThreadType
-import fr.jhelp.tasks.launch
-import fr.jhelp.tasks.launchIO
-import fr.jhelp.tasks.launchNetwork
-import fr.jhelp.tasks.launchUI
 import fr.jhelp.tasks.promise.Promise
 import fr.jhelp.tasks.taskQueue.TaskQueue
 import fr.jhelp.utilities.isVoid
@@ -45,13 +37,7 @@ internal class StrandHandler<I>(private val instance: I,
                 }
             }
 
-        when (this.threadType)
-        {
-            IndependentThread -> launch(action)
-            IOThread          -> launchIO(action)
-            MainThread        -> launchUI(action)
-            NetworkThread     -> launchNetwork(action)
-        }.waitComplete()
+        this.threadType.parallel(action).waitComplete()
     }
 
     private fun parameterProvider(strandHandlerElement: StrandHandlerElement) =

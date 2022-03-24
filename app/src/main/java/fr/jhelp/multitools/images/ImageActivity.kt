@@ -22,8 +22,8 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import fr.jhelp.multitools.R
-import fr.jhelp.tasks.MainThread
-import fr.jhelp.tasks.launch
+import fr.jhelp.tasks.ThreadType
+import fr.jhelp.tasks.parallel
 
 abstract class ImageActivity(@StringRes val titleId: Int) : FragmentActivity(),
     View.OnLayoutChangeListener
@@ -56,11 +56,11 @@ abstract class ImageActivity(@StringRes val titleId: Int) : FragmentActivity(),
     override fun onLayoutChange(v: View, left: Int, top: Int, right: Int, bottom: Int,
                                 oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int)
     {
-
-        launch(v.width, v.height, this::initializeImage)
-            .and(MainThread) { this.imageView.setImageBitmap(this.bitmap) }
+        ({ (width, height): Pair<Int, Int> -> this.initializeImage(width, height) })
+            .parallel(Pair(v.width, v.height))
+            .and(ThreadType.UI) { this.imageView.setImageBitmap(this.bitmap) }
             .and { this.doImageOperation(this.bitmap, this.canvas, this.paint) }
-            .and(MainThread) { this.imageView.setImageBitmap(this.bitmap) }
+            .and(ThreadType.UI) { this.imageView.setImageBitmap(this.bitmap) }
     }
 
     fun obtainBitmap(@DrawableRes drawableID: Int): Bitmap
@@ -74,13 +74,14 @@ abstract class ImageActivity(@StringRes val titleId: Int) : FragmentActivity(),
 
     fun refreshImage()
     {
-        launch {
+        {
             this.canvas.drawBitmap(this.baseImage, null,
                                    RectF(0f, 0f,
                                          this.bitmap.width.toFloat(), this.bitmap.height.toFloat()),
                                    this.paint)
             this.doImageOperation(this.bitmap, this.canvas, this.paint)
-        }.and(MainThread) { this.imageView.setImageBitmap(this.bitmap) }
+        }.parallel()
+            .and(ThreadType.UI) { this.imageView.setImageBitmap(this.bitmap) }
     }
 
     private fun initializeImage(width: Int, height: Int)

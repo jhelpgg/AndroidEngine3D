@@ -8,7 +8,6 @@
 
 package fr.jhelp.animations
 
-import fr.jhelp.tasks.IndependentThread
 import fr.jhelp.tasks.ThreadType
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -30,7 +29,7 @@ fun animationTask(threadType: ThreadType, task: () -> Unit) =
 class AnimationTask<P>(private val threadType: ThreadType, private val parameter: P,
                        private val task: (P) -> Unit) : Animation(25)
 {
-    constructor(parameter: P, task: (P) -> Unit) : this(IndependentThread, parameter, task)
+    constructor(parameter: P, task: (P) -> Unit) : this(ThreadType.SHORT, parameter, task)
 
     private val played = AtomicBoolean(false)
 
@@ -43,7 +42,7 @@ class AnimationTask<P>(private val threadType: ThreadType, private val parameter
     {
         if (!this.played.getAndSet(true))
         {
-            this.threadType(this.parameter, this.task)
+            this.threadType.parallel(this.parameter, this.task)
         }
 
         return false

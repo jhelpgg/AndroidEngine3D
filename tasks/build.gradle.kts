@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 /*
  *  <h1>License :</h1> <br/>
  * The following code is deliver as is. <br/>

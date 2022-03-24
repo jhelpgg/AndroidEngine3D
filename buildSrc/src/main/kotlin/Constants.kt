@@ -8,8 +8,8 @@
 
 object Constants
 {
-    const val jhelpAndroidSDKversion = "1.1.2"
-    const val jhelpAndroidSDKversionCode = 1_001_002
+    const val jhelpAndroidSDKversion = "1.2.0"
+    const val jhelpAndroidSDKversionCode = 1_002_000
     const val compileSdkVersion = 31
     const val minSdkVersion = 24
     const val targetSdkVersion = 31
