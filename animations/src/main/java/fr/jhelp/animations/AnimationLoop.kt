@@ -28,6 +28,9 @@ class AnimationLoop(private val startAnimation: Animation,
     constructor(loopAnimation: Animation) :
             this(AnimationPause(1), loopAnimation, AnimationPause(1))
 
+    /**
+     * Initialize animation for play from the start
+     */
     override fun initialize()
     {
         when (this.status.get())
@@ -44,6 +47,9 @@ class AnimationLoop(private val startAnimation: Animation,
         this.startAnimation.start()
     }
 
+    /**
+     * Play animation at given frame
+     */
     override fun animate(frame: Float): Boolean
     {
         when (this.status.get())

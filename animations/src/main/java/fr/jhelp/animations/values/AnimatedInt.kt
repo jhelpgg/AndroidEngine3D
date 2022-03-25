@@ -8,6 +8,11 @@
 
 package fr.jhelp.animations.values
 
+/**
+ * Animated float value
+ *
+ * Since its an "animated" value, value may changed each time ist is requested
+ */
 class AnimatedInt(value: Int = 0)
     : AnimatedValue<Int, AnimationIntValue>(value,
                                             { reference -> AnimationIntValue(reference) })

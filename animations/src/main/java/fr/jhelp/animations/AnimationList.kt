@@ -17,6 +17,9 @@ class AnimationList() : Animation(25)
     private var started = false
     private var index = 0
 
+    /**
+     * Add animation to the list
+     */
     fun add(animation: Animation)
     {
         synchronized(this.animations)
@@ -25,12 +28,19 @@ class AnimationList() : Animation(25)
         }
     }
 
+    /**
+     * Called when animation list must be initialized or re-initialized
+     */
     override fun initialize()
     {
         this.started = false
         this.index = 0
     }
 
+    /**
+     * Place animation at given frame
+     *  @return `true` if the animation continue. `false` if animation is finished
+     */
     override fun animate(frame: Float): Boolean
     {
         val animation =

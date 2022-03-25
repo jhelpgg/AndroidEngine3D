@@ -16,6 +16,9 @@ class AnimationParallel : Animation(25)
     private val animations = ArrayList<Animation>()
     private var length = 0
 
+    /**
+     * Add animation to play in "same time"
+     */
     fun add(animation: Animation)
     {
         synchronized(this.animations)
@@ -24,6 +27,9 @@ class AnimationParallel : Animation(25)
         }
     }
 
+    /**
+     * Initialize animation to play at start
+     */
     override fun initialize()
     {
         synchronized(this.animations)
@@ -37,6 +43,9 @@ class AnimationParallel : Animation(25)
         }
     }
 
+    /**
+     * Animate animation for given frame
+     */
     override fun animate(frame: Float): Boolean
     {
         var animate = false

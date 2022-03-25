@@ -10,9 +10,15 @@ package fr.jhelp.animations.values
 
 import java.util.concurrent.atomic.AtomicReference
 
+/**
+ * Animated flot that have frame like milestone value must pass at given ime after start or at specific frame
+ */
 class AnimationFloatValue(reference: AtomicReference<Float>) :
     AnimationValue<Float>(reference)
 {
+    /**
+     * Called each time value should be interpolated
+     */
     override fun interpolateValue(animated: AtomicReference<Float>,
                                   before: Float, after: Float,
                                   percent: Float)

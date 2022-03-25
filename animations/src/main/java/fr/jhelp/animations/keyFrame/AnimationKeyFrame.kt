@@ -55,11 +55,23 @@ abstract class AnimationKeyFrame<A, V : Any>(private val animated: A, fps: Int) 
      */
     protected abstract fun setValue(animated: A, value: V)
 
+    /**
+     * Add frame base on time from the number milliseconds after animation started
+     * @param milliseconds Number of milliseconds after start where the value set
+     * @param value Value specified for this specific time
+     * @param interpolation : Interpolation to go from previous value (or value when animation started if no previous)
+     */
     fun time(milliseconds: Int, value: V, interpolation: Interpolation = LinearInterpolation)
     {
         this.frame(this.millisecondsToFrame(milliseconds), value, interpolation)
     }
 
+    /**
+     * Add frame base on number of frame after animation started
+     * @param frame Number of frames after start where the value set
+     * @param value Value specified for this specific frame
+     * @param interpolation : Interpolation to go from previous value (or value when animation started if no previous)
+     */
     fun frame(frame: Int, value: V, interpolation: Interpolation = LinearInterpolation)
     {
         if (frame < 0)
@@ -84,11 +96,17 @@ abstract class AnimationKeyFrame<A, V : Any>(private val animated: A, fps: Int) 
         }
     }
 
+    /**
+     * Called when animation initialized
+     */
     final override fun initialize()
     {
         this.startValue = this.obtainValue(this.animated)
     }
 
+    /**
+     * clear all registered frames
+     */
     fun clear()
     {
         synchronized(this.keyFrames)
@@ -97,6 +115,12 @@ abstract class AnimationKeyFrame<A, V : Any>(private val animated: A, fps: Int) 
         }
     }
 
+    /**
+     * Calle to place to animation at specific frame
+     * @param frame Frame position for compute the calue
+     * @return `true`if animation should continue (given frame not reach the end).
+     * `false` to stop animation (it also means their no more change after given frame)
+     */
     final override fun animate(frame: Float): Boolean
     {
         synchronized(this.keyFrames)

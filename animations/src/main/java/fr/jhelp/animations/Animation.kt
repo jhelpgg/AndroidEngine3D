@@ -40,6 +40,9 @@ abstract class Animation(fps: Int)
      */
     open fun finished() = Unit
 
+    /**
+     * Start the animation
+     */
     fun start()
     {
         this.statTime = SystemClock.uptimeMillis()
@@ -47,6 +50,11 @@ abstract class Animation(fps: Int)
         this.animate(0f)
     }
 
+    /**
+     * Animate the animation, it computes the value depends the last time [start] was called
+     *
+     *  @return `true` if the animation continue. `false` if animation is finished
+     */
     fun animate(): Boolean =
         this.animate(((SystemClock.uptimeMillis() - this.statTime) * this.fps) / 1000f)
 
