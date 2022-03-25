@@ -1,0 +1,12 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:fr.jhelp.security////PointingToDeclaration/security/fr.jhelp.security/index.html
+$dokka.location:fr.jhelp.security//decrypt/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function0[TypeParam(bounds=[java.io.OutputStream])]#kotlin.Function1[java.lang.Exception,kotlin.Unit]/PointingToDeclaration/security/fr.jhelp.security/decrypt.html
+$dokka.location:fr.jhelp.security//encrypt/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function0[TypeParam(bounds=[java.io.OutputStream])]#kotlin.Function1[java.lang.Exception,kotlin.Unit]/PointingToDeclaration/security/fr.jhelp.security/encrypt.html
+$dokka.location:fr.jhelp.security/Security///PointingToDeclaration/security/fr.jhelp.security/-security/index.html
+$dokka.location:fr.jhelp.security/Security/decrypt/#java.io.InputStream#java.io.OutputStream/PointingToDeclaration/security/fr.jhelp.security/-security/decrypt.html
+$dokka.location:fr.jhelp.security/Security/decrypt/#kotlin.String/PointingToDeclaration/security/fr.jhelp.security/-security/decrypt.html
+$dokka.location:fr.jhelp.security/Security/encrypt/#java.io.InputStream#java.io.OutputStream/PointingToDeclaration/security/fr.jhelp.security/-security/encrypt.html
+$dokka.location:fr.jhelp.security/Security/encrypt/#kotlin.String/PointingToDeclaration/security/fr.jhelp.security/-security/encrypt.html
+fr.jhelp.security
+

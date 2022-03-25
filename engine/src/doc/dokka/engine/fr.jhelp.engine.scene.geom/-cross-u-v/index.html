@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>CrossUV</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>  </head>
+  <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../../index.html">engine</a></div>
+      <div></div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div class="main-content" id="content" pageIds="engine::fr.jhelp.engine.scene.geom/CrossUV///PointingToDeclaration//-1683276876">
+          <div class="breadcrumbs"><a href="../../../index.html">engine</a>/<a href="../index.html">fr.jhelp.engine.scene.geom</a>/<a href="index.html">CrossUV</a></div>
+          <div class="cover ">
+            <h1 class="cover"><span>Cross</span><wbr></wbr><span><span>UV</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">CrossUV</a><span class="token punctuation">(</span>u1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>u2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>v1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>v2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>v3<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">)</span> : <a href="../-box-u-v/index.html">BoxUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">UV are place on cross like this:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">      0   u1  u2  1
+    0 +---+---+---+
+      | . | T | . |
+    v1+---+---+---+
+      | L | F | R |
+    v2+---+---+---+
+      | . | B | . |
+    v3+---+---+---+
+      | . | b | . |
+    1 +---+---+---+</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Where:</p><ul><li><p class="paragraph"><strong>T</strong> : Applied on top face</p></li><li><p class="paragraph"><strong>L</strong> : Applied on left face</p></li><li><p class="paragraph"><strong>F</strong> : Applied on face face</p></li><li><p class="paragraph"><strong>R</strong> : Applied on right face</p></li><li><p class="paragraph"><strong>B</strong> : Applied on bottom face</p></li><li><p class="paragraph"><strong>b</strong> : Applied on back face</p></li><li><p class="paragraph">Other part of texture are not used</p></li></ul></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>u1</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">U border between left and face</p></div></div></div></div></div><div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>u2</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">U border between face and right</p></div></div></div></div></div><div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>v1</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">V border between top and face</p></div></div></div></div></div><div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>v2</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">V border between face and bottom</p></div></div></div></div></div><div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>v3</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">V border between bottom and back</p></div></div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="-973055835%2FConstructors%2F-1683276876" anchor-label="CrossUV" id="-973055835%2FConstructors%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-cross-u-v.html"><span>Cross</span><wbr></wbr><span><span>UV</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-973055835%2FConstructors%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-cross-u-v.html"><span class="token function">CrossUV</span></a><span class="token punctuation">(</span>u1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>1f / 3f<span class="token punctuation">, </span>u2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>2f / 3f<span class="token punctuation">, </span>v1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.25f</span><span class="token punctuation">, </span>v2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.5f</span><span class="token punctuation">, </span>v3<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.75f</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="-1656043191%2FProperties%2F-1683276876" anchor-label="back" id="-1656043191%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../-box-u-v/back.html">back</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1656043191%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="-1656043191%2FProperties%2F-1683276876" anchor-label="back" id="-1656043191%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-box-u-v/back.html">back</a><span class="token operator">: </span><a href="../-face-u-v/index.html">FaceUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1876889541%2FProperties%2F-1683276876" anchor-label="bottom" id="1876889541%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../-box-u-v/bottom.html">bottom</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1876889541%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="1876889541%2FProperties%2F-1683276876" anchor-label="bottom" id="1876889541%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-box-u-v/bottom.html">bottom</a><span class="token operator">: </span><a href="../-face-u-v/index.html">FaceUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="930244755%2FProperties%2F-1683276876" anchor-label="face" id="930244755%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../-box-u-v/face.html">face</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="930244755%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="930244755%2FProperties%2F-1683276876" anchor-label="face" id="930244755%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-box-u-v/face.html">face</a><span class="token operator">: </span><a href="../-face-u-v/index.html">FaceUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1169886679%2FProperties%2F-1683276876" anchor-label="left" id="-1169886679%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../-box-u-v/left.html">left</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1169886679%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="-1169886679%2FProperties%2F-1683276876" anchor-label="left" id="-1169886679%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-box-u-v/left.html">left</a><span class="token operator">: </span><a href="../-face-u-v/index.html">FaceUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-673340690%2FProperties%2F-1683276876" anchor-label="right" id="-673340690%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../-box-u-v/right.html">right</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-673340690%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="-673340690%2FProperties%2F-1683276876" anchor-label="right" id="-673340690%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-box-u-v/right.html">right</a><span class="token operator">: </span><a href="../-face-u-v/index.html">FaceUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-790751979%2FProperties%2F-1683276876" anchor-label="top" id="-790751979%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../-box-u-v/top.html">top</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-790751979%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="-790751979%2FProperties%2F-1683276876" anchor-label="top" id="-790751979%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-box-u-v/top.html">top</a><span class="token operator">: </span><a href="../-face-u-v/index.html">FaceUV</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

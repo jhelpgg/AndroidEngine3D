@@ -1,0 +1,52 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:fr.jhelp.graphics.chart.model////PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/index.html
+$dokka.location:fr.jhelp.graphics.chart.model/ChartData///PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/-chart-data/index.html
+$dokka.location:fr.jhelp.graphics.chart.model/ChartData/addValue/#kotlin.Float/PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/-chart-data/add-value.html
+$dokka.location:fr.jhelp.graphics.chart.model/ChartData/animated/#/PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/-chart-data/animated.html
+$dokka.location:fr.jhelp.graphics.chart.model/ChartData/get/#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/-chart-data/get.html
+$dokka.location:fr.jhelp.graphics.chart.model/ChartData/set/#kotlin.Int#kotlin.Float/PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/-chart-data/set.html
+$dokka.location:fr.jhelp.graphics.chart.model/ChartData/size/#/PointingToDeclaration/graphics/fr.jhelp.graphics.chart.model/-chart-data/size.html
+$dokka.location:fr.jhelp.graphics.chart////PointingToDeclaration/graphics/fr.jhelp.graphics.chart/index.html
+$dokka.location:fr.jhelp.graphics.chart/BarChartView///PointingToDeclaration/graphics/fr.jhelp.graphics.chart/-bar-chart-view/index.html
+$dokka.location:fr.jhelp.graphics.chart/BarChartView/BarChartView/#android.content.Context#android.util.AttributeSet?#kotlin.Int#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.chart/-bar-chart-view/-bar-chart-view.html
+$dokka.location:fr.jhelp.graphics.chart/BarChartView/BarChartView/#android.content.Context#android.util.AttributeSet?#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.chart/-bar-chart-view/-bar-chart-view.html
+$dokka.location:fr.jhelp.graphics.chart/BarChartView/BarChartView/#android.content.Context#android.util.AttributeSet?/PointingToDeclaration/graphics/fr.jhelp.graphics.chart/-bar-chart-view/-bar-chart-view.html
+$dokka.location:fr.jhelp.graphics.chart/BarChartView/BarChartView/#android.content.Context/PointingToDeclaration/graphics/fr.jhelp.graphics.chart/-bar-chart-view/-bar-chart-view.html
+$dokka.location:fr.jhelp.graphics.progress.circle////PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/index.html
+$dokka.location:fr.jhelp.graphics.progress.circle//progressCircleShape/kotlin.Int#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/progress-circle-shape.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleShape.FULL_CIRCLE///PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-shape/-f-u-l-l_-c-i-r-c-l-e/index.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleShape.HALF_RING///PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-shape/-h-a-l-f_-r-i-n-g/index.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleShape.RING///PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-shape/-r-i-n-g/index.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleShape///PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-shape/index.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleShape/value/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-shape/value.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView///PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/index.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/ProgressCircleView/#android.content.Context#android.util.AttributeSet?#kotlin.Int#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/-progress-circle-view.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/ProgressCircleView/#android.content.Context#android.util.AttributeSet?#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/-progress-circle-view.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/ProgressCircleView/#android.content.Context#android.util.AttributeSet?/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/-progress-circle-view.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/ProgressCircleView/#android.content.Context/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/-progress-circle-view.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/borderColor/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/border-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/endColor/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/end-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/percent/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/percent.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/setBorderColor/#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/set-border-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/setEndColor/#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/set-end-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/setPercent/#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/set-percent.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/setShape/#fr.jhelp.graphics.progress.circle.ProgressCircleShape/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/set-shape.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/setStartColor/#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/set-start-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/setTextColor/#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/set-text-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/shape/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/shape.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/startColor/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/start-color.html
+$dokka.location:fr.jhelp.graphics.progress.circle/ProgressCircleView/textColor/#/PointingToDeclaration/graphics/fr.jhelp.graphics.progress.circle/-progress-circle-view/text-color.html
+$dokka.location:fr.jhelp.graphics.view////PointingToDeclaration/graphics/fr.jhelp.graphics.view/index.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView///PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/index.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView/GraphicView/#android.content.Context#android.util.AttributeSet?#kotlin.Int#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/-graphic-view.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView/GraphicView/#android.content.Context#android.util.AttributeSet?#kotlin.Int/PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/-graphic-view.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView/GraphicView/#android.content.Context#android.util.AttributeSet?/PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/-graphic-view.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView/GraphicView/#android.content.Context/PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/-graphic-view.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView/animated/#/PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/animated.html
+$dokka.location:fr.jhelp.graphics.view/GraphicView/setAnimated/#kotlin.Boolean/PointingToDeclaration/graphics/fr.jhelp.graphics.view/-graphic-view/set-animated.html
+fr.jhelp.graphics.chart
+fr.jhelp.graphics.chart.model
+fr.jhelp.graphics.progress.circle
+fr.jhelp.graphics.view
+

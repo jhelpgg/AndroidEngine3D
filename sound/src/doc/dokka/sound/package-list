@@ -1,0 +1,25 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:fr.jhelp.sound////PointingToDeclaration/sound/fr.jhelp.sound/index.html
+$dokka.location:fr.jhelp.sound/Sound///PointingToDeclaration/sound/fr.jhelp.sound/-sound/index.html
+$dokka.location:fr.jhelp.sound/Sound/Sound/#kotlin.Int#kotlin.Float#kotlin.Float#kotlin.Int/PointingToDeclaration/sound/fr.jhelp.sound/-sound/-sound.html
+$dokka.location:fr.jhelp.sound/Sound/leftVolume/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/left-volume.html
+$dokka.location:fr.jhelp.sound/Sound/loop/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/loop.html
+$dokka.location:fr.jhelp.sound/Sound/pause/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/pause.html
+$dokka.location:fr.jhelp.sound/Sound/play/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/play.html
+$dokka.location:fr.jhelp.sound/Sound/resume/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/resume.html
+$dokka.location:fr.jhelp.sound/Sound/rightVolume/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/right-volume.html
+$dokka.location:fr.jhelp.sound/Sound/setVolume/#kotlin.Float#kotlin.Float/PointingToDeclaration/sound/fr.jhelp.sound/-sound/set-volume.html
+$dokka.location:fr.jhelp.sound/Sound/stop/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound/stop.html
+$dokka.location:fr.jhelp.sound/SoundManager///PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/index.html
+$dokka.location:fr.jhelp.sound/SoundManager/background/#kotlin.Int/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/background.html
+$dokka.location:fr.jhelp.sound/SoundManager/effect/#kotlin.Int/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/effect.html
+$dokka.location:fr.jhelp.sound/SoundManager/pause/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/pause.html
+$dokka.location:fr.jhelp.sound/SoundManager/pause/#fr.jhelp.sound.Sound/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/pause.html
+$dokka.location:fr.jhelp.sound/SoundManager/resume/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/resume.html
+$dokka.location:fr.jhelp.sound/SoundManager/resume/#fr.jhelp.sound.Sound/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/resume.html
+$dokka.location:fr.jhelp.sound/SoundManager/sound/#fr.jhelp.sound.Sound/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/sound.html
+$dokka.location:fr.jhelp.sound/SoundManager/stop/#fr.jhelp.sound.Sound/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/stop.html
+$dokka.location:fr.jhelp.sound/SoundManager/stopSounds/#/PointingToDeclaration/sound/fr.jhelp.sound/-sound-manager/stop-sounds.html
+fr.jhelp.sound
+

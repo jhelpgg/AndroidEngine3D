@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("org.jetbrains.dokka")
 }
 
 android {
@@ -35,4 +36,8 @@ dependencies {
     implementation(project(path = ":images"))
     implementation(project(path = ":sound"))
     implementation(project(path = ":animations"))
+}
+
+tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
+    outputDirectory.set(File(buildDir.parentFile,"src/doc/dokka"))
 }

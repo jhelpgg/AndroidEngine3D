@@ -1,0 +1,301 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>FutureResult</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>  </head>
+  <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../../index.html">tasks</a></div>
+      <div></div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div class="main-content" id="content" pageIds="tasks::fr.jhelp.tasks.promise/FutureResult///PointingToDeclaration//-912963026">
+          <div class="breadcrumbs"><a href="../../../index.html">tasks</a>/<a href="../index.html">fr.jhelp.tasks.promise</a>/<a href="index.html">FutureResult</a></div>
+          <div class="cover ">
+            <h1 class="cover"><span>Future</span><wbr></wbr><span><span>Result</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">R</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Future result of something</p><p class="paragraph">The result is said complete when computing finished. That is to say when task succeed to compute OR an error happen while computing OR task canceled</p><p class="paragraph">Its possible to chain an other task to do when task complete, by example say :</p><ul><li><p class="paragraph">When result succeed , use the result to do this other task</p></li><li><p class="paragraph">When result complete, do something</p></li><li><p class="paragraph">If result fail, then do this</p></li><li><p class="paragraph">...</p></li></ul></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Extensions">Extensions</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="-1217229920%2FFunctions%2F-912963026" anchor-label="and" id="-1217229920%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="and.html"><span><span>and</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1217229920%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="and.html"><span class="token function">and</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="and.html">R1</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result complete and if succeed to compute</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1972813838%2FFunctions%2F-912963026" anchor-label="andIf" id="-1972813838%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="and-if.html"><span>and</span><wbr></wbr><span><span>If</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1972813838%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="and-if.html"><span class="token function">andIf</span></a><span class="token punctuation">(</span>condition<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="and-if.html">R1</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in <a href="../../fr.jhelp.tasks/-thread-type/-s-h-o-r-t/index.html">ThreadType.SHORT</a>, when result complete and if succeed to compute and result match given condition</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="and-if.html"><span class="token function">andIf</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token punctuation">, </span>condition<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="and-if.html">R1</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result complete and if succeed to compute and result match given condition</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="179901180%2FFunctions%2F-912963026" anchor-label="andIfUnwrap" id="179901180%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="and-if-unwrap.html"><span>and</span><wbr></wbr><span>If</span><wbr></wbr><span><span>Unwrap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="179901180%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if-unwrap.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="and-if-unwrap.html"><span class="token function">andIfUnwrap</span></a><span class="token punctuation">(</span>condition<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in <a href="../../fr.jhelp.tasks/-thread-type/-s-h-o-r-t/index.html">ThreadType.SHORT</a>, when result complete and if succeed to compute and result match given condition</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if-unwrap.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="and-if-unwrap.html"><span class="token function">andIfUnwrap</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token punctuation">, </span>condition<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-if-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result complete and if succeed to compute and result match given condition</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="284887615%2FFunctions%2F-912963026" anchor-label="andUnwrap" id="284887615%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="and-unwrap.html"><span>and</span><wbr></wbr><span><span>Unwrap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="284887615%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-unwrap.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="and-unwrap.html"><span class="token function">andUnwrap</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="and-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result complete and if succeed to compute</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-743951113%2FFunctions%2F-912963026" anchor-label="cancel" id="-743951113%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="cancel.html"><span><span>cancel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-743951113%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="cancel.html"><span class="token function">cancel</span></a><span class="token punctuation">(</span>reason<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Try to cancel task associated to the thread</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1925993289%2FFunctions%2F-912963026" anchor-label="cancelReason" id="1925993289%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="cancel-reason.html"><span>cancel</span><wbr></wbr><span><span>Reason</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1925993289%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="cancel-reason.html"><span class="token function">cancelReason</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Cancellation reason.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1544557259%2FFunctions%2F-912963026" anchor-label="error" id="1544557259%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="error.html"><span><span>error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1544557259%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="error.html"><span class="token function">error</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/Exception.html">Exception</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Current error.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-832343825%2FFunctions%2F-912963026" anchor-label="invoke" id="-832343825%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="invoke.html"><span><span>invoke</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-832343825%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">R</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Block caller thread until result iis known, an error happen or cancel is triggered If one of those events already happen, thread is not blocked.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1742978267%2FFunctions%2F-912963026" anchor-label="onCancel" id="-1742978267%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="on-cancel.html"><span>on</span><wbr></wbr><span><span>Cancel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1742978267%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-cancel.html"><span class="token function">onCancel</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>cancelListener<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">R</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result canceled</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="124851750%2FFunctions%2F-912963026" anchor-label="onError" id="124851750%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="on-error.html"><span>on</span><wbr></wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="124851750%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-error.html"><span class="token function">onError</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>errorListener<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html">Exception</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">R</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result failed</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1726798744%2FFunctions%2F-912963026" anchor-label="register" id="1726798744%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="register.html"><span><span>register</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1726798744%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="register.html"><span class="token function">register</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>listener<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Register listener called when result is known. If already know, listener is callback immediately</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1260118709%2FFunctions%2F-912963026" anchor-label="status" id="1260118709%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="status.html"><span><span>status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1260118709%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="status.html"><span class="token function">status</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-future-result-status/index.html">FutureResultStatus</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Current future status.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1221131558%2FFunctions%2F-912963026" anchor-label="then" id="-1221131558%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="then.html"><span><span>then</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1221131558%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="then.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="then.html"><span class="token function">then</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="then.html">R1</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="then.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result complete</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-920533461%2FFunctions%2F-912963026" anchor-label="thenUnwrap" id="-920533461%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="then-unwrap.html"><span>then</span><wbr></wbr><span><span>Unwrap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-920533461%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="then-unwrap.html">R1</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="then-unwrap.html"><span class="token function">thenUnwrap</span></a><span class="token punctuation">(</span>threadType<span class="token operator">: </span><a href="../../fr.jhelp.tasks/-thread-type/index.html">ThreadType</a><span class="token operator"> = </span>ThreadType.SHORT<span class="token punctuation">, </span>continuation<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="then-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="then-unwrap.html">R1</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Do task, in specified thread type, when result complete</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="912210683%2FFunctions%2F-912963026" anchor-label="toString" id="912210683%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="to-string.html"><span>to</span><wbr></wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="912210683%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">String representation</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-811779879%2FFunctions%2F-912963026" anchor-label="waitComplete" id="-811779879%2FFunctions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="wait-complete.html"><span>wait</span><wbr></wbr><span><span>Complete</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-811779879%2FFunctions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="wait-complete.html"><span class="token function">waitComplete</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-future-result-status/index.html">FutureResultStatus</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Block caller thread until result iis known, an error happen or cancel is triggered If one of those events already happen, thread is not blocked.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="tabbedcontent">Extensions</h2>
+              <div class="table" data-togglable="Extensions"><a data-name="1274532381%2FExtensions%2F-912963026" anchor-label="unwrap" id="1274532381%2FExtensions%2F-912963026" data-filterable-set=":tasks:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":tasks:dokkaHtml/release" data-filterable-set=":tasks:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../unwrap.html"><span><span>unwrap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1274532381%2FExtensions%2F-912963026"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":tasks:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../unwrap.html">R</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../unwrap.html">R</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../unwrap.html"><span class="token function">unwrap</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">FutureResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../unwrap.html">R</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Simplify a FutureResult to a FutureResult<R></p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

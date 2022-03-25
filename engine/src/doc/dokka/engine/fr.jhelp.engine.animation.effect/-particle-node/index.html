@@ -1,0 +1,273 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ParticleNode</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>  </head>
+  <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../../index.html">engine</a></div>
+      <div></div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div class="main-content" id="content" pageIds="engine::fr.jhelp.engine.animation.effect/ParticleNode///PointingToDeclaration//-1683276876">
+          <div class="breadcrumbs"><a href="../../../index.html">engine</a>/<a href="../index.html">fr.jhelp.engine.animation.effect</a>/<a href="index.html">ParticleNode</a></div>
+          <div class="cover ">
+            <h1 class="cover"><span>Particle</span><wbr></wbr><span><span>Node</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ParticleNode</a><span class="token punctuation">(</span>numberParticle<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span>lifeTimeInFrame<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>startEmissionFrame<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>stopEmissionFrame<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Particle node emits one or several <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span></p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s can be emits on same time or one after other. To regulate emission :</p><ul><li><p class="paragraph"><i>startEmissionFrame</i> : Number of frames to wait before launch the first <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span> after <a href="../-particle-effect/index.html">ParticleEffect</a> is launch</p></li><li><p class="paragraph"><i>endEmissionFrame</i> : Number of frames to wait for stop emitting <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span> after <a href="../-particle-effect/index.html">ParticleEffect</a> is launch So <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span> are emits between <i>startEmissionFrame</i> and <i>endEmissionFrame</i> :</p></li><li><p class="paragraph">If they are equals, all particles are emits in same time.</p></li><li><p class="paragraph">Else, particles are emitting regularly during the laps time.</p></li></ul><p class="paragraph">Each <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span> will have the given life time, they disappear after the defined number of frame.</p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s can start at same position or in position choose randomly inside a box, with <a href="set-position.html">setPosition</a>. If use the one coordinates version, all <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start at same position. If use the two coordinates version, <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start position are chose randomly inside box defined by the two coordinates</p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s have a speed direction, this direction can be the same or chose inside a box, like position. With <a href="set-speed-direction.html">setSpeedDirection</a></p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s have an acceleration direction, this direction can be the same or chose inside a box, like position. With <a href="set-acceleration-direction.html">setAccelerationDirection</a></p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s rotation can change during animation <a href="set-angle.html">setAngle</a>, <a href="set-speed-rotation.html">setSpeedRotation</a> and <a href="set-acceleration-rotation.html">setAccelerationRotation</a> regulate respectively the start angle, speed angle change and acceleration of angle.</p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s scale can change during animation <a href="set-scale.html">setScale</a>, <a href="set-speed-scale.html">setSpeedScale</a> and <a href="set-acceleration-scale.html">setAccelerationScale</a> regulate respectively the start scale, speed cale direction and acceleration scale direction.</p><p class="paragraph"><a href="texture.html">texture</a> defines the texture used by <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s. If <code class="lang-kotlin">null</code> no texture and only the diffuse color</p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s' diffuse color can change during animation and start/end can choose randomly depends on number arguments involved in <a href="set-diffuse-color.html">setDiffuseColor</a>. The change color is not necessary linear, an interpolation method can be set with <a href="diffuse-interpolation.html">diffuseInterpolation</a></p><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s' alpha value can change during animation <a href="set-alpha.html">setAlpha</a> defines the start and the end value. The way of the change can be choose with <a href="alpha-interpolation.html">alphaInterpolation</a></p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="1710950391%2FConstructors%2F-1683276876" anchor-label="ParticleNode" id="1710950391%2FConstructors%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-particle-node.html"><span>Particle</span><wbr></wbr><span><span>Node</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1710950391%2FConstructors%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-particle-node.html"><span class="token function">ParticleNode</span></a><span class="token punctuation">(</span>numberParticle<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span>lifeTimeInFrame<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>startEmissionFrame<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span>stopEmissionFrame<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>startEmissionFrame<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="-504361095%2FFunctions%2F-1683276876" anchor-label="setAccelerationDirection" id="-504361095%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-acceleration-direction.html"><span>set</span><wbr></wbr><span>Acceleration</span><wbr></wbr><span><span>Direction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-504361095%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-acceleration-direction.html"><span class="token function">setAccelerationDirection</span></a><span class="token punctuation">(</span>x1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>y1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>z1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>x2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>x1<span class="token punctuation">, </span>y2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>y1<span class="token punctuation">, </span>z2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>z1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s acceleration direction box definition.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1686916552%2FFunctions%2F-1683276876" anchor-label="setAccelerationRotation" id="1686916552%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-acceleration-rotation.html"><span>set</span><wbr></wbr><span>Acceleration</span><wbr></wbr><span><span>Rotation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1686916552%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-acceleration-rotation.html"><span class="token function">setAccelerationRotation</span></a><span class="token punctuation">(</span>angle1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>angle2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>angle1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s acceleration for rotation angle</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1931491452%2FFunctions%2F-1683276876" anchor-label="setAccelerationScale" id="1931491452%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-acceleration-scale.html"><span>set</span><wbr></wbr><span>Acceleration</span><wbr></wbr><span><span>Scale</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1931491452%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-acceleration-scale.html"><span class="token function">setAccelerationScale</span></a><span class="token punctuation">(</span>scale1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scale2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scale1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s acceleration for scale in all direction</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-acceleration-scale.html"><span class="token function">setAccelerationScale</span></a><span class="token punctuation">(</span>scaleX1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleY1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleZ1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleX2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleX1<span class="token punctuation">, </span>scaleY2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleY1<span class="token punctuation">, </span>scaleZ2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleZ1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s acceleration for scale direction box definition.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1897600696%2FFunctions%2F-1683276876" anchor-label="setAlpha" id="1897600696%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-alpha.html"><span>set</span><wbr></wbr><span><span>Alpha</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1897600696%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-alpha.html"><span class="token function">setAlpha</span></a><span class="token punctuation">(</span>alphaStart<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>alphaEnd<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>alphaStart<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Define alpha value.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1943058157%2FFunctions%2F-1683276876" anchor-label="setAngle" id="1943058157%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-angle.html"><span>set</span><wbr></wbr><span><span>Angle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1943058157%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-angle.html"><span class="token function">setAngle</span></a><span class="token punctuation">(</span>angle1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>angle2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>angle1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start angle definition in degree.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-707064277%2FFunctions%2F-1683276876" anchor-label="setDiffuseColor" id="-707064277%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-diffuse-color.html"><span>set</span><wbr></wbr><span>Diffuse</span><wbr></wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-707064277%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-diffuse-color.html"><span class="token function">setDiffuseColor</span></a><span class="token punctuation">(</span>diffuseColorStart1<span class="token operator">: </span><a href="../../fr.jhelp.engine.scene/-color3-d/index.html">Color3D</a><span class="token punctuation">, </span>diffuseColorEnd1<span class="token operator">: </span><a href="../../fr.jhelp.engine.scene/-color3-d/index.html">Color3D</a><span class="token operator"> = </span>diffuseColorStart1<span class="token punctuation">, </span>diffuseColorStart2<span class="token operator">: </span><a href="../../fr.jhelp.engine.scene/-color3-d/index.html">Color3D</a><span class="token operator"> = </span>diffuseColorStart1<span class="token punctuation">, </span>diffuseColorEnd2<span class="token operator">: </span><a href="../../fr.jhelp.engine.scene/-color3-d/index.html">Color3D</a><span class="token operator"> = </span>diffuseColorEnd1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Define diffuse color for particle</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-312860013%2FFunctions%2F-1683276876" anchor-label="setPosition" id="-312860013%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-position.html"><span>set</span><wbr></wbr><span><span>Position</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-312860013%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-position.html"><span class="token function">setPosition</span></a><span class="token punctuation">(</span>x1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>y1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>z1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>x2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>x1<span class="token punctuation">, </span>y2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>y1<span class="token punctuation">, </span>z2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>z1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start position box definition.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1352567364%2FFunctions%2F-1683276876" anchor-label="setScale" id="-1352567364%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-scale.html"><span>set</span><wbr></wbr><span><span>Scale</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1352567364%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-scale.html"><span class="token function">setScale</span></a><span class="token punctuation">(</span>scale1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scale2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scale1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start scale value</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-scale.html"><span class="token function">setScale</span></a><span class="token punctuation">(</span>scaleX1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleY1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleZ1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleX2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleX1<span class="token punctuation">, </span>scaleY2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleY1<span class="token punctuation">, </span>scaleZ2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleZ1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start scale box definition.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1577670878%2FFunctions%2F-1683276876" anchor-label="setSpeedDirection" id="-1577670878%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-speed-direction.html"><span>set</span><wbr></wbr><span>Speed</span><wbr></wbr><span><span>Direction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1577670878%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-speed-direction.html"><span class="token function">setSpeedDirection</span></a><span class="token punctuation">(</span>x1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>y1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>z1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>x2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>x1<span class="token punctuation">, </span>y2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>y1<span class="token punctuation">, </span>z2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>z1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start speed direction box definition.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1729673855%2FFunctions%2F-1683276876" anchor-label="setSpeedRotation" id="1729673855%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-speed-rotation.html"><span>set</span><wbr></wbr><span>Speed</span><wbr></wbr><span><span>Rotation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1729673855%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-speed-rotation.html"><span class="token function">setSpeedRotation</span></a><span class="token punctuation">(</span>angle1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>angle2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>angle1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s speed for rotation angle</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2074614764%2FFunctions%2F-1683276876" anchor-label="setSpeedScale" id="2074614764%2FFunctions%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="set-speed-scale.html"><span>set</span><wbr></wbr><span>Speed</span><wbr></wbr><span><span>Scale</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2074614764%2FFunctions%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-speed-scale.html"><span class="token function">setSpeedScale</span></a><span class="token punctuation">(</span>scale1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scale2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scale1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s speed for scale in all direction</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-speed-scale.html"><span class="token function">setSpeedScale</span></a><span class="token punctuation">(</span>scaleX1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleY1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleZ1<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span>scaleX2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleX1<span class="token punctuation">, </span>scaleY2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleY1<span class="token punctuation">, </span>scaleZ2<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>scaleZ1<span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s start speed for scale direction box definition.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="2064276413%2FProperties%2F-1683276876" anchor-label="alphaInterpolation" id="2064276413%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="alpha-interpolation.html">alphaInterpolation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2064276413%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="2064276413%2FProperties%2F-1683276876" anchor-label="alphaInterpolation" id="2064276413%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="alpha-interpolation.html">alphaInterpolation</a><span class="token operator">: </span><span data-unresolved-link="fr.jhelp.animations.interpoolation/Interpolation///PointingToDeclaration/">Interpolation</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2064276413%2FProperties%2F-1683276876" anchor-label="alphaInterpolation" id="2064276413%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><p class="paragraph">Way alpha evolve during animation</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1118726847%2FProperties%2F-1683276876" anchor-label="diffuseInterpolation" id="-1118726847%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="diffuse-interpolation.html">diffuseInterpolation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1118726847%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="-1118726847%2FProperties%2F-1683276876" anchor-label="diffuseInterpolation" id="-1118726847%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="diffuse-interpolation.html">diffuseInterpolation</a><span class="token operator">: </span><span data-unresolved-link="fr.jhelp.animations.interpoolation/Interpolation///PointingToDeclaration/">Interpolation</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1118726847%2FProperties%2F-1683276876" anchor-label="diffuseInterpolation" id="-1118726847%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><p class="paragraph">Way diffuse color evolve during animation</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1818090340%2FProperties%2F-1683276876" anchor-label="texture" id="-1818090340%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":engine:dokkaHtml/release" data-filterable-set=":engine:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="texture.html">texture</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1818090340%2FProperties%2F-1683276876"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":engine:dokkaHtml/release"><a data-name="-1818090340%2FProperties%2F-1683276876" anchor-label="texture" id="-1818090340%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="texture.html">texture</a><span class="token operator">: </span><a href="../../fr.jhelp.engine.scene/-texture/index.html">Texture</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1818090340%2FProperties%2F-1683276876" anchor-label="texture" id="-1818090340%2FProperties%2F-1683276876" data-filterable-set=":engine:dokkaHtml/release"></a><p class="paragraph">Texture used by <span data-unresolved-link="fr.jhelp.engine.animation.effect/Particle///PointingToDeclaration/">Particle</span>s</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

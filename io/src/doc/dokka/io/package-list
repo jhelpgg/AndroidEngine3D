@@ -1,0 +1,23 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:fr.jhelp.io////PointingToDeclaration/io/fr.jhelp.io/index.html
+$dokka.location:fr.jhelp.io//parseFromStream/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function1[TypeParam(bounds=[java.io.InputStream]),TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/io/fr.jhelp.io/parse-from-stream.html
+$dokka.location:fr.jhelp.io//parseFromStream/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function1[TypeParam(bounds=[java.io.InputStream]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/io/fr.jhelp.io/parse-from-stream.html
+$dokka.location:fr.jhelp.io//readFull/java.io.InputStream#kotlin.ByteArray#kotlin.Int#kotlin.Int/PointingToDeclaration/io/fr.jhelp.io/read-full.html
+$dokka.location:fr.jhelp.io//readLines/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function1[kotlin.String,kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/io/fr.jhelp.io/read-lines.html
+$dokka.location:fr.jhelp.io//treatInputOutputStream/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function0[TypeParam(bounds=[java.io.OutputStream])]#kotlin.Function2[TypeParam(bounds=[java.io.InputStream]),TypeParam(bounds=[java.io.OutputStream]),kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/io/fr.jhelp.io/treat-input-output-stream.html
+$dokka.location:fr.jhelp.io//treatInputStream/#kotlin.Function0[TypeParam(bounds=[java.io.InputStream])]#kotlin.Function1[TypeParam(bounds=[java.io.InputStream]),kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/io/fr.jhelp.io/treat-input-stream.html
+$dokka.location:fr.jhelp.io//treatOutputStream/#kotlin.Function0[TypeParam(bounds=[java.io.OutputStream])]#kotlin.Function1[TypeParam(bounds=[java.io.OutputStream]),kotlin.Unit]#kotlin.Function1[java.io.IOException,kotlin.Unit]/PointingToDeclaration/io/fr.jhelp.io/treat-output-stream.html
+$dokka.location:fr.jhelp.io//write/java.io.InputStream#java.io.OutputStream/PointingToDeclaration/io/fr.jhelp.io/write.html
+$dokka.location:fr.jhelp.io/StreamArray///PointingToDeclaration/io/fr.jhelp.io/-stream-array/index.html
+$dokka.location:fr.jhelp.io/StreamArray/StreamArray/#/PointingToDeclaration/io/fr.jhelp.io/-stream-array/-stream-array.html
+$dokka.location:fr.jhelp.io/StreamArray/inputStream/#/PointingToDeclaration/io/fr.jhelp.io/-stream-array/input-stream.html
+$dokka.location:fr.jhelp.io/StreamArray/outputStream/#/PointingToDeclaration/io/fr.jhelp.io/-stream-array/output-stream.html
+$dokka.location:fr.jhelp.io/StreamArray/read/#/PointingToDeclaration/io/fr.jhelp.io/-stream-array/read.html
+$dokka.location:fr.jhelp.io/StreamArray/read/#kotlin.ByteArray#kotlin.Int#kotlin.Int/PointingToDeclaration/io/fr.jhelp.io/-stream-array/read.html
+$dokka.location:fr.jhelp.io/StreamArray/size/#/PointingToDeclaration/io/fr.jhelp.io/-stream-array/size.html
+$dokka.location:fr.jhelp.io/StreamArray/skip/#kotlin.Long/PointingToDeclaration/io/fr.jhelp.io/-stream-array/skip.html
+$dokka.location:fr.jhelp.io/StreamArray/write/#kotlin.ByteArray#kotlin.Int#kotlin.Int/PointingToDeclaration/io/fr.jhelp.io/-stream-array/write.html
+$dokka.location:fr.jhelp.io/StreamArray/write/#kotlin.Int/PointingToDeclaration/io/fr.jhelp.io/-stream-array/write.html
+fr.jhelp.io
+

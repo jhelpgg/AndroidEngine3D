@@ -9,6 +9,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("org.jetbrains.dokka")
 }
 
 android {
@@ -56,4 +57,8 @@ dependencies {
     implementation(project(path = ":animations"))
     implementation(project(path = ":models"))
     implementation(project(path = ":provided"))
+}
+
+tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
+    outputDirectory.set(File(buildDir.parentFile,"src/doc/dokka"))
 }

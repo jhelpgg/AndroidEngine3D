@@ -1,0 +1,34 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:fr.jhelp.models.basic////PointingToDeclaration/models/fr.jhelp.models.basic/index.html
+$dokka.location:fr.jhelp.models.basic/BottleShape///PointingToDeclaration/models/fr.jhelp.models.basic/-bottle-shape/index.html
+$dokka.location:fr.jhelp.models.basic/BottleShape/BottleShape/#kotlin.Boolean#kotlin.Float#kotlin.Float#kotlin.Float#kotlin.Boolean/PointingToDeclaration/models/fr.jhelp.models.basic/-bottle-shape/-bottle-shape.html
+$dokka.location:fr.jhelp.models.basic/CylinderShape///PointingToDeclaration/models/fr.jhelp.models.basic/-cylinder-shape/index.html
+$dokka.location:fr.jhelp.models.basic/EggShape///PointingToDeclaration/models/fr.jhelp.models.basic/-egg-shape/index.html
+$dokka.location:fr.jhelp.models.basic/SausageNotCenterShape///PointingToDeclaration/models/fr.jhelp.models.basic/-sausage-not-center-shape/index.html
+$dokka.location:fr.jhelp.models.basic/SausageShape///PointingToDeclaration/models/fr.jhelp.models.basic/-sausage-shape/index.html
+$dokka.location:fr.jhelp.models.basic/ShapeProvider///PointingToDeclaration/models/fr.jhelp.models.basic/-shape-provider/index.html
+$dokka.location:fr.jhelp.models.basic/ShapeProvider/ShapeProvider/#/PointingToDeclaration/models/fr.jhelp.models.basic/-shape-provider/-shape-provider.html
+$dokka.location:fr.jhelp.models.basic/ShapeProvider/obtainShape/#/PointingToDeclaration/models/fr.jhelp.models.basic/-shape-provider/obtain-shape.html
+$dokka.location:fr.jhelp.models.basic/ShapeProvider/quality/#/PointingToDeclaration/models/fr.jhelp.models.basic/-shape-provider/quality.html
+$dokka.location:fr.jhelp.models.basic/ShapeQuality.HIGH///PointingToDeclaration/models/fr.jhelp.models.basic/-shape-quality/-h-i-g-h/index.html
+$dokka.location:fr.jhelp.models.basic/ShapeQuality.LOW///PointingToDeclaration/models/fr.jhelp.models.basic/-shape-quality/-l-o-w/index.html
+$dokka.location:fr.jhelp.models.basic/ShapeQuality.NORMAL///PointingToDeclaration/models/fr.jhelp.models.basic/-shape-quality/-n-o-r-m-a-l/index.html
+$dokka.location:fr.jhelp.models.basic/ShapeQuality///PointingToDeclaration/models/fr.jhelp.models.basic/-shape-quality/index.html
+$dokka.location:fr.jhelp.models.basic/ShapeQuality/pathPrecision/#/PointingToDeclaration/models/fr.jhelp.models.basic/-shape-quality/path-precision.html
+$dokka.location:fr.jhelp.models.basic/ShapeQuality/rotationPrecision/#/PointingToDeclaration/models/fr.jhelp.models.basic/-shape-quality/rotation-precision.html
+$dokka.location:fr.jhelp.models.objects////PointingToDeclaration/models/fr.jhelp.models.objects/index.html
+$dokka.location:fr.jhelp.models.objects/Hat.Companion///PointingToDeclaration/models/fr.jhelp.models.objects/-hat/-companion/index.html
+$dokka.location:fr.jhelp.models.objects/Hat///PointingToDeclaration/models/fr.jhelp.models.objects/-hat/index.html
+$dokka.location:fr.jhelp.models.objects/Hat/Hat/#/PointingToDeclaration/models/fr.jhelp.models.objects/-hat/-hat.html
+$dokka.location:fr.jhelp.models.objects/Hat/material/#/PointingToDeclaration/models/fr.jhelp.models.objects/-hat/material.html
+$dokka.location:fr.jhelp.models.objects/Hat/node/#/PointingToDeclaration/models/fr.jhelp.models.objects/-hat/node.html
+$dokka.location:fr.jhelp.models.objects/Hat/quality/#/PointingToDeclaration/models/fr.jhelp.models.objects/-hat/quality.html
+$dokka.location:fr.jhelp.models.objects/Horse///PointingToDeclaration/models/fr.jhelp.models.objects/-horse/index.html
+$dokka.location:fr.jhelp.models.objects/Horse/Horse/#/PointingToDeclaration/models/fr.jhelp.models.objects/-horse/-horse.html
+$dokka.location:fr.jhelp.models.objects/Horse/node/#/PointingToDeclaration/models/fr.jhelp.models.objects/-horse/node.html
+$dokka.location:fr.jhelp.models.objects/Horse/runAnimation/#kotlin.Int#kotlin.Int/PointingToDeclaration/models/fr.jhelp.models.objects/-horse/run-animation.html
+$dokka.location:fr.jhelp.models.objects/Horse/walkAnimation/#kotlin.Int#kotlin.Int/PointingToDeclaration/models/fr.jhelp.models.objects/-horse/walk-animation.html
+fr.jhelp.models.basic
+fr.jhelp.models.objects
+
