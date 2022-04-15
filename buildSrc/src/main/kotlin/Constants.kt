@@ -11,7 +11,7 @@ object Constants
     const val jhelpAndroidSDKversion = "1.2.0"
     const val jhelpAndroidSDKversionCode = 1_002_000
     const val compileSdkVersion = 31
-    const val minSdkVersion = 24
+    const val minSdkVersion = 26
     const val targetSdkVersion = 31
     const val kotlinLibrary = "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
     const val appcompatLibrary = "androidx.appcompat:appcompat:1.4.1"
@@ -24,4 +24,6 @@ object Constants
     const val lifecycleExtensionsLibrary = "androidx.lifecycle:lifecycle-extensions:2.2.0"
     const val lifecycleViewmodelLibrary = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     const val androidxRecyclerviewLibrary = "androidx.recyclerview:recyclerview:1.2.1"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
+    const val mock ="io.mockk:mockk:1.12.3"
 }
