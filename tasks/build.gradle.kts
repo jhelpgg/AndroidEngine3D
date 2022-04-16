@@ -43,6 +43,7 @@ dependencies {
 
     implementation(project(path = ":utilities"))
     implementation(project(path = ":lists"))
+    testImplementation(project(path = ":testor"))
 }
 
 tasks.withType<Test> {
