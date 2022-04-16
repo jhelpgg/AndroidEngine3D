@@ -57,3 +57,7 @@ dependencies {
     implementation(project(path = ":models"))
     implementation(project(path = ":provided"))
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}

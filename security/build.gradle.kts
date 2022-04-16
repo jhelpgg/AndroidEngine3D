@@ -40,3 +40,7 @@ dependencies {
     implementation(project(path = ":utilities"))
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
