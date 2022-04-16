@@ -35,6 +35,8 @@ dependencies {
     testRuntimeOnly(Constants.junitLibraryEngine)
     androidTestImplementation(Constants.androidxTestLibrary)
     androidTestImplementation(Constants.espressoLibrary)
+
+    testImplementation(project(path = ":testor"))
 }
 
 tasks.withType<Test> {
