@@ -17,6 +17,18 @@ class Log private constructor()
     companion object
     {
         @JvmStatic
+        var tag = ""
+            private set
+
+        @JvmStatic
+        var message = ""
+            private set
+
+        @JvmStatic
+        var throwable: Throwable? = null
+            private set
+
+        @JvmStatic
         @JvmOverloads
         fun v(tag: String, message: String, throwable: Throwable? = null): Int =
             this.print(System.out, "VERBOSE", tag, message, throwable)
@@ -49,6 +61,10 @@ class Log private constructor()
         private fun print(printStream: PrintStream, type: String, tag: String, message: String,
                           throwable: Throwable?): Int
         {
+            Log.tag = tag
+            Log.message = message
+            Log.throwable = throwable
+
             val calendar = GregorianCalendar()
             printStream.print(calendar[Calendar.YEAR])
             printStream.print("/")
