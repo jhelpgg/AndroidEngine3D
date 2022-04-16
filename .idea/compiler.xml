@@ -2,8 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
-      <module name="multitools.ui" target="11" />
-      <module name="provided" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

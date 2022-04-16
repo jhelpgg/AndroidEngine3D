@@ -9,12 +9,15 @@
 package fr.jhelp.database.query
 
 import fr.jhelp.database.DatabaseObject
+import fr.jhelp.database.OrCreation
 import fr.jhelp.database.query.condition.OrCondition
 
+@OrCreation
 class OrCreator<DO : DatabaseObject> internal constructor (private val objectClass: Class<DO>)
 {
     private val queries = ArrayList<DatabaseQuery<DO>>()
 
+    @OrCreation
     fun or(fillQuery: DatabaseQuery<DO>.() -> Unit)
     {
         val query = DatabaseQuery<DO>(this.objectClass)
