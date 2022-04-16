@@ -12,17 +12,38 @@ import java.io.File
 import java.io.IOException
 import java.util.Stack
 
+/**
+ * The tested project root directory
+ */
 internal val rootSource: File = File(File("").absolutePath).createDirectory()
 
-internal val referenceDirectory: File =File(rootSource, "testorFiles").createDirectory()
+/**
+ * Reference directory where put files during the test
+ */
+internal val referenceDirectory: File = File(rootSource, "testorFiles").createDirectory()
 
+/**
+ * Emulated application private directory
+ */
 val privateDirectory: File = File(referenceDirectory, "private").createDirectory()
 
+/**
+ * Emulates device public shared directory
+ */
 val publicDirectory: File = File(referenceDirectory, "public").createDirectory()
 
+/**
+ * Create if necessary and get directory for a database
+ */
 fun databaseDirectory(databaseName: String): File =
     File(privateDirectory, "databases/$databaseName").createDirectory()
 
+/**
+ * Create a directory and its parent if necessary
+ *
+ * @return Created directory
+ * @throws IOException if already exists and not a directory or if creation failed
+ */
 @Throws(IOException::class)
 fun File.createDirectory(): File
 {
@@ -44,6 +65,12 @@ fun File.createDirectory(): File
     return this
 }
 
+/**
+ * Create a file and its parent if necessary
+ *
+ * @return Created file
+ * @throws IOException if already exists and not a file or if creation failed
+ */
 @Throws(IOException::class)
 fun File.createFile(): File
 {
@@ -67,6 +94,11 @@ fun File.createFile(): File
     return this
 }
 
+/**
+ * Delete a file. If file denotes a directory, all the hierarchy is deleted
+ *
+ * @return `true` if complete deletion succeed. `false` indicates a failure. If it was a directory, some elements in the hierarchy may be deleted
+ */
 fun File.deleteFull(): Boolean
 {
     if (!this.exists())

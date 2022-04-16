@@ -20,6 +20,12 @@ import java.sql.DriverManager
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 
+/**
+ * Real database in Hsql
+ *
+ * @param name Database name
+ * @param deleteOnClose Indicates if have to remove the database when we close it
+ */
 class Database private constructor(val name: String, val deleteOnClose: Boolean)
 {
     companion object
@@ -33,9 +39,18 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
                 .newInstance()
         }
 
+        /**
+         * Create memory database
+         *
+         * Memory database will be deleted when close
+         */
         fun create(): Database =
             Database("memory_${Database.memoryDatabaseId.getAndIncrement()}", true)
 
+        /**
+         * Create real database
+         * @param name Database name
+         */
         fun create(name: String): Database =
             Database(name, false)
     }
@@ -109,6 +124,9 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         return 0
     }
 
+    /**
+     * Do query that returns row result list
+     */
     fun query(query: String): Cursor
     {
         println(query)
@@ -119,6 +137,14 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         return CursorResultSet(statement, statement.executeQuery(convertSqliteToHsql(query)))
     }
 
+    /**
+     * Delete rows an table
+     *
+     * @param table Table where remove rows
+     * @param whereClause Condition for row deletion
+     * @param whereArgs Arguments of `whereClause`
+     * @return Number of deleted rows
+     */
     fun delete(table: String, whereClause: String?, whereArgs: Array<String>?): Int
     {
         val query = StringBuilder()
@@ -134,6 +160,15 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         return this.updateQuery(query.toString())
     }
 
+    /**
+     * Update a table rows
+     *
+     * @param table Table where change rows
+     * @param values Values to change
+     * @param whereClause Condition on row for change
+     * @param whereArgs Arguments of `whereClause`
+     * @return Number of updated rows
+     */
     fun update(table: String, values: ContentValues,
                whereClause: String?, whereArgs: Array<String>?): Int
     {
@@ -166,9 +201,18 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         return this.updateQuery(query.toString())
     }
 
+    /**
+     * Do query that returns row result list
+     */
     fun rawQuery(sql: String, selectionArgs: Array<String>?): Cursor =
         this.query(this.replaceArguments(sql, selectionArgs))
 
+    /**
+     * Start a transaction.
+     *
+     * @param transactionListener Spy of transaction states
+     * @throws IllegalStateException If transaction already opened
+     */
     fun beginTransaction(transactionListener: SQLiteTransactionListener? = null)
     {
         this.checkNotClosed()
@@ -183,6 +227,11 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         this.transactionListener?.onBegin()
     }
 
+    /**
+     * Validate current transaction. It will be commit
+     *
+     * @throws IllegalStateException If no transaction open or already validated
+     */
     fun validateTransaction()
     {
         this.checkNotClosed()
@@ -194,6 +243,13 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         }
     }
 
+    /**
+     * Terminate current transaction
+     *
+     * If commit transaction if [validateTransaction] was called before, et modification during transaction are rollback
+     *
+     * @throws IllegalStateException If transaction not opened
+     */
     fun endTransaction()
     {
         this.checkNotClosed()
@@ -221,6 +277,11 @@ class Database private constructor(val name: String, val deleteOnClose: Boolean)
         this.statusTrace = this.startTrace
     }
 
+    /**
+     * commit last changes and close properly the database
+     *
+     * @throws IllegalStateException If transaction is opened
+     */
     fun close()
     {
         this.checkNotClosed()

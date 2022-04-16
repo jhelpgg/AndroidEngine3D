@@ -36,6 +36,9 @@ private val convertList: Array<Pair<Pattern, String>> =
                 "$1 DOUBLE"
            )
 
+/**
+ * Convert Sqlite query to Hsql query
+ */
 fun convertSqliteToHsql(sqliteQuery: String): String
 {
     var hsqlQuery = sqliteQuery

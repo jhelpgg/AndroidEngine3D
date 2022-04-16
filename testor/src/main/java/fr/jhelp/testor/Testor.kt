@@ -15,7 +15,9 @@ import fr.jhelp.testor.io.publicDirectory
 import fr.jhelp.testor.io.referenceDirectory
 import fr.jhelp.testor.security.mockKeyStore
 
-
+/**
+ * Clean all for next test, so that next test can start with a white page
+ */
 fun cleanForNextTests()
 {
     referenceDirectory.deleteFull()
@@ -24,6 +26,9 @@ fun cleanForNextTests()
     publicDirectory.createDirectory()
 }
 
+/**
+ * Initialize testor
+ */
 internal fun initializeTestor()
 {
     referenceDirectory.createDirectory()

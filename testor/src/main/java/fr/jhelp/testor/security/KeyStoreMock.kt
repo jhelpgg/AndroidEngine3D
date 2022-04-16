@@ -21,6 +21,9 @@ private const val RSA = "RSA"
 
 private val keyStoreAlias = HashMap<String, KeyStore.PrivateKeyEntry>()
 
+/**
+ * Start mocking key store to have an emulated Android Key Store
+ */
 fun mockKeyStore()
 {
     mockkStatic(KeyStore::class)
