@@ -37,6 +37,7 @@ dependencies {
     androidTestImplementation(Constants.espressoLibrary)
 
     implementation (project (path= ":utilities"))
+    implementation (project (path= ":tasks"))
 }
 
 tasks.withType<Test> {

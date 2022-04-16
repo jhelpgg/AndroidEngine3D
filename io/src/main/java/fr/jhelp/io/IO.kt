@@ -99,7 +99,8 @@ inline fun <I : InputStream, O : OutputStream> treatInputOutputStream(producerIn
                                                                       onError: (IOException) -> Unit = {
                                                                           logError(it)
                                                                           { "Issue on treat input/output streams!" }
-                                                                      }): Boolean
+                                                                      },
+                                                                      automaticClose: Boolean = true): Boolean
 {
     var ioException: IOException? = null
     var inputStream: I? = null
@@ -122,28 +123,31 @@ inline fun <I : InputStream, O : OutputStream> treatInputOutputStream(producerIn
     }
     finally
     {
-        if (outputStream != null)
+        if (automaticClose)
         {
-            try
+            if (outputStream != null)
             {
-                outputStream.close()
-            }
-            catch (ignored: Exception)
-            {
+                try
+                {
+                    outputStream.close()
+                }
+                catch (ignored: Exception)
+                {
+                }
+
             }
 
-        }
-
-        if (inputStream != null)
-        {
-            try
+            if (inputStream != null)
             {
-                inputStream.close()
-            }
-            catch (ignored: Exception)
-            {
-            }
+                try
+                {
+                    inputStream.close()
+                }
+                catch (ignored: Exception)
+                {
+                }
 
+            }
         }
     }
 
