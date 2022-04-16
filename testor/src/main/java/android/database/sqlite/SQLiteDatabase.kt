@@ -12,6 +12,9 @@ import android.content.ContentValues
 import android.database.Cursor
 import fr.jhelp.testor.database.Database
 
+/**
+ * Emulates SQLite database
+ */
 class SQLiteDatabase private constructor(private val database: Database)
 {
     companion object
@@ -32,6 +35,9 @@ class SQLiteDatabase private constructor(private val database: Database)
                       query: SQLiteQuery?): Cursor?
     }
 
+    /**
+     * Execute a database query with no return
+     */
     fun execSQL(sql: String)
     {
         if (sql.trim().startsWith("PRAGMA ", ignoreCase = true))
@@ -44,6 +50,12 @@ class SQLiteDatabase private constructor(private val database: Database)
         this.database.simpleQuery(sql)
     }
 
+    /**
+     * Insert elements in table
+     * @param table Table where insert
+     * @param nullColumnHack Ignored for now
+     * @param values Values to insert
+     */
     fun insert(table: String, nullColumnHack: String?, values: ContentValues): Long
     {
         val query = StringBuilder()
@@ -75,16 +87,50 @@ class SQLiteDatabase private constructor(private val database: Database)
         return this.database.updateQuery(query.toString()).toLong()
     }
 
+    /**
+     * Delete rows in table
+     *
+     * @param table Table where delete
+     * @param whereClause Condition on row that match to be delete
+     * @param whereArgs `whereClause` parameters
+     */
     fun delete(table: String, whereClause: String?, whereArgs: Array<String>?): Int =
         this.database.delete(table, whereClause, whereArgs)
 
+    /**
+     * Do request that returns a list of rows, like select
+     *
+     * @param sql Query
+     * @param selectionArgs Query parameters
+     * @return Cursor to read the result
+     */
     fun rawQuery(sql: String, selectionArgs: Array<String>?): Cursor =
         this.database.rawQuery(sql, selectionArgs)
 
+    /**
+     * Update rows in table
+     *
+     * @param table Table to modify
+     * @param values Values to change
+     * @param whereClause Conditions on rows to change
+     * @param whereArgs Arguments of `whereClause`
+     */
     fun update(table: String, values: ContentValues,
                whereClause: String?, whereArgs: Array<String>?): Int =
         this.database.update(table, values, whereClause, whereArgs)
 
+    /**
+     * Do a query get some rows
+     *
+     * @param table Table to lookup
+     * @param columns Columns selected
+     * @param selection Condition on row to by selected
+     * @param selectionArgs Arguments of `selection`
+     * @param groupBy Group condition
+     * @param having Having condition
+     * @param orderBy Order by condition
+     * @param limit Maximum number of rows to select
+     */
     @JvmOverloads
     fun query(table: String, columns: Array<String>,
               selection: String?, selectionArgs: Array<String>?,
@@ -135,36 +181,63 @@ class SQLiteDatabase private constructor(private val database: Database)
         return this.database.rawQuery(query.toString(), selectionArgs)
     }
 
+    /**
+     * Begin transaction (Only one transaction in same time)
+     */
     fun beginTransaction()
     {
         this.database.beginTransaction()
     }
 
+    /**
+     * Begin transaction (Only one transaction in same time)
+     */
     fun beginTransactionNonExclusive()
     {
         this.database.beginTransaction()
     }
 
+    /**
+     * Begin transaction (Only one transaction in same time)
+     *
+     * @param transactionListener Listener to spy transaction updates
+     */
     fun beginTransactionWithListener(transactionListener: SQLiteTransactionListener)
     {
         this.database.beginTransaction(transactionListener)
     }
 
+    /**
+     * Begin transaction (Only one transaction in same time)
+     *
+     * @param transactionListener Listener to spy transaction updates
+     */
     fun beginTransactionWithListenerNonExclusive(transactionListener: SQLiteTransactionListener)
     {
         this.database.beginTransaction(transactionListener)
     }
 
+    /**
+     * Make current transaction as success, so it will be commit
+     */
     fun setTransactionSuccessful()
     {
         this.database.validateTransaction()
     }
 
+    /**
+     * Finish current transaction
+     *
+     * If [setTransactionSuccessful] was called before, transaction chain will be commit, else it will be rollback
+     */
     fun endTransaction()
     {
         this.database.endTransaction()
     }
 
+    /**
+     * Close properly the database
+     */
     fun close()
     {
         this.database.close()

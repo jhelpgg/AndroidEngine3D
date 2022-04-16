@@ -16,43 +16,70 @@ class Log private constructor()
 {
     companion object
     {
+        /**
+         * Tag used in last log message
+         */
         @JvmStatic
         var tag = ""
             private set
 
+        /**
+         * Message printed in last log message
+         */
         @JvmStatic
         var message = ""
             private set
 
+        /**
+         * Trace specified in last log message
+         */
         @JvmStatic
         var throwable: Throwable? = null
             private set
 
+        /**
+         * Verbose log
+         */
         @JvmStatic
         @JvmOverloads
         fun v(tag: String, message: String, throwable: Throwable? = null): Int =
             this.print(System.out, "VERBOSE", tag, message, throwable)
 
+        /**
+         * Debug log
+         */
         @JvmStatic
         @JvmOverloads
         fun d(tag: String, message: String, throwable: Throwable? = null): Int =
             this.print(System.out, "DEBUG", tag, message, throwable)
 
+        /**
+         * Information log
+         */
         @JvmStatic
         @JvmOverloads
         fun i(tag: String, message: String, throwable: Throwable? = null): Int =
             this.print(System.out, "INFORMATION", tag, message, throwable)
 
+        /**
+         * Warning log
+         */
         @JvmStatic
         @JvmOverloads
         fun w(tag: String, message: String, throwable: Throwable? = null): Int =
             this.print(System.out, "WARNING", tag, message, throwable)
 
+        /**
+         * Error log
+         */
         @JvmStatic
         @JvmOverloads
         fun e(tag: String, message: String, throwable: Throwable? = null): Int =
             this.print(System.err, "ERROR", tag, message, throwable)
 
+        /**
+         * What The Failure log
+         */
         @JvmStatic
         @JvmOverloads
         fun wtf(tag: String, message: String, throwable: Throwable? = null): Int =
