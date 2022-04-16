@@ -8,13 +8,29 @@
 
 package fr.jhelp.database
 
-import androidx.annotation.Keep
-
-@Keep
-enum class DataType
+internal enum class DataType
 {
-    INTEGER,
-    NUMBER,
-    TEXT,
+    BOOLEAN,
+    INT,
+    LONG,
+    FLOAT,
+    DOUBLE,
+    STRING,
+    ENUM,
     OBJECT
 }
+
+internal fun dataTypeFrom(clas: Class<*>): DataType =
+    when
+    {
+        clas == Boolean::class.java                       -> DataType.BOOLEAN
+        clas == Int::class.java                           -> DataType.INT
+        clas == Long::class.java                          -> DataType.LONG
+        clas == Float::class.java                         -> DataType.FLOAT
+        clas == Double::class.java                        -> DataType.DOUBLE
+        clas == String::class.java                        -> DataType.STRING
+        clas.isEnum                                       -> DataType.ENUM
+        DatabaseObject::class.java.isAssignableFrom(clas) -> DataType.OBJECT
+        else                                              ->
+            throw IllegalArgumentException("Not managed type : ${clas.name}")
+    }

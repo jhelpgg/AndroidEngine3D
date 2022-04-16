@@ -49,6 +49,9 @@ dependencies {
     implementation(project(path = ":utilities"))
     implementation(project(path = ":io"))
     implementation(project(path = ":lists"))
+    implementation(project(path = ":provided"))
+    implementation(project(path = ":security"))
+    testImplementation(project(path = ":testor"))
 }
 
 tasks.withType<Test> {
