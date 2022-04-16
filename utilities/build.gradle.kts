@@ -36,3 +36,7 @@ dependencies {
     androidTestImplementation(Constants.androidxTestLibrary)
     androidTestImplementation(Constants.espressoLibrary)
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
