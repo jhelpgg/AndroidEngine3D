@@ -41,3 +41,7 @@ dependencies {
     implementation(project(path = ":animations"))
     implementation(project(path = ":engine"))
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}

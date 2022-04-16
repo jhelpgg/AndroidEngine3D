@@ -25,19 +25,33 @@ android {
         resources.excludes.add("META-INF/LICENSE*")
         resources.excludes.add("META-INF/NOTICE*")
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     implementation(Constants.kotlinLibrary)
     implementation(Constants.androidxCoreLibrary)
     implementation(Constants.appcompatLibrary)
+    implementation(Constants.kotlinReflect)
     testImplementation(Constants.junitLibrary)
     testRuntimeOnly(Constants.junitLibraryEngine)
     androidTestImplementation(Constants.androidxTestLibrary)
     androidTestImplementation(Constants.espressoLibrary)
+    androidTestImplementation(Constants.junitLibrary)
+    androidTestRuntimeOnly(Constants.junitLibraryEngine)
 
     implementation(project(path = ":tasks"))
     implementation(project(path = ":utilities"))
     implementation(project(path = ":io"))
     implementation(project(path = ":lists"))
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
