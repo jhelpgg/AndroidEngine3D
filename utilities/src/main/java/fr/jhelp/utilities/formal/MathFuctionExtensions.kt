@@ -16,7 +16,7 @@ val Double.const
         Constant(this).simplify() as Constant
 
 /**
- * Transform a Nubmer to constant
+ * Transform a Number to constant
  */
 val Number.const
     get() =

@@ -10,6 +10,17 @@ package fr.jhelp.utilities.extensions
 
 import kotlin.math.max
 
+/**
+ * String representation of an array
+ *
+ * @param header The header : Text used before start show elements. Default value is `[`
+ * @param separator The separator : Text used between elements. Default value is `, ` (Their a space after the comma)
+ * @param footer The footer : Text used after all elements. Default value is `]`
+ * @param limitSize Number of maximum elements shows. If array have more elements, a mark of more is used. By default we show the entire array
+ * @param moreElements Text to show their more elements. This text is shows if the number of array element is bigger than the number of maximum to show. Default value is `...`
+ * @param moreAtEnd Choose if the mark of more elements is shows at end or in the middle. In middle, it will print first and last elements. By default the mak of more elements is shows at end
+ * @return The computed String representation
+ */
 fun IntArray.string(header: String = "[", separator: String = ", ", footer: String = "]",
                     limitSize: Int = this.size,
                     moreElements: String = "...", moreAtEnd: Boolean = true): String
