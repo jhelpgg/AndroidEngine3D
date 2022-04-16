@@ -29,9 +29,7 @@ internal class LimitedTaskInSameTimeDispatcher(maximumTaskInSameTime: Int = 8) :
         private fun exceute(task: () -> Unit)
         {
             LimitedTaskInSameTimeDispatcher.global.launch {
-                withContext(Dispatchers.Default) {
                     task()
-                }
             }
         }
     }
