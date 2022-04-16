@@ -17,7 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Runnable
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class LimitedTaskInSameTimeDispatcher(maximumTaskInSameTime: Int = 8) :
@@ -26,10 +25,10 @@ internal class LimitedTaskInSameTimeDispatcher(maximumTaskInSameTime: Int = 8) :
     companion object
     {
         private val global = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-        private fun exceute(task: () -> Unit)
+        private fun execute(task: () -> Unit)
         {
             LimitedTaskInSameTimeDispatcher.global.launch {
-                    task()
+                task()
             }
         }
     }
@@ -46,7 +45,7 @@ internal class LimitedTaskInSameTimeDispatcher(maximumTaskInSameTime: Int = 8) :
             if (this.numberFreeTask > 0)
             {
                 this.numberFreeTask--
-                LimitedTaskInSameTimeDispatcher.exceute(this::nextTask)
+                LimitedTaskInSameTimeDispatcher.execute(this::nextTask)
             }
         }
     }

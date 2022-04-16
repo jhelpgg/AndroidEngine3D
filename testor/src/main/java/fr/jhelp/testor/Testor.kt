@@ -8,6 +8,7 @@
 
 package fr.jhelp.testor
 
+import android.os.Looper
 import fr.jhelp.testor.io.createDirectory
 import fr.jhelp.testor.io.deleteFull
 import fr.jhelp.testor.io.privateDirectory
@@ -35,4 +36,15 @@ internal fun initializeTestor()
     privateDirectory.createDirectory()
     publicDirectory.createDirectory()
     mockKeyStore()
+}
+
+/**
+ * For all looper to loop now
+ *
+ * For thread that use looper like Main/UI thread, loopers not advance by them self.
+ * So we have to force them to advance
+ */
+fun loopAllNow()
+{
+    Looper.loopAllNow()
 }
