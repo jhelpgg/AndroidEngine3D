@@ -19,6 +19,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CancellationException
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.max
 
@@ -31,19 +32,25 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
                       private val coroutineContext: CoroutineContext)
 {
     UI(MainScope(), Dispatchers.Main),
-    IO(CoroutineScope(LimitedTaskInSameTimeDispatcher(2)), Dispatchers.IO),
+    IO(CoroutineScope(LimitedTaskInSameTimeDispatcher(4)), Dispatchers.IO),
     SHORT(CoroutineScope(LimitedTaskInSameTimeDispatcher(8)), Dispatchers.Default),
     HEAVY(CoroutineScope(LimitedTaskInSameTimeDispatcher(4)), Dispatchers.Default),
-    NETWORK(CoroutineScope(NetworkDispatcher), Dispatchers.Default),
+    NETWORK(CoroutineScope(NetworkDispatcher), Dispatchers.Default)
     ;
 
     fun <R : Any> parallel(task: () -> R): FutureResult<R>
     {
         val promise = Promise<R>()
+        val cancelled = AtomicBoolean(false)
 
         val job = this.coroutineScope.launch {
             withContext(this.coroutineContext)
             {
+                if (cancelled.get())
+                {
+                    return@withContext
+                }
+
                 try
                 {
                     promise.result(task())
@@ -55,17 +62,26 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
             }
         }
 
-        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        promise.register { reason ->
+            cancelled.set(true)
+            job.cancel(CancellationException(reason))
+        }
         return promise.future
     }
 
     fun <P, R : Any> parallel(parameter: P, task: (P) -> R): FutureResult<R>
     {
         val promise = Promise<R>()
+        val cancelled = AtomicBoolean(false)
 
         val job = this.coroutineScope.launch {
             withContext(this.coroutineContext)
             {
+                if (cancelled.get())
+                {
+                    return@withContext
+                }
+
                 try
                 {
                     promise.result(task(parameter))
@@ -77,13 +93,17 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
             }
         }
 
-        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        promise.register { reason ->
+            cancelled.set(true)
+            job.cancel(CancellationException(reason))
+        }
         return promise.future
     }
 
     fun <R : Any> delay(milliseconds: Long, task: () -> R): FutureResult<R>
     {
         val promise = Promise<R>()
+        val cancelled = AtomicBoolean(false)
 
         val job = this.coroutineScope.launch {
 
@@ -91,6 +111,11 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
 
             withContext(this.coroutineContext)
             {
+                if (cancelled.get())
+                {
+                    return@withContext
+                }
+
                 try
                 {
                     promise.result(task())
@@ -102,13 +127,17 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
             }
         }
 
-        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        promise.register { reason ->
+            cancelled.set(true)
+            job.cancel(CancellationException(reason))
+        }
         return promise.future
     }
 
     fun <P, R : Any> delay(milliseconds: Long, parameter: P, task: (P) -> R): FutureResult<R>
     {
         val promise = Promise<R>()
+        val cancelled = AtomicBoolean(false)
 
         val job = this.coroutineScope.launch {
 
@@ -116,6 +145,11 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
 
             withContext(this.coroutineContext)
             {
+                if (cancelled.get())
+                {
+                    return@withContext
+                }
+
                 try
                 {
                     promise.result(task(parameter))
@@ -127,7 +161,10 @@ enum class ThreadType(private val coroutineScope: CoroutineScope,
             }
         }
 
-        promise.register { reason -> job.cancel(CancellationException(reason)) }
+        promise.register { reason ->
+            cancelled.set(true)
+            job.cancel(CancellationException(reason))
+        }
         return promise.future
     }
 }
