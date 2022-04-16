@@ -8,8 +8,13 @@
 
 package fr.jhelp.database.query
 
+import fr.jhelp.database.AndCreation
 import fr.jhelp.database.DatabaseNoSQL
 import fr.jhelp.database.DatabaseObject
+import fr.jhelp.database.NotCreation
+import fr.jhelp.database.OrCreation
+import fr.jhelp.database.PropertyCondition
+import fr.jhelp.database.Query
 import fr.jhelp.database.query.condition.DatabaseCondition
 import fr.jhelp.database.query.condition.NotCondition
 import fr.jhelp.database.query.condition.andConditions
@@ -76,6 +81,7 @@ import fr.jhelp.database.query.condition.strings.StringUpper
 import fr.jhelp.database.query.condition.strings.StringUpperEquals
 import kotlin.reflect.KProperty1
 
+@Query
 class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 {
     private val conditions = ArrayList<DatabaseCondition>()
@@ -137,12 +143,14 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Boolean's property
 
+    @PropertyCondition
     val KProperty1<DO, Boolean>.isTrue: Unit
         get()
         {
             this@DatabaseQuery.conditions.add(BooleanEquals<DO>(this, true))
         }
 
+    @PropertyCondition
     val KProperty1<DO, Boolean>.isFalse: Unit
         get()
         {
@@ -151,51 +159,61 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Int's property
 
+    @PropertyCondition
     infix fun KProperty1<DO, Int>.LOWER(value: Int)
     {
         this@DatabaseQuery.conditions.add(IntLower<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Int>.LOWER_EQUALS(value: Int)
     {
         this@DatabaseQuery.conditions.add(IntLowerEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Int>.EQUALS(value: Int)
     {
         this@DatabaseQuery.conditions.add(IntEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Int>.NOT_EQUALS(value: Int)
     {
         this@DatabaseQuery.conditions.add(IntNotEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Int>.UPPER_EQUALS(value: Int)
     {
         this@DatabaseQuery.conditions.add(IntUpperEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Int>.UPPER(value: Int)
     {
         this@DatabaseQuery.conditions.add(IntUpper<DO>(this, value))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Int>.BETWEEN(value1: Int, value2: Int)
     {
         this@DatabaseQuery.conditions.add(IntBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Int>.NOT_BETWEEN(value1: Int, value2: Int)
     {
         this@DatabaseQuery.conditions.add(IntNotBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Int>.ONE_OF(vararg values: Int)
     {
         this@DatabaseQuery.conditions.add(IntInside<DO>(this, values))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Int>.NONE_OF(vararg values: Int)
     {
         this@DatabaseQuery.conditions.add(IntOutside<DO>(this, values))
@@ -203,51 +221,61 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Long's property
 
+    @PropertyCondition
     infix fun KProperty1<DO, Long>.LOWER(value: Long)
     {
         this@DatabaseQuery.conditions.add(LongLower<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Long>.LOWER_EQUALS(value: Long)
     {
         this@DatabaseQuery.conditions.add(LongLowerEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Long>.EQUALS(value: Long)
     {
         this@DatabaseQuery.conditions.add(LongEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Long>.NOT_EQUALS(value: Long)
     {
         this@DatabaseQuery.conditions.add(LongNotEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Long>.UPPER_EQUALS(value: Long)
     {
         this@DatabaseQuery.conditions.add(LongUpperEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Long>.UPPER(value: Long)
     {
         this@DatabaseQuery.conditions.add(LongUpper<DO>(this, value))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Long>.BETWEEN(value1: Long, value2: Long)
     {
         this@DatabaseQuery.conditions.add(LongBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Long>.NOT_BETWEEN(value1: Long, value2: Long)
     {
         this@DatabaseQuery.conditions.add(LongNotBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Long>.ONE_OF(vararg values: Long)
     {
         this@DatabaseQuery.conditions.add(LongInside<DO>(this, values))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Long>.NONE_OF(vararg values: Long)
     {
         this@DatabaseQuery.conditions.add(LongOutside<DO>(this, values))
@@ -255,51 +283,61 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Float's property
 
+    @PropertyCondition
     infix fun KProperty1<DO, Float>.LOWER(value: Float)
     {
         this@DatabaseQuery.conditions.add(FloatLower<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Float>.LOWER_EQUALS(value: Float)
     {
         this@DatabaseQuery.conditions.add(FloatLowerEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Float>.EQUALS(value: Float)
     {
         this@DatabaseQuery.conditions.add(FloatEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Float>.NOT_EQUALS(value: Float)
     {
         this@DatabaseQuery.conditions.add(FloatNotEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Float>.UPPER_EQUALS(value: Float)
     {
         this@DatabaseQuery.conditions.add(FloatUpperEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Float>.UPPER(value: Float)
     {
         this@DatabaseQuery.conditions.add(FloatUpper<DO>(this, value))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Float>.BETWEEN(value1: Float, value2: Float)
     {
         this@DatabaseQuery.conditions.add(FloatBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Float>.NOT_BETWEEN(value1: Float, value2: Float)
     {
         this@DatabaseQuery.conditions.add(FloatNotBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Float>.ONE_OF(vararg values: Float)
     {
         this@DatabaseQuery.conditions.add(FloatInside<DO>(this, values))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Float>.NONE_OF(vararg values: Float)
     {
         this@DatabaseQuery.conditions.add(FloatOutside<DO>(this, values))
@@ -307,51 +345,61 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Double's property
 
+    @PropertyCondition
     infix fun KProperty1<DO, Double>.LOWER(value: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleLower<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Double>.LOWER_EQUALS(value: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleLowerEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Double>.EQUALS(value: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Double>.NOT_EQUALS(value: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleNotEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Double>.UPPER_EQUALS(value: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleUpperEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, Double>.UPPER(value: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleUpper<DO>(this, value))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Double>.BETWEEN(value1: Double, value2: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Double>.NOT_BETWEEN(value1: Double, value2: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleNotBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Double>.ONE_OF(vararg values: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleInside<DO>(this, values))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, Double>.NONE_OF(vararg values: Double)
     {
         this@DatabaseQuery.conditions.add(DoubleOutside<DO>(this, values))
@@ -359,51 +407,61 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // String's property
 
+    @PropertyCondition
     infix fun KProperty1<DO, String>.LOWER(value: String)
     {
         this@DatabaseQuery.conditions.add(StringLower<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, String>.LOWER_EQUALS(value: String)
     {
         this@DatabaseQuery.conditions.add(StringLowerEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, String>.EQUALS(value: String)
     {
         this@DatabaseQuery.conditions.add(StringEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, String>.NOT_EQUALS(value: String)
     {
         this@DatabaseQuery.conditions.add(StringNotEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, String>.UPPER_EQUALS(value: String)
     {
         this@DatabaseQuery.conditions.add(StringUpperEquals<DO>(this, value))
     }
 
+    @PropertyCondition
     infix fun KProperty1<DO, String>.UPPER(value: String)
     {
         this@DatabaseQuery.conditions.add(StringUpper<DO>(this, value))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, String>.BETWEEN(value1: String, value2: String)
     {
         this@DatabaseQuery.conditions.add(StringBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, String>.NOT_BETWEEN(value1: String, value2: String)
     {
         this@DatabaseQuery.conditions.add(StringNotBetween<DO>(this, value1, value2))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, String>.ONE_OF(vararg values: String)
     {
         this@DatabaseQuery.conditions.add(StringInside<DO>(this, values))
     }
 
+    @PropertyCondition
     fun KProperty1<DO, String>.NONE_OF(vararg values: String)
     {
         this@DatabaseQuery.conditions.add(StringOutside<DO>(this, values))
@@ -411,21 +469,25 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Enum's property
 
+    @PropertyCondition
     infix fun <E : Enum<E>> KProperty1<DO, E>.EQUALS(value: E)
     {
         this@DatabaseQuery.conditions.add(EnumEquals<DO, E>(this, value))
     }
 
+    @PropertyCondition
     infix fun <E : Enum<E>> KProperty1<DO, E>.NOT_EQUALS(value: E)
     {
         this@DatabaseQuery.conditions.add(EnumNotEquals<DO, E>(this, value))
     }
 
+    @PropertyCondition
     fun <E : Enum<E>> KProperty1<DO, E>.ONE_OF(vararg values: E)
     {
         this@DatabaseQuery.conditions.add(EnumInside<DO, E>(this, values))
     }
 
+    @PropertyCondition
     fun <E : Enum<E>> KProperty1<DO, E>.NONE_OF(vararg values: E)
     {
         this@DatabaseQuery.conditions.add(EnumOutside<DO, E>(this, values))
@@ -433,26 +495,31 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
 
     // Object's property
 
+    @PropertyCondition
     infix fun <DOP : DatabaseObject> KProperty1<DO, DOP>.EQUALS(value: DOP)
     {
         this@DatabaseQuery.conditions.add(ObjectEquals<DO, DOP>(this, value))
     }
 
+    @PropertyCondition
     infix fun <DOP : DatabaseObject> KProperty1<DO, DOP>.NOT_EQUALS(value: DOP)
     {
         this@DatabaseQuery.conditions.add(ObjectNotEquals<DO, DOP>(this, value))
     }
 
+    @PropertyCondition
     fun <DOP : DatabaseObject> KProperty1<DO, DOP>.ONE_OF(vararg values: DOP)
     {
         this@DatabaseQuery.conditions.add(ObjectInside<DO, DOP>(this, values))
     }
 
+    @PropertyCondition
     fun <DOP : DatabaseObject> KProperty1<DO, DOP>.NONE_OF(vararg values: DOP)
     {
         this@DatabaseQuery.conditions.add(ObjectOutside<DO, DOP>(this, values))
     }
 
+    @PropertyCondition
     inline fun <reified DOP : DatabaseObject> KProperty1<DO, DOP>.SELECT(
         subQuery: DatabaseQuery<DOP>.() -> Unit)
     {
@@ -462,6 +529,7 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
         this@DatabaseQuery.select(this, objectClass, query)
     }
 
+    @AndCreation
     fun AND(create: AndCreator<DO>.() -> Unit)
     {
         val andCreator = AndCreator<DO>(this.objectClass)
@@ -469,6 +537,7 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
         this.conditions.add(andCreator.buildCondition())
     }
 
+    @OrCreation
     fun OR(create: OrCreator<DO>.() -> Unit)
     {
         val orCreator = OrCreator<DO>(this.objectClass)
@@ -476,6 +545,7 @@ class DatabaseQuery<DO : DatabaseObject>(private val objectClass: Class<DO>)
         this.conditions.add(orCreator.buildCondition())
     }
 
+    @NotCreation
     fun NOT(subQuery: DatabaseQuery<DO>.() -> Unit)
     {
         val query = DatabaseQuery<DO>(this.objectClass)

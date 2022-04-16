@@ -8,13 +8,16 @@
 
 package fr.jhelp.database.query
 
+import fr.jhelp.database.AndCreation
 import fr.jhelp.database.DatabaseObject
 import fr.jhelp.database.query.condition.AndCondition
 
+@AndCreation
 class AndCreator<DO : DatabaseObject> internal constructor(private val objectClass: Class<DO>)
 {
     private val queries = ArrayList<DatabaseQuery<DO>>()
 
+    @AndCreation
     fun and(fillQuery: DatabaseQuery<DO>.() -> Unit)
     {
         val query = DatabaseQuery<DO>(this.objectClass)
