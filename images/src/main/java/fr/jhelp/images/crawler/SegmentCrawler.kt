@@ -27,6 +27,7 @@ class SegmentCrawler(startX: Int, startY: Int,
     /**Indicates if their a next step*/
     var hasNext = true
         private set
+    private var moreStepToDo = true
     private var x = startX
     private var y = startY
     private var error = 0
@@ -43,24 +44,23 @@ class SegmentCrawler(startX: Int, startY: Int,
      */
     fun next(step: Int): Point
     {
-        if (step <= 0 || !this.hasNext)
+        if (step <= 0 || !this.moreStepToDo)
         {
+            this.hasNext = this.moreStepToDo
             return Point(this.x, this.y)
         }
 
-        var xx = this.x
-        var yy = this.y
+        val xx = this.x
+        val yy = this.y
 
         for (count in 0 until step)
         {
             if (this.x == this.endX && this.y == this.endY)
             {
-                this.hasNext = false
-                return Point(this.endX, this.endY)
+                this.moreStepToDo = false
+                return Point(xx, yy)
             }
 
-            xx = this.x
-            yy = this.y
             this.next()
         }
 
