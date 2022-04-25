@@ -47,7 +47,7 @@ internal class EllipticArcCrawler(private val startX: Float, private val startY:
         // Compute the half distance between the current and the final point
         val distanceX2 = (this.startX - this.endX) / 2.0f
         val distanceY2 = (this.startY - this.endY) / 2.0f
-        // Convert angle from degrees to radians
+        // Convert angle to radians
         val cosAngle = rotationAxisX.cos()
         val sinAngle = rotationAxisX.sin()
 
